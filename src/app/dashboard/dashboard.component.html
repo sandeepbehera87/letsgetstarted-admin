@@ -1,0 +1,18 @@
+<div class="app-dashboard">
+    <app-header [user]="userEmail"
+    ></app-header>
+    <div class="app-tabs">
+           <div class="add-question" (click)="addQuestion()">Add Question</div>
+           <div class="divider"></div>
+           <div class="view-question" (click)="viewQuestion()">View Question</div>
+           <div class="add-question-underline" [ngClass]="{'active-tab': !disableAdd}"></div>
+           <div class="view-question-underline" [ngClass]="{'active-tab': !disableView}"></div>
+    </div>
+    <div *ngIf="showAddQuestions">
+           <app-add-question></app-add-question>
+    </div>
+    <div *ngIf="showSavedQuestions">
+           <app-view-question [courses]="courseList$ | async"></app-view-question>
+    </div>
+    <app-footer></app-footer>
+</div>

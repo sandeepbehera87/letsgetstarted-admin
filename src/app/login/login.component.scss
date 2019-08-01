@@ -1,0 +1,131 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #e9e9e9;
+    }
+    
+    .login-inputbox-header {
+      position: relative;
+      top: 11vh;
+      margin-left: 20vw;
+      width: 60vw;
+      height: 20vh;
+      background-color: #d8d8d8;
+      border-left: 1px solid #979797;
+      border-top: 1px solid #979797;
+      border-right: 1px solid #979797;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+    
+    .logo {
+      width: 115px;
+      height: 115px;
+      background-color: #d8d8d8;
+      position: absolute;
+      top: 1vh;
+    }
+    
+    .logo-name {
+      width: 384px;
+      height: 66px;
+      font-family: AvenirNext;
+      font-size: 44px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #4a4a4a;
+      background-color: #d8d8d8;
+      position: relative;
+      top: 29px;
+      left: 110px;
+    }
+    
+    .logo-name-subtitle {
+      width: 142px;
+      height: 25px;
+      font-family: AvenirNext;
+      font-size: 18px;
+      font-weight: bold;
+      font-style: italic;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #4a4a4a;
+      background-color: #d8d8d8;
+      position: relative;
+      top: 56px;
+      right: 210px;
+    }
+    
+    .login-inputbox-body {
+      width: 60vw;
+      height: 60vh;
+      border-left: 1px solid #979797;
+      border-bottom: 1px solid #979797;
+      border-right: 1px solid #979797;
+      background-color: #f7f7f7;
+      margin-left: 20vw;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+    
+    .login-form-container {
+      width: 28vw;
+      height: 40vh;
+      position: absolute;
+      left: 37vw;
+      top: 35vh;
+      margin-left: 22px;
+      background: #f7f7f7;
+      form {
+        background: #f7f7f7;
+      }
+    }
+    
+    .login-input {
+      width: 374px;
+      height: 46px;
+      border-radius: 3px;
+      box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+      background-color: #ffffff;
+    }
+    .remember {
+      background: #f7f7f7;
+    }
+    .remember-label {
+      width: 150px;
+      height: 19px;
+      font-family: AvenirNext;
+      font-size: 18px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #4a4a4a;
+      background: #f7f7f7;
+    }
+    
+    .login-button-container {
+      background: #f7f7f7;
+    }
+    
+    .create-account-button {
+      margin-left: 3vw;
+    }
+    
+    .login-button {
+      width: 374px;
+      height: 46px;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 0 #ffffff;
+      background-image: linear-gradient(to bottom, #d8d8d8, #b3b3b3);
+      border: 1px solid #d8d8d8;
+      margin-top: 20px;
+    }
+    
+    .signup-form-container {
+      margin-left: 3vw;
+    }
+    

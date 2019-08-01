@@ -1,0 +1,108 @@
+<div class="add-question-layout">
+    <div class="add-question-header">Enter the question here</div>
+    <div class="add-question-container">
+           <form name="form" (ngSubmit)="questionMetaForm.form.valid && onAdd()" #questionMetaForm="ngForm" novalidate>
+                  <div class="form-group form-inline">
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="courseName" name="courseName"
+                                       [(ngModel)]="questionMeta.courseName" #courseName="ngModel" required
+                                       [ngClass]="{ 'is-invalid': questionMetaForm.submitted && courseName.invalid }"
+                                       placeholder="Course Name, Eg: Aptitute">
+                                <div *ngIf="questionMetaForm.submitted && courseName.invalid" class="invalid-feedback">
+                                       <div *ngIf="courseName.errors.required">Course name can not be empty</div>
+                                </div>
+                         </div>
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="testName" name="testName"
+                                       [(ngModel)]="questionMeta.testName" #testName="ngModel" required [ngClass]="{ 'is-invalid': questionMetaForm.submitted && testName.invalid }"
+                                       placeholder="Test Name, Eg: Age">
+                                <div *ngIf="questionMetaForm.submitted && testName.invalid" class="invalid-feedback">
+                                       <div *ngIf="testName.errors.required">Course name can not be empty</div>
+                                </div>
+                         </div>
+                  </div>
+                  <div class="form-group form-inline">
+                         <div class="col-md-6 mb-3">
+                                   <input class="form-control dashboard-form-group" placeholder="yyyy-mm-dd"
+                                   name="dp" [(ngModel)]="questionMeta.date" ngbDatepicker #d="ngbDatepicker">
+                                   <div class="input-group-append">
+                                          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                                   </div>
+                         </div>
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" [(ngModel)]="questionMeta.facultyName"
+                                       id="facultyName" name="facultyName" #facultyName="ngModel" required [ngClass]="{ 'is-invalid': questionMetaForm.submitted && facultyName.invalid }"
+                                       placeholder="Admin Name">
+                                <div *ngIf="questionMetaForm.submitted && facultyName.invalid" class="invalid-feedback">
+                                       <div *ngIf="facultyName.errors.required">Course name can not be empty</div>
+                                </div>
+                         </div>
+                  </div>
+                  </form>
+                  <form name="form" (ngSubmit)="questionForm.form.valid && onAdd()" #questionForm="ngForm" novalidate>
+                  <div class="form-group">
+                         <div class="col-md-6 mb-3">
+                                <textarea class="form-control dashboard-textarea" rows="5" name="quetionTitle"
+                                       [(ngModel)]="question.quetionTitle" placeholder="Enter the question here." id="quetionTitle"
+                                       #quetionTitle="ngModel" required [ngClass]="{ 'is-invalid': questionForm.submitted && quetionTitle.invalid }"></textarea>
+                                <div *ngIf="questionForm.submitted && quetionTitle.invalid" class="invalid-feedback">
+                                       <div *ngIf="quetionTitle.errors.required">Please enter the question</div>
+                                </div>
+                         </div>
+                  </div>
+                  <div class="form-group form-inline">
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="option1" name="option1"
+                                       [(ngModel)]="question.option1" #option1="ngModel" required [ngClass]="{ 'is-invalid': questionForm.submitted && option1.invalid }"
+                                       placeholder="Option 1">
+                                <div *ngIf="questionForm.submitted && option1.invalid" class="invalid-feedback">
+                                       <div *ngIf="option1.errors.required">Option 1 can not be empty</div>
+                                </div>
+                         </div>
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="option2" name="option2"
+                                       [(ngModel)]="question.option2" #option2="ngModel" required [ngClass]="{ 'is-invalid': questionForm.submitted && option2.invalid }"
+                                       placeholder="Option 2">
+                                <div *ngIf="questionForm.submitted && option2.invalid" class="invalid-feedback">
+                                       <div *ngIf="option2.errors.required">Option 2 can not be empty</div>
+                                </div>
+                         </div>
+                  </div>
+                  <div class="form-group form-inline">
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="option3" name="option3"
+                                       [(ngModel)]="question.option3" #option3="ngModel" required [ngClass]="{ 'is-invalid': questionForm.submitted && option3.invalid }"
+                                       placeholder="Option 3">
+                                <div *ngIf="questionForm.submitted && option3.invalid" class="invalid-feedback">
+                                       <div *ngIf="option3.errors.required">Option 3 can not be empty</div>
+                                </div>
+                         </div>
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="option4" name="option4"
+                                       [(ngModel)]="question.option4" #option4="ngModel" required [ngClass]="{ 'is-invalid': questionForm.submitted && option4.invalid }"
+                                       placeholder="Option 4">
+                                <div *ngIf="questionForm.submitted && option4.invalid" class="invalid-feedback">
+                                       <div *ngIf="option4.errors.required">Option 4 can not be empty</div>
+                                </div>
+                         </div>
+                  </div>
+                  <div class="form-group form-inline">
+                         <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control dashboard-form-group" id="correctAnswer" name="correctAnswer"
+                                       [(ngModel)]="question.correctAnswer" #correctAnswer="ngModel" required
+                                       [ngClass]="{ 'is-invalid': questionForm.submitted && correctAnswer.invalid }"
+                                       placeholder="Correct Answer">
+                                <div *ngIf="questionForm.submitted && correctAnswer.invalid" class="invalid-feedback">
+                                       <div *ngIf="correctAnswer.errors.required">Correct answer can not be empty</div>
+                                </div>
+                         </div>
+                  </div>
+                  <div class="form-group form-inline">
+                         <button type="submit" class="btn btn-success dashboard-form-group-buttons">Add</button>
+                         <button type="button" [disabled]="!minimumQuestionAddedd" class="btn btn-success dashboard-form-group-buttons mb-2" (click)="onSubmit()">Submit</button>
+                         <i class="fa fa-info-circle info-ic" placement="top" tooltip="You need atleast 10 question to make a question set and submit."
+                                aria-hidden="true"></i>
+                  </div>
+           </form>
+    </div>
+</div>

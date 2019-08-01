@@ -1,0 +1,146 @@
+<div class="login-container">
+    <div class="login-inputbox-header">
+      <img class="logo" src="../../assets/images/dream.png">
+      <span class="logo-name">Let's Get Started</span>
+      <span class="logo-name-subtitle">Live your Dream</span>
+    </div>
+    <div class="login-inputbox-body">
+      <div class="login-form-container">
+        <form name="form" (ngSubmit)="login.form.valid && onLogIn()" #login="ngForm" novalidate>
+          <div class="form-group">
+            <input type="email"
+                   class="form-control login-input"
+                   name="email"
+                   [(ngModel)]="loginData.email"
+                   #email="ngModel"
+                   placeholder="Enter your email"
+                   [ngClass]="{ 'is-invalid': login.submitted && email.invalid }"
+                   email
+                   required />
+            <div *ngIf="login.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.required">Email field can't be empty</div>
+              <div *ngIf="email.errors.email">Please enter a valid email id</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password"
+                   class="form-control login-input"
+                   name="password"
+                   [(ngModel)]="loginData.password"
+                   #password="ngModel"
+                   placeholder="Enter your password"
+                   [ngClass]="{ 'is-invalid': login.submitted && password.invalid }"
+                   required />
+            <div *ngIf="login.submitted && password.invalid" class="invalid-feedback">
+              <div *ngIf="password.errors.required">Password field can't be empty</div>
+            </div>
+          </div>
+          <div class="checkbox remember">
+            <label  class="remember-label"><input type="checkbox"> Remember me</label>
+          </div>
+          <div class="form-group login-button-container">
+            <button type="submit"
+                    class="btn btn-success login-button">Login</button>
+          </div>
+          <div class="form-group create-account-button">
+            <button type="button"
+                    (click)="openSignUp()"
+                    class="btn btn-link">Don't have account? Click here</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="openSignUpModal">
+    <app-modal titleDialog="Sign Up">
+      <div class="container signup-container">
+        <div class="signup-form-container">
+          <div class="signup-form">
+            <form #signupForm="ngForm" novalidate (ngSubmit)="signupForm.form.valid && registerUser()">
+              <div class="form-group">
+                <input type="email"
+                       class="form-control login-input"
+                       name="signupEmail"
+                       placeholder="Email, Eg: example@test.com"
+                       [(ngModel)]="user.signupEmail"
+                       required
+                       #signupEmail="ngModel"
+                       [ngClass]="{ 'is-invalid': signupForm.submitted && signupEmail.invalid }"
+                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+                <small [hidden]="signupEmail.valid || (signupEmail.pristine && !signupForm.submitted)" class="text-danger">
+                  Email is required and format should be <i>john@doe.com</i>.
+                </small>
+                <!--<pre *ngIf="signupEmail.errors" class="margin-20">{{ signupEmail.errors | json }}</pre>-->
+              </div>
+              <div class="form-group">
+                <input type="text"
+                       class="form-control login-input"
+                       name="signupMobile"
+                       placeholder="Mobile, Eg: +911234512345"
+                       [(ngModel)]="user.signupMobile"
+                       required
+                       [ngClass]="{ 'is-invalid': signupForm.submitted && signupMobile.invalid }"
+                       #signupMobile="ngModel">
+                <small [hidden]="signupMobile.valid || (signupMobile.pristine && !signupForm.submitted)" class="text-danger">
+                  Username is required (minimum 5 characters).
+                </small>
+                <!--<pre *ngIf="signupMobile.errors" class="margin-20">{{ signupMobile.errors | json }}</pre>-->
+              </div>
+              <div class="form-group">
+                <input type="password"
+                       class="form-control login-input"
+                       name="signupPassword"
+                       placeholder="Enter your password"
+                       [(ngModel)]="user.signupPassword"
+                       required
+                       [ngClass]="{ 'is-invalid': signupForm.submitted && signupPassword.invalid }"
+                       appEqualValidator="confirmPassword"
+                       reverse="true" #signupPassword="ngModel">
+                <small [hidden]="signupPassword.valid || (signupPassword.pristine && !signupForm.submitted)" class="text-danger">
+                  Password is required
+                </small>
+                <!--<pre *ngIf="signupPassword.errors" class="margin-20">{{ signupPassword.errors | json }}</pre>-->
+              </div>
+              <div class="form-group">
+                <input type="password"
+                       class="form-control login-input"
+                       name="confirmPassword"
+                       placeholder="Confirm password"
+                       [(ngModel)]="user.confirmPassword"
+                       required
+                       appEqualValidator="signupPassword"
+                       reverse="false"
+                       [ngClass]="{ 'is-invalid': signupForm.submitted && confirmPassword.invalid }"
+                       #confirmPassword="ngModel">
+                <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !signupForm.submitted)" class="text-danger">
+                  Password mismatch
+                </small>
+                <!--<pre *ngIf="confirmPassword.errors" class="margin-20">{{ confirmPassword.errors | json }}</pre>-->
+              </div>
+              <button type="submit" class="btn btn-success login-button">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </app-modal>
+  </div>
+  
+  <div *ngIf="onSignUpSuccess">
+    <app-modal titleDialog="Verify Email">
+      <p>An email link has been sent to your email id. Please click on the link to verify your email account.</p>
+      <button type="button"
+              (click)="resendVerification()"
+              class="btn btn-link">Click here to resend the verify email link</button>
+    </app-modal>
+  </div>
+  
+  
+  <div *ngIf="emailNotverified">
+    <app-modal titleDialog="Verify Email">
+      <p>Your email is not verified yet. Please click on the link to verify your email account.</p>
+      <button type="button"
+              (click)="resendVerification()"
+              class="btn btn-link">Click here to resend the verify email link</button>
+    </app-modal>
+  </div>
+  
