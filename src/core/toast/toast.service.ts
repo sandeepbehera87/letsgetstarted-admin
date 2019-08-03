@@ -3,20 +3,20 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
-  })
-  export class ToastManager {
-    constructor(private toastr: ToastrService) {}
+})
+export class ToastManager {
+    constructor(private toastr: ToastrService) { }
 
     showSuccess(message: string) {
         this.toastr.success(message, 'Success');
     }
 
     showError(message: string) {
-        this.toastr.warning(message, 'Error');
+        this.toastr.error(message, 'Error');
     }
 
     showWarning(message: string) {
-        this.toastr.error(message, 'Alert')
+        this.toastr.warning(message, 'Alert')
     }
 
-  }
+}

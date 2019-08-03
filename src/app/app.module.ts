@@ -18,7 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { environment } from "src/environments/environment";
 
 import { AuthService } from '../core/auth/auth.service';
-import { ToastManager} from '../core/toast/toast.service';
+import { ToastManager } from '../core/toast/toast.service';
 import { AddQuestionComponent } from './dashboard/add-question/add-question.component';
 import { FooterComponent } from './dashboard/footer/footer.component';
 import { HeaderComponent } from './dashboard/header/header.component';
@@ -48,7 +48,12 @@ import { ModalComponent } from '../components/modal/modal.component';
     NgxSpinnerModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-full-width',
+      preventDuplicates: true,
+      closeButton: true
+    }),
   ],
   providers: [
     AuthService,

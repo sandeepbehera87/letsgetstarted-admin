@@ -23,7 +23,7 @@ export interface LoginData {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
+  @ViewChild(ModalComponent, { static: false }) modalComponent: ModalComponent;
 
   user: User;
   loginData: LoginData;
@@ -60,6 +60,8 @@ export class LoginComponent implements OnInit {
   }
 
   openSignUp() {
+    this.resetLoginForm();
+    this.resetSignupForm();
     this.openSignUpModal = true;
     this.onSignUpSuccess = false;
     setTimeout(() => {

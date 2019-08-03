@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
-import { NgbModalConfig, NgbModal, NgbActiveModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
@@ -8,15 +8,15 @@ import { NgbModalConfig, NgbModal, NgbActiveModal, NgbModalOptions } from '@ng-b
   providers: [NgbModalConfig, NgbModal]
 })
 export class ModalComponent implements OnInit {
-  @Input() title;
-  @ViewChild('content', {static: false}) content: ElementRef;
+  @Input() titleDialog;
+  @ViewChild('content', { static: false }) content: ElementRef;
 
   config: NgbModalConfig = {
     backdrop: 'static',
     keyboard: false
   };
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
