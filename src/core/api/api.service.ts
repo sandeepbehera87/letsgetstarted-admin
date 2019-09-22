@@ -17,6 +17,7 @@ export class ApiService {
     ) { }
 
     saveQuestionToDb(questionMeta, question) {
+        console.log(question);
         this.spinner.show();
         this.db.list('/QuestionDataSet/' +
             questionMeta.courseName + '/' +
