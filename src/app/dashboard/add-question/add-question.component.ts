@@ -13,16 +13,16 @@ export class AddQuestionComponent implements OnInit {
   @ViewChild("questionForm", { static: false }) questionForm;
   @ViewChild("questionMetaForm", { static: false }) questionMetaForm;
 
-  bsValue = new Date();
-  questionMeta = {
+  bsValue: Date = new Date();
+  questionMeta : {} = {
     testName: "",
     courseName: "",
     date: "",
     facultyName: ""
   };
-  question = {};
-  questionSet = [];
-  minimumQuestionAddedd = false;
+  question: {} = {};
+  questionSet: Array<{}> = [];
+  minimumQuestionAddedd: Boolean = false;
 
   constructor(
     public db: AngularFireDatabase,
