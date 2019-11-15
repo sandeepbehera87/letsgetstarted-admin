@@ -1,14 +1,13 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { ModalComponent } from '../../../components/modal/modal.component';
-import { ApiService } from '../../../core/api/api.service';
+import {Component, OnInit, Input, ViewChild, OnChanges} from '@angular/core';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ModalComponent} from '../../../components/modal/modal.component';
 
 @Component({
   selector: 'app-view-question',
   templateUrl: './view-question.component.html',
-  styleUrls: ['./view-question.component.scss']
+  styleUrls: ['./view-question.component.scss'],
 })
-export class ViewQuestionComponent implements OnInit {
-
+export class ViewQuestionComponent implements OnInit, OnChanges {
   @Input() courses: string[];
   @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
 
@@ -17,8 +16,9 @@ export class ViewQuestionComponent implements OnInit {
   questionData = [];
   showCourseContainer = false;
   showTestContainer = false;
+  courseList = [];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
     this.showCourseContainer = true;
@@ -29,43 +29,27 @@ export class ViewQuestionComponent implements OnInit {
     this.showTestContainer = false;
   }
 
+  ngOnChanges() {
+    this.courseList = this.courses ? Object.keys(this.courses) : [];
+    if (this.courseList) this.spinner.hide();
+  }
+
   onCourseClick(course: string) {
-    this.testNameList = [];
-    this.apiService.getQueations().subscribe((dataset) => {
-      this.showCourseContainer = false;
-      this.showTestContainer = true;
-      for (let resp of dataset) {
-        if (resp.key === course.toString()) {
-          this.testList.push(resp.data);
-          for (let key in resp.data) {
-            this.testNameList.push(key);
-          }
-        }
-      }
+    this.showCourseContainer = false;
+    this.showTestContainer = true;
+    const selectedCourse = this.courses[course];
+    this.testNameList = Object.keys(selectedCourse);
+    this.testNameList = this.testNameList.map(test => {
+      let obj = {};
+      let testContents = Object.values(selectedCourse[test]);
+      obj['key'] = test;
+      obj['value'] = testContents[0];
+      return obj;
     });
   }
 
   onTestClick(test) {
     this.modalComponent.show();
-    this.questionData = this.getValue(this.testList, test);
+    this.questionData = test;
   }
-
-  getValue(datalist, test) {
-    for (let key1 in datalist) {
-      const val1 = datalist[key1];
-      for (let key2 in val1) {
-        if (key2 === test.toString()) {
-          const val2 = val1[key2];
-          for (let key3 in val2) {
-            const val3 = val2[key3];
-            for (let key4 in val3) {
-              const val4 = val3[key4];
-              return val4;
-            }
-          }
-        }
-      }
-    }
-  }
-
 }

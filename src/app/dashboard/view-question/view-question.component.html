@@ -1,35 +1,48 @@
 <div class="view-question-layout">
-    <div class="view-question-header">View all questions here</div>
-    <div class="view-course-container" *ngIf="showCourseContainer">
-            <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let course of courses" (click)="onCourseClick(course.key)">
-                            {{ course.key }}
-                            <span class="dot">
-                                    <span class="course-strength">{{ course.dataKeys.length }}</span>
-                            </span>
-                            <img class="right-arrow" src="../../../assets/images/right_arrow.png">
-                    </li>
-            </ul>
-    </div>
-    <img *ngIf="showTestContainer" (click)="showCourseList()" class="back-arrow" src="../../../assets/images/arrow-back.png">
-    <div class="view-course-container" *ngIf="showTestContainer">
-            <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let test of testNameList" (click)="onTestClick(test)">
-                            {{ test }}
-                            <span class="view">
-                                    view
-                            </span>
-                    </li>
-            </ul>
-    </div>
+  <div class="view-question-header">View all questions here</div>
+  <div class="view-course-container" *ngIf="showCourseContainer">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let course of courseList"
+        (click)="onCourseClick(course)"
+      >
+        {{ course }}
+        <span class="dot">
+          <!--span class="course-strength">{{ course.dataKeys.length }}</span-->
+        </span>
+        <img class="right-arrow" src="../../../assets/images/right_arrow.png" />
+      </li>
+    </ul>
+  </div>
+  <img
+    *ngIf="showTestContainer"
+    (click)="showCourseList()"
+    class="back-arrow"
+    src="../../../assets/images/arrow-back.png"
+  />
+  <div class="view-course-container" *ngIf="showTestContainer">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let test of testNameList"
+        (click)="onTestClick(test.value)"
+      >
+        {{ test.key }}
+        <span class="view">
+          view
+        </span>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <app-modal titleDialog="Show Question">
-    <div *ngFor="let question of questionData">
-            <p>Question: {{ question.quetionTitle }}</p>
-            <p>Option 1: {{ question.option1 }}</p>
-            <p>Option 2: {{ question.option2 }}</p>
-            <p>Option 3: {{ question.option3 }}</p>
-            <p>Option 4: {{ question.option4 }}</p>
-    </div>
+  <div *ngFor="let question of questionData">
+    <p>Question: {{ question.quetionTitle }}</p>
+    <p>Option 1: {{ question.option1 }}</p>
+    <p>Option 2: {{ question.option2 }}</p>
+    <p>Option 3: {{ question.option3 }}</p>
+    <p>Option 4: {{ question.option4 }}</p>
+  </div>
 </app-modal>

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ApiService } from '../../core/api/api.service';
+import {Component, OnInit} from '@angular/core';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ApiService} from '../../core/api/api.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
   showSavedQuestions = false;
   showAddQuestions = true;
   disableAdd: boolean;
@@ -20,8 +19,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.disableView = true;
@@ -43,5 +42,4 @@ export class DashboardComponent implements OnInit {
     this.showSavedQuestions = true;
     this.showAddQuestions = false;
   }
-
 }
