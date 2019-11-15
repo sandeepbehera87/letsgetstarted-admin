@@ -1,25 +1,19 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
+import {NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  providers: [NgbModalConfig, NgbModal],
 })
 export class ModalComponent implements OnInit {
   @Input() titleDialog;
-  @ViewChild('content', { static: false }) content: ElementRef;
+  @ViewChild('content', {static: false}) content: ElementRef;
 
-  config: NgbModalConfig = {
-    backdrop: 'static',
-    keyboard: false
-  };
+  constructor(private modalService: NgbModal) {}
 
-  constructor(private modalService: NgbModal) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   show() {
     this.modalService.open(this.content);
@@ -28,5 +22,4 @@ export class ModalComponent implements OnInit {
   hide() {
     this.modalService.dismissAll();
   }
-
 }

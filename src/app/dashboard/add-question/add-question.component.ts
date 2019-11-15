@@ -1,26 +1,26 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { NgxSpinnerService } from "ngx-spinner";
-import { ApiService } from "../../../core/api/api.service";
-import { ToastManager } from "../../../core/toast/toast.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ApiService} from '../../../core/api/api.service';
+import {ToastManager} from '../../../core/toast/toast.service';
 
 @Component({
-  selector: "app-add-question",
-  templateUrl: "./add-question.component.html",
-  styleUrls: ["./add-question.component.scss"]
+  selector: 'app-add-question',
+  templateUrl: './add-question.component.html',
+  styleUrls: ['./add-question.component.scss'],
 })
 export class AddQuestionComponent implements OnInit {
-  @ViewChild("questionForm", { static: false }) questionForm;
-  @ViewChild("questionMetaForm", { static: false }) questionMetaForm;
+  @ViewChild('questionForm', {static: false}) questionForm;
+  @ViewChild('questionMetaForm', {static: false}) questionMetaForm;
 
   bsValue: Date = new Date();
-  questionMeta : {} = {
-    testName: "",
-    courseName: "",
-    date: "",
-    facultyName: ""
+  questionMeta: any = {
+    testName: '',
+    courseName: '',
+    date: '',
+    facultyName: '',
   };
-  question: {} = {};
+  question: any = {};
   questionSet: Array<{}> = [];
   minimumQuestionAddedd: Boolean = false;
 
@@ -28,7 +28,7 @@ export class AddQuestionComponent implements OnInit {
     public db: AngularFireDatabase,
     private spinner: NgxSpinnerService,
     private apiService: ApiService,
-    private toastr: ToastManager
+    private toastr: ToastManager,
   ) {}
 
   ngOnInit() {}
@@ -38,7 +38,7 @@ export class AddQuestionComponent implements OnInit {
     this.question = {};
     this.questionSet.push(ques);
     this.toastr.showSuccess(
-      this.questionSet.length + " Question/s addedd successfully"
+      this.questionSet.length + ' Question/s addedd successfully',
     );
     if (this.questionSet.length > 0) {
       this.minimumQuestionAddedd = true;
@@ -47,7 +47,7 @@ export class AddQuestionComponent implements OnInit {
   onSubmit() {
     this.apiService.saveQuestionToDb(this.questionMeta, this.questionSet);
     setTimeout(() => {
-      this.toastr.showSuccess("Question set saved successfully");
+      this.toastr.showSuccess('Question set saved successfully');
     }, 1000);
   }
 }
