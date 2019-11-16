@@ -16,12 +16,7 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     const appReq = req.clone({
-      url: AppSettings.API_ENDPOINT + req.url,
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Origin': '*',
-      }),
+      url: AppSettings.API_ENDPOINT + req.url
     });
     return next.handle(appReq);
   }
