@@ -11,7 +11,7 @@ import {Observable, ReplaySubject} from 'rxjs';
 })
 export class ApiService {
   allCourseList = new ReplaySubject<any>();
-  getQuestionApi = 'questions/list.htm';
+  getQuestionApi = 'questions/list';
 
   constructor(
     private spinner: NgxSpinnerService,
