@@ -1,3 +1,3 @@
 export class AppSettings {
-  public static API_ENDPOINT = 'https://letsgetstarted-server.herokuapp.com/';
+  public static API_ENDPOINT = 'https://letsgetstarted.herokuapp.com/';
 }
