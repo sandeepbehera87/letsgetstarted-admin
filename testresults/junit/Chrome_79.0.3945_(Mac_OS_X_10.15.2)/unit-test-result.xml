@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<unitTest version="1">
+  <file path="fixedString">
+    <testCase name="AppComponent should have as title 'my-app'" duration="183"/>
+    <testCase name="AppComponent should create the app" duration="82"/>
+    <testCase name="AddQuestionComponent should create" duration="272"/>
+    <testCase name="HeaderComponent should create" duration="49"/>
+    <testCase name="DashboardComponent should create" duration="194"/>
+    <testCase name="LoginComponent should create" duration="133"/>
+    <testCase name="FooterComponent should create" duration="32"/>
+    <testCase name="AuthService should be created" duration="10"/>
+    <testCase name="ViewQuestionComponent should create" duration="1">
+      <skipped/>
+    </testCase>
+    <testCase name="ModalComponent should create" duration="49"/>
+  </file>
+</unitTest>
