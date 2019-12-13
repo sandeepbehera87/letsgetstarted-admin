@@ -9,10 +9,10 @@ import {ApiService} from '../../core/api/api.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  showSavedQuestions = false;
+  disableAdd = false;
   showAddQuestions = true;
-  disableAdd: boolean;
-  disableView: boolean;
+  disableView = true;
+  showSavedQuestions = false;
   courseList$ = this.apiService.getQueations();
   userEmail: string;
 
@@ -23,23 +23,13 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.disableView = true;
-    this.disableAdd = false;
     this.userEmail = this.route.snapshot.paramMap.get('email');
   }
 
-  addQuestion() {
-    this.disableView = true;
-    this.disableAdd = false;
-    this.showSavedQuestions = false;
-    this.showAddQuestions = true;
-  }
-
-  viewQuestion() {
-    this.spinner.show();
-    this.disableView = false;
-    this.disableAdd = true;
-    this.showSavedQuestions = true;
-    this.showAddQuestions = false;
+  tabChange() {
+    this.disableAdd = !this.disableAdd;
+    this.disableView = !this.disableView;
+    this.showSavedQuestions = this.showAddQuestions;
+    this.showAddQuestions = !this.showSavedQuestions;
   }
 }

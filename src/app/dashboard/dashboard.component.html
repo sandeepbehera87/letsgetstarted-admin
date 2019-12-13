@@ -1,9 +1,9 @@
 <div class="app-dashboard">
   <app-header [user]="userEmail"></app-header>
   <div class="app-tabs">
-    <div class="add-question" (click)="addQuestion()">Add Question</div>
+    <div class="add-question" (click)="tabChange()">Add Question</div>
     <div class="divider"></div>
-    <div class="view-question" (click)="viewQuestion()">View Question</div>
+    <div class="view-question" (click)="tabChange()">View Question</div>
     <div
       class="add-question-underline"
       [ngClass]="{'active-tab': !disableAdd}"
