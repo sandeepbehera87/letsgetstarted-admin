@@ -1,16 +1,20 @@
 <div class="header-body">
-    <div class="app-logo">
-       <img class="logo" src="../../../assets/images/dream.png">
-    </div>
-    <div class="app-name">
-       <div class="app-name-header">Let’s Get Started</div>
-       <div class="app-name-sub-header">Live your Dream</div>
-    </div>
-    <div class="app-logout" (click)="signOut()">
-       <img class="logout-sign" src="../../../assets/images/sign-out.png">
-    </div>
-    <div class="user-info">
-       <div>Signed In as</div>
-       <div class="user-email">{{user}}</div>
-    </div>
- </div>
+  <div class="app-logo">
+    <img class="logo" src="../../../assets/images/dream.png" alt="logo" />
+  </div>
+  <div class="app-name">
+    <div class="app-name-header">Let’s Get Started</div>
+    <div class="app-name-sub-header">Live your Dream</div>
+  </div>
+  <div class="app-logout" (click)="signOut()">
+    <img
+      class="logout-sign"
+      src="../../../assets/images/sign-out.png"
+      alt="sign-out"
+    />
+  </div>
+  <div class="user-info">
+    <div>Signed In as</div>
+    <div class="user-email">{{user}}</div>
+  </div>
+</div>
