@@ -11,8 +11,7 @@
     "serve": "ng serve --configuration=development",
     "test": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "sonar": "sonar-scanner"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
