@@ -11,7 +11,11 @@
         <span class="dot">
           <!--span class="course-strength">{{ course.dataKeys.length }}</span-->
         </span>
-        <img class="right-arrow" src="../../../assets/images/right_arrow.png" />
+        <img
+          class="right-arrow"
+          src="../../../assets/images/right_arrow.png"
+          alt="rightArrow"
+        />
       </li>
     </ul>
   </div>
@@ -20,6 +24,7 @@
     (click)="showCourseList()"
     class="back-arrow"
     src="../../../assets/images/arrow-back.png"
+    alt="backArrow"
   />
   <div class="view-course-container" *ngIf="showTestContainer">
     <ul class="list-group">
