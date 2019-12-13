@@ -9,7 +9,7 @@
     "build:dev": "ng build --dev",
     "build:prod": "ng build --prod",
     "serve": "ng serve --configuration=development",
-    "test": "ng test",
+    "test": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner"
@@ -72,6 +72,7 @@
     "sonar-scanner": "^3.1.0",
     "ts-node": "~8.4.1",
     "tslint": "~5.20.0",
+    "tslint-sonarts": "^1.9.0",
     "typescript": "3.5.3"
   },
   "engines": {
