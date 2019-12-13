@@ -5,7 +5,6 @@ import {ModalComponent} from '../../../components/modal/modal.component';
 @Component({
   selector: 'app-view-question',
   templateUrl: './view-question.component.html',
-  styleUrls: ['./view-question.component.scss'],
 })
 export class ViewQuestionComponent implements OnInit, OnChanges {
   @Input() courses: string[];

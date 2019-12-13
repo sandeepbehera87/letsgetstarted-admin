@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.openSignUpModal = true;
     this.onSignUpSuccess = false;
     setTimeout(() => {
-      this.modalComponent.show();
+      //  this.modalComponent.show();
     }, 500);
   }
 

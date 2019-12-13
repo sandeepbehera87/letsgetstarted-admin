@@ -14,7 +14,7 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {environment} from 'src/environments/environment';
+import {environment} from '../environments/environment';
 
 import {AuthService} from '../core/auth/auth.service';
 import {ToastManager} from '../core/toast/toast.service';
