@@ -9,7 +9,7 @@
     "build:dev": "ng build --dev",
     "build:prod": "ng build --prod",
     "serve": "ng serve --configuration=development",
-    "test": "ng test --watch=false --code-coverage",
+    "test": "ng test --watch=false --code-coverage --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -67,7 +67,6 @@
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
-    "karma-junit-reporter": "^2.0.1",
     "karma-sonarqube-generic-reporter": "https://github.com/tobiashofmann/karma-sonarqube-generic-reporter/#master",
     "protractor": "~5.4.2",
     "sonar-scanner": "^3.1.0",
