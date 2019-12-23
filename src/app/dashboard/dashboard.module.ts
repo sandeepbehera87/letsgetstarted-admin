@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {SharedModule} from '../../core/shared/shared.module';
@@ -24,6 +25,7 @@ const routes: Routes = [{path: '', component: DashboardComponent}];
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
+    BsDatepickerModule.forRoot(),
   ],
 })
 export class DashboardModule {}

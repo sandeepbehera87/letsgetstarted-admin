@@ -18,10 +18,17 @@ export class AddQuestionComponent {
   questionMeta: Courses = {
     coursename: '',
     subjectname: '',
-    date: '',
-    author: '',
+    currentdate: '',
+    facultyname: '',
   };
-  question: Questions;
+  question: Questions = {
+    quetionTitle: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    correctAnswer: '',
+  };
   questionSet: Array<Questions> = [];
   minimumQuestionAddedd = false;
 
@@ -32,10 +39,11 @@ export class AddQuestionComponent {
     private toastr: ToastManager,
   ) {}
 
-  onAdd(questionForm: HTMLFormElement) {
-    if (questionForm.form.valid) {
-      this.questionSet.push(questionForm.value.question);
-      questionForm.form.reset();
+  onAdd() {
+    if (this.questionForm.form.valid) {
+      var data: Questions = JSON.parse(JSON.stringify(this.question));
+      this.questionSet.push(data);
+      this.questionForm.form.reset();
       this.toastr.showSuccess(
         this.questionSet.length + ' Question/s addedd successfully',
       );
@@ -44,13 +52,13 @@ export class AddQuestionComponent {
       }
     }
   }
-  onSubmit(questionMetaForm: HTMLFormElement) {
+  onSubmit() {
     this.apiService.saveQuestionToDb(
-      questionMetaForm.value.questionMeta,
+      this.questionMetaForm.value.questionMeta,
       this.questionSet,
     );
     setTimeout(() => {
-      questionMetaForm.form.reset();
+      this.questionMetaForm.form.reset();
       this.toastr.showSuccess('Question set saved successfully');
     }, 1000);
   }
