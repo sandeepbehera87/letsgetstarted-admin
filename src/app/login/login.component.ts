@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.openSignUpModal = true;
     this.onSignUpSuccess = false;
     setTimeout(() => {
-      //  this.modalComponent.show();
+        this.modalComponent.show();
     }, 500);
   }
 
@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
       res => {
         if (AuthService.isEmailVerified()) {
           this.emailNotverified = false;
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['dashboard', this.loginData.email]);
         } else {
           this.emailNotverified = true;
           setTimeout(() => {

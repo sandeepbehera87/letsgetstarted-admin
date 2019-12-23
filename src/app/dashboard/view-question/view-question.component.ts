@@ -21,6 +21,7 @@ export class ViewQuestionComponent implements OnInit, OnChanges {
   constructor(private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.showCourseContainer = true;
   }
 

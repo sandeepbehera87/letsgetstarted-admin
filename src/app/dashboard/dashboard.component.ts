@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
   ) {}
 
