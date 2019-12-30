@@ -4,29 +4,29 @@ import {ModalComponent} from '../../components/modal/modal.component';
 import {AuthService} from '../../core/auth/auth.service';
 import {ToastManager} from '../../core/toast/toast.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-
-export interface User {
-  signupEmail: string;
-  signupMobile: string;
-  signupPassword: string;
-  confirmPassword: string;
-}
-
-export interface LoginData {
-  email: string;
-  password: string;
-}
+import {UserData} from '../model/userdata';
+import {LoginData} from '../model/logindata';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  @ViewChild('login', {static: false}) loginForm;
+  @ViewChild('signupForm', {static: false}) signupForm;
   @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
 
-  user: User;
-  loginData: LoginData;
+  user: UserData = {
+    signupEmail: '',
+    signupMobile: '',
+    signupPassword: '',
+    confirmPassword: ''
+  };
+  loginData: LoginData = {
+    email: '',
+    password: ''
+  };
   openSignUpModal = false;
   onSignUpSuccess = false;
   emailNotverified = false;
@@ -38,30 +38,9 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
   ) {}
 
-  ngOnInit() {
-    this.resetSignupForm();
-    this.resetLoginForm();
-  }
-
-  resetSignupForm() {
-    this.user = {
-      signupEmail: '',
-      signupMobile: '',
-      signupPassword: '',
-      confirmPassword: '',
-    };
-  }
-
-  resetLoginForm() {
-    this.loginData = {
-      email: '',
-      password: '',
-    };
-  }
-
   openSignUp() {
-    this.resetLoginForm();
-    this.resetSignupForm();
+    this.loginForm.form.reset();
+    if (this.signupForm) this.signupForm.form.reset();
     this.openSignUpModal = true;
     this.onSignUpSuccess = false;
     setTimeout(() => {

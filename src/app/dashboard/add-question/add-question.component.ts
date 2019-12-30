@@ -3,8 +3,8 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ApiService} from '../../../core/api/api.service';
 import {ToastManager} from '../../../core/toast/toast.service';
-import {Courses} from '../model/courses';
-import {Questions} from '../model/question';
+import {Courses} from '../../model/courses';
+import {Questions} from '../../model/question';
 
 @Component({
   selector: 'app-add-question',
