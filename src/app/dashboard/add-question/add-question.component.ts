@@ -53,13 +53,21 @@ export class AddQuestionComponent {
     }
   }
   onSubmit() {
-    this.apiService.saveQuestionToDb(
-      this.questionMetaForm.value.questionMeta,
-      this.questionSet,
-    );
-    setTimeout(() => {
+    var data: Courses = JSON.parse(JSON.stringify(this.questionMeta));
+    const dataToSend = {
+      questionData: {
+        coursename: data.coursename,
+        subjects: {
+          subjectname: data.subjectname,
+          questionset: this.questionSet,
+        },
+        facultyname: data.facultyname,
+        currentdate: data.currentdate,
+      },
+    };
+    this.apiService.saveQuestionToDb(dataToSend).subscribe(res => {
       this.questionMetaForm.form.reset();
       this.toastr.showSuccess('Question set saved successfully');
-    }, 1000);
+    });
   }
 }

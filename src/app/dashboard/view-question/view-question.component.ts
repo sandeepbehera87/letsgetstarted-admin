@@ -8,7 +8,7 @@ import {ModalComponent} from '../../../components/modal/modal.component';
   styleUrls: ['./view-question.component.scss'],
 })
 export class ViewQuestionComponent implements OnInit, OnChanges {
-  @Input() courses: string[];
+  @Input() courses: any[];
   @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
 
   testNameList = [];
@@ -31,20 +31,29 @@ export class ViewQuestionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.courseList = this.courses ? Object.keys(this.courses) : [];
-    if (this.courseList) this.spinner.hide();
+    if (this.courses) {
+      this.courses = this.courses.map(item => {
+        return item.questionData;
+      });
+      this.courseList = this.courses.map(item => {
+        return item.coursename;
+      });
+      if (this.courseList) this.spinner.hide();
+    }
   }
 
   onCourseClick(course: string) {
     this.showCourseContainer = false;
     this.showTestContainer = true;
-    const selectedCourse = this.courses[course];
-    this.testNameList = Object.keys(selectedCourse);
+    const selectedCourse = this.courses.filter(
+      item => item.coursename === course,
+    );
+    this.testNameList.push(selectedCourse[0].subjects.subjectname);
     this.testNameList = this.testNameList.map(test => {
       let obj = {};
-      let testContents = Object.values(selectedCourse[test]);
+      let testContents = selectedCourse[0].subjects.questionset;
       obj['key'] = test;
-      obj['value'] = testContents[0];
+      obj['value'] = testContents;
       return obj;
     });
   }
