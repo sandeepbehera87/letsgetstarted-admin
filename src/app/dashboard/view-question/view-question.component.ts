@@ -35,26 +35,22 @@ export class ViewQuestionComponent implements OnInit, OnChanges {
       this.courses = this.courses.map(item => {
         return item.questionData;
       });
-      this.courseList = this.courses.map(item => {
+      this.courseList = Array.from(new Set(this.courses.map(item => {
         return item.coursename;
-      });
+      })));
       if (this.courseList) this.spinner.hide();
     }
   }
 
   onCourseClick(course: string) {
+    this.testNameList = [];
     this.showCourseContainer = false;
     this.showTestContainer = true;
     const selectedCourse = this.courses.filter(
       item => item.coursename === course,
     );
-    this.testNameList.push(selectedCourse[0].subjects.subjectname);
-    this.testNameList = this.testNameList.map(test => {
-      let obj = {};
-      let testContents = selectedCourse[0].subjects.questionset;
-      obj['key'] = test;
-      obj['value'] = testContents;
-      return obj;
+    this.testNameList = selectedCourse.map(item => {
+     return item.subjects;
     });
   }
 

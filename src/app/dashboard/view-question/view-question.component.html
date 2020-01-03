@@ -29,9 +29,9 @@
       <li
         class="list-group-item"
         *ngFor="let test of testNameList"
-        (click)="onTestClick(test.value)"
+        (click)="onTestClick(test.questionset)"
       >
-        {{ test.key }}
+        {{ test.subjectname }}
         <span class="view">
           view
         </span>

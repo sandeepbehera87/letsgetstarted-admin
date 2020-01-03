@@ -53,6 +53,7 @@ export class AddQuestionComponent {
     }
   }
   onSubmit() {
+    this.spinner.show();
     var data: Courses = JSON.parse(JSON.stringify(this.questionMeta));
     const dataToSend = {
       questionData: {
@@ -66,6 +67,8 @@ export class AddQuestionComponent {
       },
     };
     this.apiService.saveQuestionToDb(dataToSend).subscribe(res => {
+      this.spinner.hide();
+      this.minimumQuestionAddedd = false;
       this.questionMetaForm.form.reset();
       this.toastr.showSuccess('Question set saved successfully');
     });
