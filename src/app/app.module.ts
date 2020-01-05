@@ -19,6 +19,7 @@ import {AuthService} from '../core/auth/auth.service';
 import {ToastManager} from '../core/toast/toast.service';
 
 import {HttpInterceptorProviders} from '../core/http-interceptors/index';
+import {ErrorHandlerService} from '../core/http-error-handling/error-handler.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +42,12 @@ import {HttpInterceptorProviders} from '../core/http-interceptors/index';
       closeButton: true,
     }),
   ],
-  providers: [AuthService, ToastManager, HttpInterceptorProviders],
+  providers: [
+    AuthService,
+    ToastManager,
+    HttpInterceptorProviders,
+    ErrorHandlerService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

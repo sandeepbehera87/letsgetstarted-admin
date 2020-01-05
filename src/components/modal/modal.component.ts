@@ -18,4 +18,8 @@ export class ModalComponent implements OnInit {
   show() {
     this.modalRef = this.modalService.show(this.template);
   }
+
+  hide() {
+    this.modalService.hide(1);
+  }
 }

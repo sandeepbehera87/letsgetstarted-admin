@@ -197,31 +197,3 @@
     </app-modal>
   </div>
 </div>
-
-<div *ngIf="onSignUpSuccess">
-  <div class="container">
-    <app-modal titleDialog="Verify Email">
-      <p>
-        An email link has been sent to your email id. Please click on the link
-        to verify your email account.
-      </p>
-      <button type="button" (click)="resendVerification()" class="btn btn-link">
-        Click here to resend the verify email link
-      </button>
-    </app-modal>
-  </div>
-</div>
-
-<div *ngIf="emailNotverified">
-  <div class="container">
-    <app-modal titleDialog="Verify Email">
-      <p>
-        Your email is not verified yet. Please click on the link to verify your
-        email account.
-      </p>
-      <button type="button" (click)="resendVerification()" class="btn btn-link">
-        Click here to resend the verify email link
-      </button>
-    </app-modal>
-  </div>
-</div>

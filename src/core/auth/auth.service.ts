@@ -1,87 +1,61 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { map, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { ErrorHandlerService } from "../http-error-handling/error-handler.service";
 
 @Injectable({
-    providedIn: 'root'
-  })
-  export class AuthService {
-  
-    constructor(
-      public afAuth: AngularFireAuth,
-      private spinner: NgxSpinnerService,
-      public db: AngularFireDatabase
-    ) { }
-  
-    actionCodeSettings = {
-      url: 'https://letsgetstarted-admin.herokuapp.com/',
-      handleCodeInApp: true,
+  providedIn: "root"
+})
+export class AuthService {
+  userSignUpApi = "api/user/register";
+  userSignInApi = "api/user/login";
+  // userSignOutApi = 'api/user/logout';
+
+  constructor(
+    private errorHandler: ErrorHandlerService,
+    private httpClient: HttpClient
+  ) {}
+
+  userRegistration(userData): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
     };
-  
-    static isEmailVerified() {
-      const user = firebase.auth().currentUser;
-      if (!user || user === null) {
-        return false;
-      }
-      return user.emailVerified;
-    }
-  
-    userRegistration(userData) {
-      this.spinner.show();
-      return new Promise<any>((resolve, reject) => {
-        firebase.auth().createUserWithEmailAndPassword(userData.signupEmail, userData.signupPassword)
-          .then(res => {
-            this.spinner.hide();
-            resolve(res);
-          }, err => {
-            this.spinner.hide();
-            reject(err);
-          });
-      });
-    }
-  
-    verifyEmail() {
-      this.spinner.show();
-      return new Promise<any>((resolve, reject) => {
-        const user = firebase.auth().currentUser;
-        user.sendEmailVerification().then((res) => {
-          this.spinner.hide();
-          resolve(res);
-        }).catch((error) => {
-          this.spinner.hide();
-          reject(error);
-        });
-      });
-    }
-  
-    signIn(signInData) {
-      this.spinner.show();
-      return new Promise<any>((resolve, reject) => {
-        firebase.auth().signInWithEmailAndPassword(signInData.email, signInData.password)
-          .then((res) => {
-            this.spinner.hide();
-            resolve(res);
-          }).catch((error) => {
-            this.spinner.hide();
-            reject(error);
-          });
-      });
-    }
-  
-    signOut() {
-      this.spinner.show();
-      return new Promise<any>((resolve, reject) => {
-        firebase.auth().signOut()
-          .then((res) => {
-            this.spinner.hide();
-            resolve(res);
-          }).catch((error) => {
-            this.spinner.hide();
-            reject(error);
-          });
-      });
-    }
+    return this.httpClient
+      .post<any>(this.userSignUpApi, JSON.stringify(userData), httpOptions)
+      .pipe(
+        map(response => response),
+        tap(
+          response => response,
+          error => {
+            this.errorHandler.handleError(error);
+          }
+        )
+      );
   }
-  
+
+  signIn(signInData): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    };
+    return this.httpClient
+      .post<any>(this.userSignInApi, JSON.stringify(signInData), httpOptions)
+      .pipe(
+        map(response => response),
+        tap(
+          response => response,
+          error => {
+            this.errorHandler.handleError(error);
+          }
+        )
+      );
+  }
+
+  signOut() {
+    return null;
+  }
+}
