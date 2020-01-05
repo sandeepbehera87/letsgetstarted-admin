@@ -20,6 +20,6 @@ export class ModalComponent implements OnInit {
   }
 
   hide() {
-    this.modalService.hide(1);
+    this.modalRef.hide();
   }
 }
