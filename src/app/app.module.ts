@@ -46,7 +46,7 @@ import {ErrorHandlerService} from '../core/http-error-handling/error-handler.ser
     AuthService,
     ToastManager,
     HttpInterceptorProviders,
-    ErrorHandlerService
+    ErrorHandlerService,
   ],
   bootstrap: [AppComponent],
 })
