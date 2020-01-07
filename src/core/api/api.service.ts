@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, tap} from 'rxjs/operators';
 import {Observable, ReplaySubject} from 'rxjs';
+import {SharedService} from '../shared/shared.service';
+import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,19 +15,15 @@ export class ApiService {
   saveQuestionApi = 'api/questions/addQuestion';
 
   constructor(
-    private spinner: NgxSpinnerService,
+    private errorHandler: ErrorHandlerService,
     public db: AngularFireDatabase,
     private httpClient: HttpClient,
+    private sharedService: SharedService,
   ) {}
 
   saveQuestionToDb(dataArry): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
     return this.httpClient
-      .post<any>(this.saveQuestionApi, JSON.stringify(dataArry), httpOptions)
+      .post<any>(this.saveQuestionApi, JSON.stringify(dataArry))
       .pipe(
         map(response => response),
         tap(
@@ -37,13 +34,21 @@ export class ApiService {
   }
 
   getQueations(): Observable<any> {
-    return this.httpClient.get(this.getQuestionApi).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'api-token': this.sharedService.apiToken,
+      }),
+    };
+    return this.httpClient.get(this.getQuestionApi, httpOptions).pipe(
       map(response => {
         return response;
       }),
       tap(
         response => response,
-        error => error,
+        error => {
+          this.errorHandler.handleError(error);
+        },
       ),
     );
   }

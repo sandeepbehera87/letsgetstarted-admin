@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 import {ApiService} from '../../core/api/api.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
   ) {}
 
@@ -24,10 +26,22 @@ export class DashboardComponent implements OnInit {
     this.userEmail = this.route.snapshot.paramMap.get('email');
   }
 
-  tabChange() {
+  getQuestions = () => {
+    this.apiService.getQueations().subscribe(
+      res => {
+        this.courseList$ = res;
+        this.spinner.hide();
+      },
+      err => {
+        this.spinner.hide();
+      },
+    );
+  };
+
+  tabChange = () => {
     this.disableAdd = !this.disableAdd;
     this.disableView = !this.disableView;
     this.showSavedQuestions = this.showAddQuestions;
     this.showAddQuestions = !this.showSavedQuestions;
-  }
+  };
 }

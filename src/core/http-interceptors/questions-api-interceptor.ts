@@ -8,9 +8,12 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AppSettings} from '../utils/app.settings';
+import {SharedService} from '../shared/shared.service';
 
 @Injectable()
 export class QuestionsApiInterceptor implements HttpInterceptor {
+  // sharedService: SharedService;
+  constructor(public sharedService: SharedService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler,
@@ -20,8 +23,12 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+        'Access-Control-Allow-Methods':
+          'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        'api-token': this.sharedService.apiToken
+          ? this.sharedService.apiToken
+          : '',
       }),
     });
     return next.handle(appReq);

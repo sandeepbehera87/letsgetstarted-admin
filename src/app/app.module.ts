@@ -20,9 +20,12 @@ import {ToastManager} from '../core/toast/toast.service';
 
 import {HttpInterceptorProviders} from '../core/http-interceptors/index';
 import {ErrorHandlerService} from '../core/http-error-handling/error-handler.service';
+import {SharedService} from '../core/shared/shared.service';
+import {NotFoundComponent} from './errors/not-found/not-found.component';
+import {SessionExpireComponent} from './errors/session-expire/session-expire.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent, SessionExpireComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,6 +50,7 @@ import {ErrorHandlerService} from '../core/http-error-handling/error-handler.ser
     ToastManager,
     HttpInterceptorProviders,
     ErrorHandlerService,
+    SharedService,
   ],
   bootstrap: [AppComponent],
 })
