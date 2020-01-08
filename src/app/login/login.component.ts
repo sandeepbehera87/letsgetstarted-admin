@@ -75,7 +75,7 @@ export class LoginComponent {
       response => {
         this.sharedService.apiToken = response.token;
         this.spinner.hide();
-        this.router.navigate(['dashboard', this.loginData.email]);
+        this.router.navigate(['dashboard']);
       },
       error => {
         this.spinner.hide();

@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: 'register', loadChildren: './register/register.module#RegisterModule'},
   {path: 'login', loadChildren: './login/login.module#LoginModule'},
   {
-    path: 'dashboard/:email',
+    path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule',
   },
   {path: 'not-found', component: NotFoundComponent},

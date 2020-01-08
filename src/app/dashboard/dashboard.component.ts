@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userEmail = this.route.snapshot.paramMap.get('email');
+    this.userEmail = ''; //this.route.snapshot.paramMap.get('email');
   }
 
   getQuestions = () => {

@@ -9,8 +9,11 @@ import {FooterComponent} from './footer/footer.component';
 import {SharedModule} from '../../core/shared/shared.module';
 import {AddQuestionComponent} from './add-question/add-question.component';
 import {ViewQuestionComponent} from './view-question/view-question.component';
+import {AuthGuardService} from '../../core/guards/auth-guard.service';
 
-const routes: Routes = [{path: '', component: DashboardComponent}];
+const routes: Routes = [
+  {path: '', component: DashboardComponent, canActivate: [AuthGuardService]},
+];
 
 @NgModule({
   declarations: [
@@ -27,5 +30,6 @@ const routes: Routes = [{path: '', component: DashboardComponent}];
     RouterModule.forChild(routes),
     BsDatepickerModule.forRoot(),
   ],
+  providers: [AuthGuardService],
 })
 export class DashboardModule {}
