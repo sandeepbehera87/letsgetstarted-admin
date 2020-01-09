@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {map, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
+import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';
+import {AppSettings} from '../utils/app.settings';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
 
 @Injectable({
@@ -21,8 +23,12 @@ export class ApiService {
   ) {}
 
   saveQuestionToDb(dataArry): Observable<any> {
+    const data = Crypto.AES.encrypt(
+      JSON.stringify(dataArry),
+      AppSettings.SECRET_KEY,
+    ).toString();
     return this.httpClient
-      .post<any>(this.saveQuestionApi, JSON.stringify(dataArry))
+      .post<any>(this.saveQuestionApi, JSON.stringify({data}))
       .pipe(
         tap(
           response => this.saveQuestion.next(response),
