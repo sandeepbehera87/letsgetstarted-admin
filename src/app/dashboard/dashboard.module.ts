@@ -4,8 +4,7 @@ import {DashboardComponent} from './dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
+import {FooterComponent} from '../footer/footer.component';
 import {SharedModule} from '../../core/shared/shared.module';
 import {AddQuestionComponent} from './add-question/add-question.component';
 import {ViewQuestionComponent} from './view-question/view-question.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    HeaderComponent,
     FooterComponent,
     AddQuestionComponent,
     ViewQuestionComponent,

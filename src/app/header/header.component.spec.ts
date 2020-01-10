@@ -3,8 +3,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {HeaderComponent} from './header.component';
-import {environment} from '../../../environments/environment';
-import {AppRoutingModule} from '../../app-routing.module';
+import {environment} from '../../environments/environment';
+import {AppRoutingModule} from '../app-routing.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

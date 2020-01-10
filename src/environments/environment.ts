@@ -4,14 +4,6 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyBKriP1uEmB4MPxoh77F1k4hF5xtURvxr0",
-    authDomain: "letsgetstarted-admin-dev.firebaseapp.com",
-    databaseURL: "https://letsgetstarted-admin-dev.firebaseio.com",
-    projectId: "letsgetstarted-admin-dev",
-    storageBucket: "letsgetstarted-admin-dev.appspot.com",
-    messagingSenderId: "488266092110"
-  }
 };
 
 /*
