@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-import {AngularFireDatabase} from '@angular/fire/database';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ApiService} from '../../../core/api/api.service';
 import {ToastManager} from '../../../core/toast/toast.service';
@@ -33,7 +32,6 @@ export class AddQuestionComponent {
   minimumQuestionAddedd = false;
 
   constructor(
-    public db: AngularFireDatabase,
     private spinner: NgxSpinnerService,
     private apiService: ApiService,
     private toastr: ToastManager,

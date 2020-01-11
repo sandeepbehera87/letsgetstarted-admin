@@ -22,7 +22,7 @@
   <mat-toolbar-row>
     <span><h2>Lets get started</h2></span>
     <span class="spacer"></span>
-    <a mat-button routerLink="/register">Register</a>
-    <a mat-button routerLink="/login">Login</a>
+    <a mat-button (click)="goToRegisterPage()">Register</a>
+    <a mat-button (click)="gotToLoginPage()">Login</a>
   </mat-toolbar-row>
 </mat-toolbar>

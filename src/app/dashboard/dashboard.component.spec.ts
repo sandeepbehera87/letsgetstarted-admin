@@ -1,8 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFireDatabase} from '@angular/fire/database';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
 import {HeaderComponent} from '../header/header.component';
@@ -11,7 +8,6 @@ import {AddQuestionComponent} from './add-question/add-question.component';
 import {ViewQuestionComponent} from './view-question/view-question.component';
 import {FooterComponent} from '../footer/footer.component';
 import {ModalComponent} from '../../components/modal/modal.component';
-import {environment} from '../../environments/environment';
 import {AppRoutingModule} from '../app-routing.module';
 
 describe('DashboardComponent', () => {
@@ -22,7 +18,6 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
         HttpClientModule,
         AppRoutingModule,
         ToastrModule.forRoot({
@@ -40,7 +35,6 @@ describe('DashboardComponent', () => {
         FooterComponent,
         ModalComponent,
       ],
-      providers: [AngularFireAuth, AngularFireDatabase],
     }).compileComponents();
   }));
 

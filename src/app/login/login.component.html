@@ -1,199 +1,42 @@
-<!-- Login Container -->
-<div class="container">
-  <div class="login-inputbox-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <h2 class="logo-name">Let's Get Started</h2>
-          <h4 class="logo-name-subtitle">Live your Dream</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="login-inputbox-body">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="login-form-container">
-            <form
-              name="form"
-              (ngSubmit)="login.form.valid && onLogIn()"
-              #login="ngForm"
-              novalidate
-            >
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control login-input"
-                  name="email"
-                  [(ngModel)]="loginData.email"
-                  #email="ngModel"
-                  placeholder="Enter your email"
-                  [ngClass]="{ 'is-invalid': login.submitted && email.invalid }"
-                  email
-                  required
-                />
-                <div
-                  *ngIf="login.submitted && email.invalid"
-                  class="invalid-feedback"
-                >
-                  <div *ngIf="email.errors.required">
-                    Email field can't be empty
-                  </div>
-                  <div *ngIf="email.errors.email">
-                    Please enter a valid email id
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control login-input"
-                  name="password"
-                  [(ngModel)]="loginData.password"
-                  #password="ngModel"
-                  placeholder="Enter your password"
-                  [ngClass]="{ 'is-invalid': login.submitted && password.invalid }"
-                  required
-                />
-                <div
-                  *ngIf="login.submitted && password.invalid"
-                  class="invalid-feedback"
-                >
-                  <div *ngIf="password.errors.required">
-                    Password field can't be empty
-                  </div>
-                </div>
-              </div>
-              <div class="checkbox remember">
-                <label class="remember-label"
-                  ><input type="checkbox" /> Remember me</label
-                >
-              </div>
-              <div class="form-group login-button-container">
-                <button
-                  type="submit"
-                  class="btn btn-success btn-lg btn-block login-button"
-                >
-                  Login
-                </button>
-              </div>
-              <div class="form-group create-account-button">
-                <button
-                  type="button"
-                  (click)="openSignUp()"
-                  class="btn btn-link"
-                >
-                  Don't have account? Click here
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Sign up Container -->
-<div *ngIf="openSignUpModal">
-  <div class="container">
-    <app-modal titleDialog="Sign Up">
-      <div class="container signup-container">
-        <div class="signup-form-container">
-          <div class="signup-form">
-            <form
-              #signupForm="ngForm"
-              novalidate
-              (ngSubmit)="signupForm.form.valid && registerUser()"
-            >
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control login-input"
-                  name="signupEmail"
-                  placeholder="Email, Eg: example@test.com"
-                  [(ngModel)]="user.signupEmail"
-                  required
-                  #signupEmail="ngModel"
-                  [ngClass]="{ 'is-invalid': signupForm.submitted && signupEmail.invalid }"
-                  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-                />
-                <small
-                  [hidden]="signupEmail.valid || (signupEmail.pristine && !signupForm.submitted)"
-                  class="text-danger"
-                >
-                  Email is required and format should be <em>john@doe.com</em>.
-                </small>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control login-input"
-                  name="signupMobile"
-                  placeholder="Mobile, Eg: +911234512345"
-                  [(ngModel)]="user.signupMobile"
-                  required
-                  [ngClass]="{ 'is-invalid': signupForm.submitted && signupMobile.invalid }"
-                  #signupMobile="ngModel"
-                />
-                <small
-                  [hidden]="signupMobile.valid || (signupMobile.pristine && !signupForm.submitted)"
-                  class="text-danger"
-                >
-                  Username is required (minimum 5 characters).
-                </small>
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control login-input"
-                  name="signupPassword"
-                  placeholder="Enter your password"
-                  [(ngModel)]="user.signupPassword"
-                  required
-                  [ngClass]="{ 'is-invalid': signupForm.submitted && signupPassword.invalid }"
-                  appEqualValidator="confirmPassword"
-                  reverse="true"
-                  #signupPassword="ngModel"
-                />
-                <small
-                  [hidden]="signupPassword.valid || (signupPassword.pristine && !signupForm.submitted)"
-                  class="text-danger"
-                >
-                  Password is required
-                </small>
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control login-input"
-                  name="confirmPassword"
-                  placeholder="Confirm password"
-                  [(ngModel)]="user.confirmPassword"
-                  required
-                  appEqualValidator="signupPassword"
-                  reverse="false"
-                  [ngClass]="{ 'is-invalid': signupForm.submitted && confirmPassword.invalid }"
-                  #confirmPassword="ngModel"
-                />
-                <small
-                  [hidden]="confirmPassword.valid || (confirmPassword.pristine && !signupForm.submitted)"
-                  class="text-danger"
-                >
-                  Password mismatch
-                </small>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-success btn-lg btn-block login-button"
-              >
-                Sign Up
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </app-modal>
-  </div>
-</div>
+<app-header></app-header>
+<mat-card class="my-card">
+  <mat-card-content>
+    <form name="form" (ngSubmit)="login.form.valid && onLogIn()" #login="ngForm" class="my-form" novalidate>
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input 
+        type="email" 
+        [(ngModel)]="loginData.email" 
+        #email="ngModel" 
+        name="email"
+        matInput placeholder="Enter your email"
+        [ngClass]="{ 'is-invalid': login.submitted && email.invalid }" 
+        email 
+        required />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input 
+        matInput 
+        [(ngModel)]="loginData.password"
+        #password="ngModel"
+        name="password"
+        placeholder="Enter your password" 
+        [type]="hide ? 'password' : 'text'" 
+        [ngClass]="{ 'is-invalid': login.submitted && password.invalid }"
+        required
+        />
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+      <mat-card-actions>
+        <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Login
+      </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

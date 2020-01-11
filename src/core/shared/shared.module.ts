@@ -7,8 +7,6 @@ import {SessionExpireComponent} from '../../app/errors/session-expire/session-ex
 import {NotFoundComponent} from '../../app/errors/not-found/not-found.component';
 import {ToastManager} from '../toast/toast.service';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
-import {HttpInterceptorProviders} from '../http-interceptors/index';
-import {SharedService} from '../shared/shared.service';
 import {AuthService} from '../auth/auth.service';
 import {HeaderComponent} from '../../app/header/header.component';
 import {CustomMaterialModule} from './material.module';
@@ -34,8 +32,6 @@ import {CustomMaterialModule} from './material.module';
     AuthService,
     ToastManager,
     ErrorHandlerService,
-    HttpInterceptorProviders,
-    SharedService,
   ],
 })
 export class SharedModule {}

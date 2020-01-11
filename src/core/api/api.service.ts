@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AngularFireDatabase} from '@angular/fire/database';
 import {tap} from 'rxjs/operators';
 import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';
@@ -18,7 +17,6 @@ export class ApiService {
 
   constructor(
     private errorHandler: ErrorHandlerService,
-    public db: AngularFireDatabase,
     private httpClient: HttpClient,
   ) {}
 

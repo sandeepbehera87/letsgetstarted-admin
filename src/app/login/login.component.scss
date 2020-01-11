@@ -111,3 +111,29 @@
 .signup-form-container {
   margin-left: 3vw;
 }
+
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+.my-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-card-actions > button {
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.my-card {
+  width: 80vw;
+  margin: 10vh auto;
+}
