@@ -30,6 +30,7 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
           ? this.sharedService.apiToken
           : '',
       }),
+      withCredentials: true,
     });
     return next.handle(appReq);
   }
