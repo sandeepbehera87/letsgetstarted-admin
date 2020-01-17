@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';
@@ -36,6 +36,10 @@ export class ApiService {
   }
 
   getQueations(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      withCredentials: true,
+    };
     return this.httpClient.get(this.getQuestionApi).pipe(
       tap(
         response => this.allCourseList.next(response),
