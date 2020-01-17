@@ -22,6 +22,10 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
       url: AppSettings.API_ENDPOINT + req.url,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods':
+          'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
         'api-token': this.sharedService.apiToken
           ? this.sharedService.apiToken
           : '',
