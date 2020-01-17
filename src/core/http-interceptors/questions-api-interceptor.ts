@@ -29,7 +29,6 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
           ? this.sharedService.apiToken
           : '',
         'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*',
       }),
       withCredentials: true,
     });
