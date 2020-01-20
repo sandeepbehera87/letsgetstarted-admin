@@ -22,7 +22,12 @@
   <mat-toolbar-row>
     <span><h2>Lets get started</h2></span>
     <span class="spacer"></span>
-    <a mat-button (click)="goToRegisterPage()">Register</a>
-    <a mat-button (click)="gotToLoginPage()">Login</a>
+    <ng-container *ngIf="isLoggedIn$ | async">
+      <a mat-button (click)="goToRegisterPage()">Logout</a>
+    </ng-container>
+    <ng-container *ngIf="isLoggedOut$ | async">
+      <a mat-button (click)="goToRegisterPage()">Register</a>
+      <a mat-button (click)="gotToLoginPage()">Login</a>
+    </ng-container>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -8,16 +8,20 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AppSettings} from '../utils/app.settings';
-import {SharedService} from '../shared/shared.service';
+import {Store} from '@ngrx/store';
+import {AppState} from 'src/app/reducers';
 
 @Injectable()
 export class QuestionsApiInterceptor implements HttpInterceptor {
-  // sharedService: SharedService;
-  constructor(public sharedService: SharedService) {}
+  constructor(private store: Store<AppState>) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
+    let token = '';
+    this.store.subscribe(state => {
+      token = state['login'].token;
+    });
     const appReq = req.clone({
       url: AppSettings.API_ENDPOINT + req.url,
       headers: new HttpHeaders({
@@ -27,9 +31,7 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
         'Access-Control-Allow-Methods':
           'GET, POST, PATCH, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-        'api-token': this.sharedService.apiToken
-          ? this.sharedService.apiToken
-          : '',
+        'api-token': token ? token : '',
       }),
       withCredentials: true,
     });

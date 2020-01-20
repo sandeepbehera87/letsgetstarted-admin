@@ -7,11 +7,12 @@ import {
   Route,
 } from '@angular/router';
 import {Observable} from 'rxjs';
-import {SharedService} from '../shared/shared.service';
+import {Store} from '@ngrx/store';
+import {AppState} from 'src/app/reducers';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(private _router: Router, private sharedService: SharedService) {}
+  constructor(private _router: Router, private store: Store<AppState>) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,7 +22,11 @@ export class AuthGuardService implements CanActivate {
     | import('@angular/router').UrlTree
     | Observable<boolean | import('@angular/router').UrlTree>
     | Promise<boolean | import('@angular/router').UrlTree> {
-    if (this.sharedService.apiToken) {
+    let token = '';
+    this.store.subscribe(state => {
+      token = state['login'].token;
+    });
+    if (token) {
       return true;
     }
     // navigate to login page

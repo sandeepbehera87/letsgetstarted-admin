@@ -2,11 +2,12 @@ import {Component, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ModalComponent} from '../../components/modal/modal.component';
 import {AuthService} from '../../core/auth/auth.service';
-import {SharedService} from '../../core/shared/shared.service';
-import {ToastManager} from '../../core/toast/toast.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {UserData} from '../model/userdata';
 import {LoginData} from '../model/logindata';
+import {AppState} from '../reducers';
+import {Store} from '@ngrx/store';
+import {LoginAction} from './action.types';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
   @ViewChild('login', {static: false}) loginForm;
   @ViewChild('signupForm', {static: false}) signupForm;
   @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
-  
+
   hide = true;
 
   user: UserData = {
@@ -36,9 +37,8 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastManager,
     private spinner: NgxSpinnerService,
-    private sharedService: SharedService,
+    private store: Store<AppState>,
   ) {}
 
   openSignUp() {
@@ -75,7 +75,7 @@ export class LoginComponent {
     this.spinner.show();
     this.authService.signIn(this.loginData).subscribe(
       response => {
-        this.sharedService.apiToken = response.token;
+        this.store.dispatch(LoginAction.login({token: response.token}));
         this.spinner.hide();
         this.router.navigate(['dashboard']);
       },
