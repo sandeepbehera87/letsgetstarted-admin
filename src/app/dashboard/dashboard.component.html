@@ -1,22 +1,9 @@
 <div class="app-dashboard">
   <app-header></app-header>
-  <div class="app-tabs">
-    <div class="add-question" (click)="tabChange()">Add Question</div>
-    <div class="divider"></div>
-    <div class="view-question" (click)="tabChange()">View Question</div>
-    <div
-      class="add-question-underline"
-      [ngClass]="{'active-tab': !disableAdd}"
-    ></div>
-    <div
-      class="view-question-underline"
-      [ngClass]="{'active-tab': !disableView}"
-    ></div>
-  </div>
-  <div *ngIf="showAddQuestions">
+  <div *ngIf="pagename === 'addQuestion'">
     <app-add-question></app-add-question>
   </div>
-  <div *ngIf="showSavedQuestions">
+  <div *ngIf="pagename === 'viewQuestion'">
     <app-view-question [courses]="courseList$ | async"></app-view-question>
   </div>
   <app-footer></app-footer>

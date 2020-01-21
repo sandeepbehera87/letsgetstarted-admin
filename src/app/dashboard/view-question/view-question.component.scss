@@ -1,69 +1,22 @@
-.view-question-layout {
-    width: 70vw;
-    height: 62vh;
-    background-color: #f9f9f9;   
-    margin-left: 15vw;
-    overflow-y: scroll;
-}
-
-.view-question-header {
-    font-size: 20px;
-    font-weight: bold;
-    width: 273px;
-    height: 33px;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #4a4a4a;
-    position: relative;
-    top: 20px;
-    left: 360px;
-}
-
-.view-course-container {
-  width: 62vw;
-  height: 50vh;
-  margin-left: 50px;
-  margin-top: 20px;
-  border-radius: 7px;
-  border: 2px solid #979797;
-  background-color: #ffffff;
-}
-
-.dot {
-    height: 30px;
-    width: 30px;
-    background-color: #bbb;
-    border-radius: 50%;
-    float: right;
-    position: relative;
-    right: 80px;
-  }
-
 .right-arrow {
-    width: 20px;
-    height: 20px;
-    float: right;
-    position: relative;
-    top: 5px;
+  width: 20px;
+  height: 20px;
+  float: right;
+  position: relative;
+  top: 5px;
 }
 
-.back-arrow {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 25vh;
-    left: 16vw;
-}
-.course-strength {
-    position: relative;
-    left: 11px;
-    top: 3px;
-    font-weight: bold;
+.full-width {
+  width: 100%;
 }
 
-.view {
-    float: right;
-    text-decoration: underline;
+mat-card-content {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.my-card {
+  width: 80vw;
+  margin: 10vh auto;
 }

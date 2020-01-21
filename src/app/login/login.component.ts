@@ -77,7 +77,9 @@ export class LoginComponent {
       response => {
         this.store.dispatch(LoginAction.login({token: response.token}));
         this.spinner.hide();
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard'], {
+          queryParams: {pagename: 'addQuestion'},
+        });
       },
       error => {
         this.spinner.hide();

@@ -1,44 +1,45 @@
-<div class="view-question-layout">
-  <div class="view-question-header">View all questions here</div>
-  <div class="view-course-container" *ngIf="showCourseContainer">
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let course of courseList"
-        (click)="onCourseClick(course)"
-      >
-        {{ course }}
-        <span class="dot"> </span>
-        <img
-          class="right-arrow"
-          src="../../../assets/images/right_arrow.png"
-          alt="rightArrow"
-        />
-      </li>
-    </ul>
-  </div>
-  <img
-    *ngIf="showTestContainer"
-    (click)="showCourseList()"
-    class="back-arrow"
-    src="../../../assets/images/arrow-back.png"
-    alt="backArrow"
-  />
-  <div class="view-course-container" *ngIf="showTestContainer">
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let test of testNameList"
-        (click)="onTestClick(test.questionset)"
-      >
-        {{ test.subjectname }}
-        <span class="view">
-          view
-        </span>
-      </li>
-    </ul>
-  </div>
-</div>
+<mat-card
+  fxFlex
+  fxLayoutAlign="start center"
+  fxLayout="column"
+  class="my-card"
+  [style.borderRadius.px]="'0'"
+  [style.paddingTop.px]="'60'"
+>
+  <mat-card-content [style.height.px]="'500'">
+    <ng-container *ngIf="showCourseContainer">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let course of courseList"
+          (click)="onCourseClick(course)"
+        >
+          {{ course }}
+          <span class="dot"> </span>
+          <img
+            class="right-arrow"
+            src="../../../assets/images/right_arrow.png"
+            alt="rightArrow"
+          />
+        </li>
+      </ul>
+    </ng-container>
+    <ng-container *ngIf="showTestContainer">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let test of testNameList"
+          (click)="onTestClick(test.questionset)"
+        >
+          {{ test.subjectname }}
+          <span class="view">
+            view
+          </span>
+        </li>
+      </ul>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
 
 <app-modal titleDialog="Show Question">
   <div *ngFor="let question of questionData">

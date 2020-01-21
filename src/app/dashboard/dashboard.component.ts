@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   showSavedQuestions = false;
   courseList$ = this.apiService.getQueations();
   userEmail: string;
+  pagename: string;
 
   constructor(
     private apiService: ApiService,
@@ -24,6 +25,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.userEmail = ''; //this.route.snapshot.paramMap.get('email');
+    this.route.queryParams.subscribe(params => {
+      this.pagename = params['pagename'];
+    });
   }
 
   getQuestions = () => {

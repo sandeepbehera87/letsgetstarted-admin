@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import {ModalComponent} from '../../components/modal/modal.component';
 import {SessionExpireComponent} from '../../app/errors/session-expire/session-expire.component';
@@ -12,7 +13,7 @@ import {HeaderComponent} from '../../app/header/header.component';
 import {CustomMaterialModule} from './material.module';
 
 @NgModule({
-  imports: [CommonModule, CustomMaterialModule],
+  imports: [CommonModule, CustomMaterialModule, MDBBootstrapModule.forRoot()],
   declarations: [
     HeaderComponent,
     ModalComponent,
@@ -27,6 +28,7 @@ import {CustomMaterialModule} from './material.module';
     CommonModule,
     FormsModule,
     CustomMaterialModule,
+    MDBBootstrapModule
   ],
   providers: [
     AuthService,

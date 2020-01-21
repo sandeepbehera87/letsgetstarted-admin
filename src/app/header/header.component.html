@@ -1,33 +1,38 @@
-<!--div class="header-body">
-  <div class="app-logo">
-    <img class="logo" src="../../../assets/images/dream.png" alt="logo" />
-  </div>
-  <div class="app-name">
-    <div class="app-name-header">Let’s Get Started</div>
-    <div class="app-name-sub-header">Live your Dream</div>
-  </div>
-  <div class="app-logout" (click)="signOut()">
-    <img
-      class="logout-sign"
-      src="../../../assets/images/sign-out.png"
-      alt="sign-out"
-    />
-  </div>
-  <div class="user-info">
-    <div>Signed In as</div>
-    <div class="user-email">{{user}}</div>
-  </div>
-</!--div-->
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span><h2>Lets get started</h2></span>
-    <span class="spacer"></span>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-dark indigo" [containerInside]="false">
+  <!-- Navbar brand -->
+  <mdb-navbar-brand
+    ><a class="navbar-brand" href="#"
+      ><h2>Lets get started</h2></a
+    ></mdb-navbar-brand
+  >
+
+  <!-- Collapsible content -->
+  <links>
     <ng-container *ngIf="isLoggedIn$ | async">
-      <a mat-button (click)="goToRegisterPage()">Logout</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a mat-button (click)="goToAddQuestion()">Add question</a>
+        </li>
+        <li class="nav-item active">
+          <a mat-button (click)="gotToViewQuestion()">View question</a>
+        </li>
+        <li class="nav-item active">
+          <a mat-button (click)="signOut()">Logout</a>
+        </li>
+      </ul>
     </ng-container>
     <ng-container *ngIf="isLoggedOut$ | async">
-      <a mat-button (click)="goToRegisterPage()">Register</a>
-      <a mat-button (click)="gotToLoginPage()">Login</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a mat-button (click)="goToRegisterPage()">Register</a>
+        </li>
+        <li class="nav-item active">
+          <a mat-button (click)="gotToLoginPage()">Login</a>
+        </li>
+      </ul>
     </ng-container>
-  </mat-toolbar-row>
-</mat-toolbar>
+  </links>
+  <!-- Collapsible content -->
+</mdb-navbar>
+<!--/.Navbar-->
