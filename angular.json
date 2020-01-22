@@ -126,6 +126,43 @@
               "devServerTarget": "letsgetstarted-admin:serve:production"
             }
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/letsgetstarted-admin-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "letsgetstarted-admin:build",
+            "serverTarget": "letsgetstarted-admin:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "letsgetstarted-admin:build:production",
+              "serverTarget": "letsgetstarted-admin:server:production"
+            }
+          }
         }
       }
     }

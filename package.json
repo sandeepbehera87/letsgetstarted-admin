@@ -5,13 +5,14 @@
     "postinstall": "ng build --aot --prod",
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --prod",
+    "build": "ng run my-app:app-shell --configuration=production",
     "build:dev": "ng build --dev",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng run my-app:app-shell --configuration=production",
     "serve": "ng serve --configuration=development",
     "test": "ng test --watch=false --code-coverage --browsers=ChromeHeadless",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "test1": "ng run my-app:app-shell --configuration=production"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,7 @@
     "@angular/material-moment-adapter": "^8.2.3",
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
+    "@angular/platform-server": "~8.2.9",
     "@angular/pwa": "^0.803.23",
     "@angular/router": "~8.2.9",
     "@angular/service-worker": "~8.2.9",

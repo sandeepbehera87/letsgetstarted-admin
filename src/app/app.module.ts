@@ -18,11 +18,12 @@ import {reducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {ServiceWorkerModule} from '@angular/service-worker';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     NgxSpinnerModule,
     HttpClientModule,
@@ -47,6 +48,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    RouterModule,
   ],
   bootstrap: [AppComponent],
   providers: [SharedService, HttpInterceptorProviders, ErrorHandlerService],
