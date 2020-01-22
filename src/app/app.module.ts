@@ -13,10 +13,11 @@ import {ErrorHandlerService} from '../core/http-error-handling/error-handler.ser
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {StoreModule} from '@ngrx/store';
+import {reducers} from './reducers';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,15 +35,20 @@ import { environment } from '../environments/environment';
       closeButton: true,
     }),
     StoreModule.forRoot(reducers, {
-      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
-        strictActionImmutability: true
-      }
+        strictActionImmutability: true,
+      },
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   bootstrap: [AppComponent],
-  providers: [SharedService, HttpInterceptorProviders, ErrorHandlerService]
+  providers: [SharedService, HttpInterceptorProviders, ErrorHandlerService],
 })
 export class AppModule {}

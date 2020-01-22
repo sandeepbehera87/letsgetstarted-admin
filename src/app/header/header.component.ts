@@ -49,13 +49,11 @@ export class HeaderComponent implements OnInit {
   };
 
   signOut() {
-    /*this.authService.signOut().then(
-      res => {
-        this.router.navigate(['login']);
-      },
+    this.authService.signOut().subscribe(
+      res => this.router.navigate(['login']),
       err => {
         console.error(err);
       },
-    );*/
+    );
   }
 }

@@ -1,21 +1,9 @@
-.full-width {
-  width: 100%;
-}
-
-mat-card-actions > button {
-  display: block !important;
-  margin: 0 auto !important;
-}
+@import '../../styles/global.styles';
 
 mat-card-content {
-  max-height: 500px;
+  max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.my-card {
-  width: 80vw;
-  margin: 10vh auto;
 }
 
 button {
