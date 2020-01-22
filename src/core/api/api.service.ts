@@ -36,10 +36,6 @@ export class ApiService {
   }
 
   getQueations(): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      withCredentials: true,
-    };
     return this.httpClient.get(this.getQuestionApi).pipe(
       tap(
         response => this.allCourseList.next(response),

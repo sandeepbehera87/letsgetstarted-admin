@@ -23,8 +23,8 @@ export class AuthGuardService implements CanActivate {
     | Observable<boolean | import('@angular/router').UrlTree>
     | Promise<boolean | import('@angular/router').UrlTree> {
     let token = '';
-    this.store.subscribe(state => {
-      token = state['login'].token;
+    this.store.subscribe(appstate => {
+      token = appstate['login'].token;
     });
     if (token) {
       return true;
