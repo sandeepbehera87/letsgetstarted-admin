@@ -19,11 +19,13 @@ export const initialLoginState: LoginState = {
   token: undefined,
 };
 
-export const loginReducer = createReducer(
-  initialLoginState,
-  on(LoginAction.login, (state, action) => {
-    return {
-      token: action.token,
-    };
-  }),
-);
+export function loginReducer() {
+  createReducer(
+    initialLoginState,
+    on(LoginAction.login, (state, action) => {
+      return {
+        token: action.token,
+      };
+    }),
+  );
+}

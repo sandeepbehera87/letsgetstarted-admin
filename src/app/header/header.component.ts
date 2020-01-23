@@ -23,8 +23,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.store.subscribe(state => {
-      this.isLoggedIn$.next(!!state['login'].token);
-      this.isLoggedOut$.next(!state['login'].token);
+      const token = state['login'] ? state['login'].token : '';
+      this.isLoggedIn$.next(!!token);
+      this.isLoggedOut$.next(!token);
     });
   }
 

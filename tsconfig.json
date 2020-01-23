@@ -16,7 +16,6 @@
   },
   "plugins": [{"name": "@angular/language-service"}],
   "angularCompilerOptions": {
-    "enableIvy": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
   }
