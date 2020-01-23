@@ -5,14 +5,13 @@
     "postinstall": "ng build --aot --prod",
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng run my-app:app-shell --configuration=production",
+    "build": "ng run letsgetstarted-admin:app-shell --configuration=production",
     "build:dev": "ng build --dev",
-    "build:prod": "ng run my-app:app-shell --configuration=production",
+    "build:prod": "ng run letsgetstarted-admin:app-shell --configuration=production",
     "serve": "ng serve --configuration=development",
     "test": "ng test --watch=false --code-coverage --browsers=ChromeHeadless",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "test1": "ng run letsgetstarted-admin:app-shell --configuration=production"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
