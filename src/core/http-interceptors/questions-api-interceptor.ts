@@ -20,7 +20,7 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let token = '';
     this.store.subscribe(state => {
-      token = state['login'] ? state['login'].token : '';
+      token = state['login'] ? state['login'].token : token;
     });
     const appReq = req.clone({
       url: AppSettings.API_ENDPOINT + req.url,
