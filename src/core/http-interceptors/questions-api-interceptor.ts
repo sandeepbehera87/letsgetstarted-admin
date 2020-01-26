@@ -26,7 +26,7 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
       url: AppSettings.API_ENDPOINT + req.url,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'api-token': token ? token : '',
+        'api-token': token,
       }),
       withCredentials: true,
     });
