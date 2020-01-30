@@ -72,10 +72,12 @@ export class LoginComponent {
   }
 
   onLogIn() {
+    console.log('onLogIn');
     this.spinner.show();
     this.authService.signIn(this.loginData).subscribe(
       response => {
-        this.store.dispatch(LoginAction.login({token: response.token}));
+        console.log('response');
+        // this.store.dispatch(LoginAction.login({token: response.token}));
         this.spinner.hide();
         this.router.navigate(['dashboard'], {
           queryParams: {pagename: 'addQuestion'},

@@ -30,6 +30,7 @@ export class AuthService {
   }
 
   signIn(signInData): Observable<any> {
+    console.log('signIn');
     return this.httpClient
       .post<any>(this.userSignInApi, JSON.stringify(signInData))
       .pipe(

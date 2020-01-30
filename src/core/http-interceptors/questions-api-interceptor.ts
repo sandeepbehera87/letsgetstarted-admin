@@ -18,6 +18,7 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
+    console.log('QuestionsApiInterceptor');
     let token = '';
     this.store.subscribe(state => {
       token = state['login'] ? state['login'].token : token;
@@ -26,7 +27,12 @@ export class QuestionsApiInterceptor implements HttpInterceptor {
       url: AppSettings.API_ENDPOINT + req.url,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'api-token': token,
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods':
+          'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        'api-token': token ? token : '',
       }),
       withCredentials: true,
     });
