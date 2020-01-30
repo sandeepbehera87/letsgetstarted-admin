@@ -40,7 +40,6 @@ export class ApiService {
       map(response => {
         const bytes = Crypto.AES.decrypt(response, AppSettings.SECRET_KEY);
         const decryptedData = JSON.parse(bytes.toString(Crypto.enc.Utf8));
-        console.log(decryptedData);
         return decryptedData;
       }),
       tap(
