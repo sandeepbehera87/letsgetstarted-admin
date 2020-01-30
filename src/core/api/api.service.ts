@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
+import {tap, map} from 'rxjs/operators';
 import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {AppSettings} from '../utils/app.settings';
@@ -37,6 +37,12 @@ export class ApiService {
 
   getQueations(): Observable<any> {
     return this.httpClient.get(this.getQuestionApi).pipe(
+      map(response => {
+        const bytes = Crypto.AES.decrypt(response, AppSettings.SECRET_KEY);
+        const decryptedData = JSON.parse(bytes.toString(Crypto.enc.Utf8));
+        console.log(decryptedData);
+        return decryptedData;
+      }),
       tap(
         response => this.allCourseList.next(response),
         error => this.errorHandler.handleError(error),
