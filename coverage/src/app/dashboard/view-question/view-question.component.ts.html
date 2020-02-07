@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.33% </span>
+        <span class="strong">12.9% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/30</span>
+        <span class='fraction'>4/31</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/7</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">10.34% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/28</span>
+        <span class='fraction'>3/29</span>
       </div>
     </div>
     <p class="quiet">
@@ -102,7 +102,12 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,19 +120,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -143,11 +143,21 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,21 +178,21 @@ import {ModalComponent} from '../../../components/modal/modal.component';
   styleUrls: ['./view-question.component.scss'],
 })
 export class ViewQuestionComponent implements OnInit, OnChanges {
-  @Input() courses: string[];
-  @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
+  @Input() courses: any[];
+  @ViewChild(ModalComponent) modalComponent: ModalComponent;
 &nbsp;
-  testNameList = [];
-  testList = [];
-  questionData = [];
-  showCourseContainer = false;
-  showTestContainer = false;
-  courseList = [];
+<span class="cstat-no" title="statement not covered" >  testNameList = [];</span>
+<span class="cstat-no" title="statement not covered" >  testList = [];</span>
+<span class="cstat-no" title="statement not covered" >  questionData = [];</span>
+<span class="cstat-no" title="statement not covered" >  showCourseContainer = false;</span>
+<span class="cstat-no" title="statement not covered" >  showTestContainer = false;</span>
+<span class="cstat-no" title="statement not covered" >  courseList = [];</span>
 &nbsp;
-  constructor(private spinner: NgxSpinnerService) {}
+<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >s</span>pinner: N</span>gxSpinnerService) {}
 &nbsp;
-  ngOnInit() {
-    this.spinner.show();
-    this.showCourseContainer = true;
+<span class="fstat-no" title="function not covered" >  ngOnInit(</span>) {
+<span class="cstat-no" title="statement not covered" >    this.spinner.show();</span>
+<span class="cstat-no" title="statement not covered" >    this.showCourseContainer = true;</span>
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  showCourseList(</span>) {
@@ -191,21 +201,26 @@ export class ViewQuestionComponent implements OnInit, OnChanges {
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ngOnChanges(</span>) {
-<span class="cstat-no" title="statement not covered" >    this.courseList = this.courses ? Object.keys(this.courses) : [];</span>
-<span class="cstat-no" title="statement not covered" >    if (this.courseList) <span class="cstat-no" title="statement not covered" >this.spinner.hide();</span></span>
+<span class="cstat-no" title="statement not covered" >    if (this.courses) {</span>
+<span class="cstat-no" title="statement not covered" >      this.courses = this.courses.map(<span class="fstat-no" title="function not covered" >item </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return item.questionData;</span>
+      });
+<span class="cstat-no" title="statement not covered" >      this.courseList = Array.from(new Set(this.courses.map(<span class="fstat-no" title="function not covered" >item </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return item.coursename;</span>
+      })));
+<span class="cstat-no" title="statement not covered" >      if (this.courseList) <span class="cstat-no" title="statement not covered" >this.spinner.hide();</span></span>
+    }
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  onCourseClick(</span>course: string) {
+<span class="cstat-no" title="statement not covered" >    this.testNameList = [];</span>
 <span class="cstat-no" title="statement not covered" >    this.showCourseContainer = false;</span>
 <span class="cstat-no" title="statement not covered" >    this.showTestContainer = true;</span>
-    const selectedCourse = <span class="cstat-no" title="statement not covered" >this.courses[course];</span>
-<span class="cstat-no" title="statement not covered" >    this.testNameList = Object.keys(selectedCourse);</span>
-<span class="cstat-no" title="statement not covered" >    this.testNameList = this.testNameList.map(<span class="fstat-no" title="function not covered" >test </span>=&gt; {</span>
-      let obj = <span class="cstat-no" title="statement not covered" >{};</span>
-      let testContents = <span class="cstat-no" title="statement not covered" >Object.values(selectedCourse[test]);</span>
-<span class="cstat-no" title="statement not covered" >      obj['key'] = test;</span>
-<span class="cstat-no" title="statement not covered" >      obj['value'] = testContents[0];</span>
-<span class="cstat-no" title="statement not covered" >      return obj;</span>
+    const selectedCourse = <span class="cstat-no" title="statement not covered" >this.courses.filter(</span>
+<span class="fstat-no" title="function not covered" >      item </span>=&gt; <span class="cstat-no" title="statement not covered" >item.coursename === course,</span>
+    );
+<span class="cstat-no" title="statement not covered" >    this.testNameList = selectedCourse.map(<span class="fstat-no" title="function not covered" >item </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >     return item.subjects;</span>
     });
   }
 &nbsp;
@@ -220,7 +235,7 @@ export class ViewQuestionComponent implements OnInit, OnChanges {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 24 2019 14:17:07 GMT+0000 (Greenwich Mean Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Feb 07 2020 15:36:22 GMT+0000 (Greenwich Mean Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

@@ -1,15 +1,28 @@
 import {TestBed} from '@angular/core/testing';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {environment} from '../../environments/environment';
+import {RouterModule} from '@angular/router';
+import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule} from '@angular/common/http';
+import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
+import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
 
 describe('AuthService', () => {
+  let mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [AngularFireModule.initializeApp(environment.firebaseConfig)],
-      providers: [AngularFireAuth, AngularFireDatabase],
+      imports: [
+        RouterModule,
+        HttpClientModule,
+        ToastrModule.forRoot({
+          timeOut: 10000,
+          positionClass: 'toast-top-full-width',
+          preventDuplicates: true,
+          closeButton: true,
+        }),
+      ],
+      providers: [ErrorHandlerService, {provide: Router, useValue: mockRouter}],
     }),
   );
 

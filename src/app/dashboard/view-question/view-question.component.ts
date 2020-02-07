@@ -9,7 +9,7 @@ import {ModalComponent} from '../../../components/modal/modal.component';
 })
 export class ViewQuestionComponent implements OnInit, OnChanges {
   @Input() courses: any[];
-  @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
+  @ViewChild(ModalComponent) modalComponent: ModalComponent;
 
   testNameList = [];
   testList = [];

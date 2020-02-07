@@ -15,9 +15,9 @@ import {LoginAction} from './action.types';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  @ViewChild('login', {static: false}) loginForm;
-  @ViewChild('signupForm', {static: false}) signupForm;
-  @ViewChild(ModalComponent, {static: false}) modalComponent: ModalComponent;
+  @ViewChild('login') loginForm;
+  @ViewChild('signupForm') signupForm;
+  @ViewChild(ModalComponent) modalComponent: ModalComponent;
 
   hide = true;
 

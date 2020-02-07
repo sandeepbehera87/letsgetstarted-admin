@@ -1,19 +1,13 @@
 import {TestBed, async} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
-import {AngularFireModule} from '@angular/fire';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {AppComponent} from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AngularFireModule,
-        RouterTestingModule,
-        NgxSpinnerModule,
-        FormsModule,
-      ],
+      imports: [RouterTestingModule, NgxSpinnerModule, FormsModule],
       declarations: [AppComponent],
     }).compileComponents();
   }));

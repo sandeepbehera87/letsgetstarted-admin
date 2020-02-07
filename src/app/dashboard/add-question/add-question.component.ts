@@ -11,8 +11,8 @@ import {Questions} from '../../model/question';
   styleUrls: ['./add-question.component.scss'],
 })
 export class AddQuestionComponent {
-  @ViewChild('questionForm', {static: false}) questionForm;
-  @ViewChild('questionMetaForm', {static: false}) questionMetaForm;
+  @ViewChild('questionForm') questionForm;
+  @ViewChild('questionMetaForm') questionMetaForm;
 
   questionMeta: Courses = {
     coursename: '',
