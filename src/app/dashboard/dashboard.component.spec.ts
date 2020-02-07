@@ -2,6 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
+import {StoreModule} from '@ngrx/store';
+import {reducers} from '../reducers';
 import {HeaderComponent} from '../header/header.component';
 import {DashboardComponent} from './dashboard.component';
 import {AddQuestionComponent} from './add-question/add-question.component';
@@ -11,7 +13,7 @@ import {ModalComponent} from '../../components/modal/modal.component';
 import {AppRoutingModule} from '../app-routing.module';
 import {SharedModule} from '../../core/shared/shared.module';
 
-xdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
@@ -27,6 +29,12 @@ xdescribe('DashboardComponent', () => {
           positionClass: 'toast-top-full-width',
           preventDuplicates: true,
           closeButton: true,
+        }),
+        StoreModule.forRoot(reducers, {
+          runtimeChecks: {
+            strictStateImmutability: true,
+            strictActionImmutability: true,
+          },
         }),
       ],
       declarations: [

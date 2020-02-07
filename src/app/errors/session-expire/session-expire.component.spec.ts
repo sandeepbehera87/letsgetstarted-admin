@@ -1,16 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterModule} from '@angular/router';
+import {Router} from '@angular/router';
+import {SessionExpireComponent} from './session-expire.component';
 
-import { SessionExpireComponent } from './session-expire.component';
-
-xdescribe('SessionExpireComponent', () => {
+describe('SessionExpireComponent', () => {
   let component: SessionExpireComponent;
   let fixture: ComponentFixture<SessionExpireComponent>;
+  let mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SessionExpireComponent ]
-    })
-    .compileComponents();
+      imports: [RouterModule],
+      declarations: [SessionExpireComponent],
+      providers: [{provide: Router, useValue: mockRouter}],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
