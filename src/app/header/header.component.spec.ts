@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ToastrModule} from 'ngx-toastr';
 import {StoreModule} from '@ngrx/store';
 import {HttpClientModule} from '@angular/common/http';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {reducers} from '../reducers';
 import {HeaderComponent} from './header.component';
 import {AppRoutingModule} from '../app-routing.module';
@@ -17,6 +18,7 @@ describe('HeaderComponent', () => {
       imports: [
         AppRoutingModule,
         HttpClientModule,
+        MDBBootstrapModule,
         ToastrModule.forRoot({
           timeOut: 10000,
           positionClass: 'toast-top-full-width',

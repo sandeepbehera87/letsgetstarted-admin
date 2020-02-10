@@ -7,7 +7,6 @@ import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
 import {ModalModule} from 'ngx-bootstrap';
 import {HttpInterceptorProviders} from '../core/http-interceptors';
-import {SharedService} from '../core/shared/shared.service';
 import {ErrorHandlerService} from '../core/http-error-handling/error-handler.service';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -51,6 +50,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   bootstrap: [AppComponent],
-  providers: [SharedService, HttpInterceptorProviders, ErrorHandlerService],
+  providers: [HttpInterceptorProviders, ErrorHandlerService],
 })
 export class AppModule {}

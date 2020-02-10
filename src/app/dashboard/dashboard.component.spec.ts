@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
 import {StoreModule} from '@ngrx/store';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {reducers} from '../reducers';
 import {HeaderComponent} from '../header/header.component';
 import {DashboardComponent} from './dashboard.component';
@@ -11,7 +12,6 @@ import {ViewQuestionComponent} from './view-question/view-question.component';
 import {FooterComponent} from '../footer/footer.component';
 import {ModalComponent} from '../../components/modal/modal.component';
 import {AppRoutingModule} from '../app-routing.module';
-import {SharedModule} from '../../core/shared/shared.module';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -22,8 +22,8 @@ describe('DashboardComponent', () => {
       imports: [
         FormsModule,
         HttpClientModule,
+        MDBBootstrapModule,
         AppRoutingModule,
-        SharedModule,
         ToastrModule.forRoot({
           timeOut: 10000,
           positionClass: 'toast-top-full-width',

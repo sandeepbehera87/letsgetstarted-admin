@@ -1,8 +1,8 @@
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import {QuestionsApiInterceptor} from './questions-api-interceptor';
+import {ApiInterceptor} from './api-interceptor';
 
 /** Http interceptor providers in outside-in order */
 export const HttpInterceptorProviders = [
-  {provide: HTTP_INTERCEPTORS, useClass: QuestionsApiInterceptor, multi: true},
+  {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true},
 ];

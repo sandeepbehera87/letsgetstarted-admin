@@ -12,7 +12,7 @@ import {Store} from '@ngrx/store';
 import {AppState} from 'src/app/reducers';
 
 @Injectable()
-export class QuestionsApiInterceptor implements HttpInterceptor {
+export class ApiInterceptor implements HttpInterceptor {
   constructor(private store: Store<AppState>) {}
   intercept(
     req: HttpRequest<any>,

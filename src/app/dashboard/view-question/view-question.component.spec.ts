@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ModalModule} from 'ngx-bootstrap';
 import {ModalComponent} from '../../../components/modal/modal.component';
 import {ViewQuestionComponent} from './view-question.component';
+import {CustomMaterialModule} from '../../../core/shared/material.module';
 
 describe('ViewQuestionComponent', () => {
   let component: ViewQuestionComponent;
@@ -9,7 +10,7 @@ describe('ViewQuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ModalModule.forRoot()],
+      imports: [ModalModule.forRoot(), CustomMaterialModule],
       declarations: [ModalComponent, ViewQuestionComponent],
     }).compileComponents();
   }));

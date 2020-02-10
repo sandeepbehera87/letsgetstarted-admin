@@ -4,7 +4,9 @@ import {Injectable} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastManager} from '../toast/toast.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ErrorHandlerService {
   public errorMessage: string = '';
 

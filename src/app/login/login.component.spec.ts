@@ -1,45 +1,49 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterModule} from '@angular/router';
+import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {StoreModule} from '@ngrx/store';
-import {AuthService} from '../../core/auth/auth.service';
-import {AppRoutingModule} from '../app-routing.module';
+import {CustomMaterialModule} from '../../core/shared/material.module';
 import {LoginComponent} from './login.component';
+import {HeaderComponent} from '../header/header.component';
 import {reducers} from '../reducers';
-import {SharedModule} from '../../core/shared/shared.module';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let loginFormSpy;
-  let authSpy;
-  let authService: AuthService;
+  let mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
+        RouterModule,
         FormsModule,
-        SharedModule,
-        HttpClientModule,
-        AppRoutingModule,
-        StoreModule.forRoot(reducers, {
-          runtimeChecks: {
-            strictStateImmutability: true,
-            strictActionImmutability: true,
-          },
-        }),
+        BrowserAnimationsModule,
+        MDBBootstrapModule,
         ToastrModule.forRoot({
           timeOut: 10000,
           positionClass: 'toast-top-full-width',
           preventDuplicates: true,
           closeButton: true,
         }),
+        HttpClientModule,
+        StoreModule.forRoot(reducers, {
+          runtimeChecks: {
+            strictStateImmutability: true,
+            strictActionImmutability: true,
+          },
+        }),
+        CustomMaterialModule,
       ],
-      declarations: [LoginComponent],
-      providers: [AuthService],
+      declarations: [LoginComponent, HeaderComponent],
+      providers: [{provide: Router, useValue: mockRouter}],
     }).compileComponents();
   }));
 
@@ -48,13 +52,11 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     loginFormSpy = spyOn(component.loginForm.form, 'reset');
-    //authSpy = spyOn(authService, 'userRegistration');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
   it('should open sign up form on openSignUp call', () => {
     component.openSignUp();
     expect(component.openSignUpModal).toBeTruthy();
@@ -72,6 +74,5 @@ describe('LoginComponent', () => {
     component.registerUser();
     expect(component.openSignUpModal).toBeFalsy();
     expect(component.onSignUpSuccess).toBeTruthy();
-    //expect(authService.userRegistration).toHaveBeenCalledWith(component.user);
   });
 });
