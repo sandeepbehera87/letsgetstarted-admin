@@ -3,21 +3,43 @@ import {RouterModule} from '@angular/router';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
+import {of, throwError} from 'rxjs';
 import {HttpClientModule} from '@angular/common/http';
+import {Store} from '@ngrx/store';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {NgxSpinnerService} from 'ngx-spinner';
 import {StoreModule} from '@ngrx/store';
 import {CustomMaterialModule} from '../../core/shared/material.module';
 import {LoginComponent} from './login.component';
 import {HeaderComponent} from '../header/header.component';
 import {reducers} from '../reducers';
+import {LoginData} from '../model/logindata';
+import {AuthService} from '../../core/auth/auth.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let loginFormSpy;
+  let loginData: LoginData = {
+    email: 'test@gmaill.com',
+    password: 'test123',
+  };
+  const response = {
+    token: 'token',
+  };
   let mockRouter = {
     navigate: jasmine.createSpy('navigate'),
+  };
+  let mockSpinner = {
+    show: jasmine.createSpy('show'),
+    hide: jasmine.createSpy('hide'),
+  };
+  let mockAuthService = {
+    signIn: jasmine.createSpy('signIn').and.returnValue(of(response)),
+  };
+  let mockStore = {
+    dispatch: jasmine.createSpy('dispatch'),
+    subscribe: jasmine.createSpy('subscribe'),
   };
 
   beforeEach(async(() => {
@@ -43,7 +65,12 @@ describe('LoginComponent', () => {
         CustomMaterialModule,
       ],
       declarations: [LoginComponent, HeaderComponent],
-      providers: [{provide: Router, useValue: mockRouter}],
+      providers: [
+        {provide: Router, useValue: mockRouter},
+        {provide: NgxSpinnerService, useValue: mockSpinner},
+        {provide: AuthService, useValue: mockAuthService},
+        {provide: Store, useValue: mockStore},
+      ],
     }).compileComponents();
   }));
 
@@ -51,28 +78,29 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    loginFormSpy = spyOn(component.loginForm.form, 'reset');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should open sign up form on openSignUp call', () => {
-    component.openSignUp();
-    expect(component.openSignUpModal).toBeTruthy();
-    expect(component.onSignUpSuccess).toBeFalsy();
-    expect(loginFormSpy).toHaveBeenCalled();
-  });
 
-  it('should make user registration on registerUser call', () => {
-    component.user = {
-      signupEmail: 'test@test.com',
-      signupMobile: '01234567',
-      signupPassword: 'test@123',
-      confirmPassword: 'test@123',
-    };
-    component.registerUser();
-    expect(component.openSignUpModal).toBeFalsy();
-    expect(component.onSignUpSuccess).toBeTruthy();
+  it('should make the user login action onLogIn click ', () => {
+    component.loginData = loginData;
+    component.onLogIn();
+    expect(mockSpinner.show).toHaveBeenCalled();
+    expect(mockAuthService.signIn).toHaveBeenCalledWith(loginData);
+    expect(mockStore.dispatch).toHaveBeenCalledWith(jasmine.any(Object));
+    expect(mockSpinner.hide).toHaveBeenCalled();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['dashboard'], {
+      queryParams: {pagename: 'addQuestion'},
+    });
+  });
+  xit('should hise spinner on error while user login ', () => {
+    mockAuthService.signIn = jasmine
+      .createSpy('signIn')
+      .and.returnValue(throwError({status: 404}));
+    component.loginData = loginData;
+    component.onLogIn();
+    expect(mockSpinner.hide).toHaveBeenCalled();
   });
 });

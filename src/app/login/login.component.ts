@@ -1,9 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {ModalComponent} from '../../components/modal/modal.component';
 import {AuthService} from '../../core/auth/auth.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {UserData} from '../model/userdata';
 import {LoginData} from '../model/logindata';
 import {AppState} from '../reducers';
 import {Store} from '@ngrx/store';
@@ -16,23 +14,12 @@ import {LoginAction} from './action.types';
 })
 export class LoginComponent {
   @ViewChild('login') loginForm;
-  @ViewChild('signupForm') signupForm;
-  @ViewChild(ModalComponent) modalComponent: ModalComponent;
 
-  hide = true;
-
-  user: UserData = {
-    signupEmail: '',
-    signupMobile: '',
-    signupPassword: '',
-    confirmPassword: '',
-  };
+  hide = false;
   loginData: LoginData = {
     email: '',
     password: '',
   };
-  openSignUpModal = false;
-  onSignUpSuccess = false;
 
   constructor(
     private router: Router,
@@ -40,36 +27,6 @@ export class LoginComponent {
     private spinner: NgxSpinnerService,
     private store: Store<AppState>,
   ) {}
-
-  openSignUp() {
-    this.loginForm.form.reset();
-    if (this.signupForm) this.signupForm.form.reset();
-    this.openSignUpModal = true;
-    this.onSignUpSuccess = false;
-    setTimeout(() => {
-      this.modalComponent.show();
-    }, 500);
-  }
-
-  registerUser() {
-    this.spinner.show();
-    this.openSignUpModal = false;
-    this.onSignUpSuccess = true;
-    const userData = {
-      email: this.user.signupEmail,
-      mobile: this.user.signupMobile,
-      password: this.user.signupPassword,
-    };
-    this.authService.userRegistration(userData).subscribe(
-      response => {
-        this.modalComponent.hide();
-        this.spinner.hide();
-      },
-      error => {
-        this.spinner.hide();
-      },
-    );
-  }
 
   onLogIn() {
     this.spinner.show();

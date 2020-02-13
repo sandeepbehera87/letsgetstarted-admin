@@ -27,4 +27,9 @@ describe('SessionExpireComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should navigate to login on backToLogin click', () => {
+    component.backToLogin();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['login']);
+  });
 });
