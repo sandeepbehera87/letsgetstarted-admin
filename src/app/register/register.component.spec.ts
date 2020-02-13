@@ -59,4 +59,8 @@ describe('RegisterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return false on calling register function', () => {
+    expect(component.register()).toBeFalsy();
+  });
 });

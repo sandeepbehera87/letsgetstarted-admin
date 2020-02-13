@@ -9,7 +9,7 @@
     "build:dev": "ng build --dev",
     "build:prod": "ng run letsgetstarted-admin:app-shell:production",
     "serve": "ng serve --configuration=development",
-    "test": "ng test --watch=false --code-coverage --browsers=ChromeHeadless",
+    "test": "ng test --watch=false --code-coverage --browsers=ChromeHeadless && npm run sonar",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=letsgetstarted-admin -Dsonar.organization=sandeepbehera87 -Dsonar.login=95b2c8ce4e37e96e3928b1508825e402fc82f86f -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"

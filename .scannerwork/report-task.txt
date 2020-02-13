@@ -3,5 +3,5 @@ projectKey=letsgetstarted-admin
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.4619
 dashboardUrl=https://sonarcloud.io/dashboard?id=letsgetstarted-admin
-ceTaskId=AXA-l4ITW__9ceaocpC9
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXA-l4ITW__9ceaocpC9
+ceTaskId=AXA-4WbQYEDaLVquH_Zk
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXA-4WbQYEDaLVquH_Zk
