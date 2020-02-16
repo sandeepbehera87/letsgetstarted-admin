@@ -6,7 +6,7 @@ import {SessionExpireComponent} from './session-expire.component';
 describe('SessionExpireComponent', () => {
   let component: SessionExpireComponent;
   let fixture: ComponentFixture<SessionExpireComponent>;
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
 

@@ -11,5 +11,5 @@ export class SessionExpireComponent {
 
   backToLogin = () => {
     this.router.navigate(['login']);
-  };
+  }
 }

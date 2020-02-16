@@ -38,7 +38,9 @@ export class ViewQuestionComponent implements OnInit, OnChanges {
       this.courseList = Array.from(new Set(this.courses.map(item => {
         return item.coursename;
       })));
-      if (this.courseList) this.spinner.hide();
+      if (this.courseList) {
+        this.spinner.hide();
+      }
     }
   }
 

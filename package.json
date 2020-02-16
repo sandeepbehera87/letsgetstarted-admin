@@ -12,7 +12,13 @@
     "test": "ng test --watch=true --code-coverage --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "sonar": "sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=letsgetstarted-admin -Dsonar.organization=sandeepbehera87 -Dsonar.login=95b2c8ce4e37e96e3928b1508825e402fc82f86f -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
+    "sonar": "sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.sources=src -Dsonar.exclusions=src/**/*spec.ts,src/**main.ts,src/**test.ts,src/**module.ts,src/**prod.ts,src/**server.ts,src/**index.ts,src/**environment.ts,src/**auth-guard.service.ts,src/**api-interceptor.ts -Dsonar.projectKey=letsgetstarted-admin -Dsonar.organization=sandeepbehera87 -Dsonar.login=95b2c8ce4e37e96e3928b1508825e402fc82f86f -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm lint && npm test",
+      "post-push": "npm run sonar"
+    }
   },
   "private": true,
   "dependencies": {

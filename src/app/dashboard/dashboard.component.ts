@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ApiService} from '../../core/api/api.service';
 
@@ -9,10 +9,6 @@ import {ApiService} from '../../core/api/api.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  disableAdd = false;
-  showAddQuestions = true;
-  disableView = true;
-  showSavedQuestions = false;
   courseList$ = this.apiService.getQueations();
   userEmail: string;
   pagename: string;
@@ -24,28 +20,10 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userEmail = ''; //this.route.snapshot.paramMap.get('email');
+    const key = 'pagename';
+    this.userEmail = '';
     this.route.queryParams.subscribe(params => {
-      this.pagename = params['pagename'];
+      this.pagename = params[key];
     });
   }
-
-  getQuestions = () => {
-    this.apiService.getQueations().subscribe(
-      res => {
-        this.courseList$ = res;
-        this.spinner.hide();
-      },
-      err => {
-        this.spinner.hide();
-      },
-    );
-  };
-
-  tabChange = () => {
-    this.disableAdd = !this.disableAdd;
-    this.disableView = !this.disableView;
-    this.showSavedQuestions = this.showAddQuestions;
-    this.showAddQuestions = !this.showSavedQuestions;
-  };
 }

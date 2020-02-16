@@ -16,7 +16,7 @@ import {ToastManager} from '../../core/toast/toast.service';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
 

@@ -7,7 +7,7 @@ import {AuthService} from './auth.service';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
 
 describe('AuthService', () => {
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
   beforeEach(() =>
@@ -27,7 +27,7 @@ describe('AuthService', () => {
   );
 
   it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
+    const service: AuthService = TestBed.inject(AuthService);
     expect(service).toBeTruthy();
   });
 });

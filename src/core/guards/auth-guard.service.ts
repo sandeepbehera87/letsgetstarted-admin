@@ -12,7 +12,7 @@ import {AppState} from 'src/app/reducers';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(private _router: Router, private store: Store<AppState>) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,14 +23,15 @@ export class AuthGuardService implements CanActivate {
     | Observable<boolean | import('@angular/router').UrlTree>
     | Promise<boolean | import('@angular/router').UrlTree> {
     let token = '';
+    const key = 'login';
     this.store.subscribe(appstate => {
-      token = appstate['login'] ? appstate['login'].token : '';
+      token = appstate[key] ? appstate[key].token : '';
     });
     if (token) {
       return true;
     }
     // navigate to login page
-    this._router.navigate(['login']);
+    this.router.navigate(['login']);
     // you can save redirect url so after authing we can move them back to the page they requested
     return false;
   }

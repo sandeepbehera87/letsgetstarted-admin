@@ -39,7 +39,7 @@ export class AddQuestionComponent {
 
   onAdd() {
     if (this.questionForm.form.valid) {
-      var data: Questions = JSON.parse(JSON.stringify(this.question));
+      const data: Questions = JSON.parse(JSON.stringify(this.question));
       this.questionSet.push(data);
       this.questionForm.form.reset();
       this.toastr.showSuccess(
@@ -52,7 +52,7 @@ export class AddQuestionComponent {
   }
   onSubmit() {
     this.spinner.show();
-    var data: Courses = JSON.parse(JSON.stringify(this.questionMeta));
+    const data: Courses = JSON.parse(JSON.stringify(this.questionMeta));
     const dataToSend = {
       questionData: {
         coursename: data.coursename,

@@ -8,7 +8,7 @@ import {ToastManager} from '../toast/toast.service';
   providedIn: 'root',
 })
 export class ErrorHandlerService {
-  public errorMessage: string = '';
+  errorMessage;
 
   constructor(
     private router: Router,
@@ -41,11 +41,11 @@ export class ErrorHandlerService {
 
   private handleOtherError(error: HttpErrorResponse) {
     this.createErrorMessage(error);
-    //TODO: this will be fixed later;
   }
 
   private createErrorMessage(error: HttpErrorResponse) {
+    const key = 'error';
     this.errorMessage = error.error ? error.error : error.statusText;
-    this.toastr.showError(this.errorMessage['error']);
+    this.toastr.showError(this.errorMessage[key]);
   }
 }

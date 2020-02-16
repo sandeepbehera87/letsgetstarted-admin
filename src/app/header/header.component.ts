@@ -22,8 +22,9 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const key = 'login';
     this.store.subscribe(state => {
-      const token = state['login'] ? state['login'].token : '';
+      const token = state[key] ? state[key].token : '';
       this.isLoggedIn$.next(!!token);
       this.isLoggedOut$.next(!token);
     });
@@ -31,23 +32,23 @@ export class HeaderComponent implements OnInit {
 
   goToRegisterPage = () => {
     this.router.navigate(['register']);
-  };
+  }
 
   gotToLoginPage = () => {
     this.router.navigate(['login']);
-  };
+  }
 
   goToAddQuestion = () => {
     this.router.navigate(['dashboard'], {
       queryParams: {pagename: 'addQuestion'},
     });
-  };
+  }
 
   gotToViewQuestion = () => {
     this.router.navigate(['dashboard'], {
       queryParams: {pagename: 'viewQuestion'},
     });
-  };
+  }
 
   signOut() {
     this.authService.signOut().subscribe(

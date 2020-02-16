@@ -11,5 +11,5 @@ export class NotFoundComponent {
 
   backToLogin = () => {
     this.router.navigate(['login']);
-  };
+  }
 }

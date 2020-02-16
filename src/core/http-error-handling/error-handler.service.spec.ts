@@ -6,7 +6,7 @@ import {ErrorHandlerService} from './error-handler.service';
 
 describe('ErrorHandlerService', () => {
   let service: ErrorHandlerService;
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
 

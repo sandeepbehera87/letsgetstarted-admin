@@ -20,24 +20,24 @@ import {AuthService} from '../../core/auth/auth.service';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let loginData: LoginData = {
+  const loginData: LoginData = {
     email: 'test@gmaill.com',
     password: 'test123',
   };
   const response = {
     token: 'token',
   };
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
-  let mockSpinner = {
+  const mockSpinner = {
     show: jasmine.createSpy('show'),
     hide: jasmine.createSpy('hide'),
   };
-  let mockAuthService = {
+  const mockAuthService = {
     signIn: jasmine.createSpy('signIn').and.returnValue(of(response)),
   };
-  let mockStore = {
+  const mockStore = {
     dispatch: jasmine.createSpy('dispatch'),
     subscribe: jasmine.createSpy('subscribe'),
   };

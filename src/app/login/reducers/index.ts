@@ -1,12 +1,4 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
-  createReducer,
-  on,
-} from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 import {LoginAction} from '../action.types';
 
 export const loginFeatureKey = 'login';
@@ -19,7 +11,7 @@ export const initialLoginState: LoginState = {
   token: undefined,
 };
 
-const _loginReducer = createReducer(
+const loginReducerObj = createReducer(
   initialLoginState,
   on(LoginAction.login, (state, action) => {
     return {
@@ -29,5 +21,5 @@ const _loginReducer = createReducer(
 );
 
 export function loginReducer(state, action) {
-  return _loginReducer(state, action);
+  return loginReducerObj(state, action);
 }

@@ -15,7 +15,7 @@ import {LoginAction} from './action.types';
 export class LoginComponent {
   @ViewChild('login') loginForm;
 
-  hide = false;
+  hide = true;
   loginData: LoginData = {
     email: '',
     password: '',

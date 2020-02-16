@@ -19,8 +19,9 @@ export class ApiInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     let token = '';
+    const key = 'login';
     this.store.subscribe(state => {
-      token = state['login'] ? state['login'].token : token;
+      token = state[key] ? state[key].token : '';
     });
     const appReq = req.clone({
       url: AppSettings.API_ENDPOINT + req.url,

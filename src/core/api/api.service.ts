@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {tap, map} from 'rxjs/operators';
 import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';

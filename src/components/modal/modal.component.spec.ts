@@ -12,10 +12,9 @@ export class MockElementRef extends ElementRef {
 describe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
-  let mockModalService = {
+  const mockModalService = {
     show: jasmine.createSpy('show'),
   };
-  let mockBsModalRef;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,11 +44,5 @@ describe('ModalComponent', () => {
   it('should call the show function of BsModalService', () => {
     component.show();
     expect(mockModalService.show).toHaveBeenCalled();
-  });
-
-  xit('should call the hide function of BsModalRef', () => {
-    mockBsModalRef = mockModalService.show(MockElementRef.template);
-    component.hide();
-    //expect(mockBsModalRef.hide).toHaveBeenCalled();
   });
 });

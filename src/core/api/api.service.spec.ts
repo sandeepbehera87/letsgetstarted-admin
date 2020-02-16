@@ -7,7 +7,7 @@ import {ApiService} from './api.service';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
 
 describe('ApiService', () => {
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
   beforeEach(() =>
@@ -27,7 +27,7 @@ describe('ApiService', () => {
   );
 
   it('should be created', () => {
-    const service: ApiService = TestBed.get(ApiService);
+    const service: ApiService = TestBed.inject(ApiService);
     expect(service).toBeTruthy();
   });
 });

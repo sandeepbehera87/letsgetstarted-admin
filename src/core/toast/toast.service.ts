@@ -16,7 +16,7 @@ export class ToastManager {
     }
 
     showWarning(message: string) {
-        this.toastr.warning(message, 'Alert')
+        this.toastr.warning(message, 'Alert');
     }
 
 }

@@ -12,7 +12,7 @@ import {CustomMaterialModule} from '../../../core/shared/material.module';
 describe('AddQuestionComponent', () => {
   let component: AddQuestionComponent;
   let fixture: ComponentFixture<AddQuestionComponent>;
-  let mockRouter = {
+  const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
 
