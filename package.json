@@ -16,8 +16,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint && npm run test",
-      "post-push": "npm run sonar"
+      "pre-push": "npm run lint && npm run test && npm run sonar"
     }
   },
   "private": true,
