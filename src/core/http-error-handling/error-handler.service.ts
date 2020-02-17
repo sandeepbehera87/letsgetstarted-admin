@@ -19,24 +19,16 @@ export class ErrorHandlerService {
   public handleError(error: HttpErrorResponse) {
     this.spinner.hide();
     if (error.status === 500) {
-      this.handle500Error(error);
+      this.createErrorMessage(error);
+      this.router.navigate(['/500']);
     } else if (error.status === 404) {
-      this.handle404Error(error);
+      this.createErrorMessage(error);
+      this.router.navigate(['/404']);
     } else if (error.status === 403) {
       this.router.navigate(['session-expire']);
     } else {
       this.handleOtherError(error);
     }
-  }
-
-  private handle500Error(error: HttpErrorResponse) {
-    this.createErrorMessage(error);
-    this.router.navigate(['/500']);
-  }
-
-  private handle404Error(error: HttpErrorResponse) {
-    this.createErrorMessage(error);
-    this.router.navigate(['/404']);
   }
 
   private handleOtherError(error: HttpErrorResponse) {

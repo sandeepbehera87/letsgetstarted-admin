@@ -1,7 +1,0 @@
-organization=sandeepbehera87
-projectKey=letsgetstarted-admin
-serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.4669
-dashboardUrl=https://sonarcloud.io/dashboard?id=letsgetstarted-admin
-ceTaskId=AXBPWgcDQ0Wbx1pQA_ZA
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXBPWgcDQ0Wbx1pQA_ZA
