@@ -12,7 +12,7 @@ describe('ErrorHandlerService', () => {
   const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
-  let mockSpinner = {
+  const mockSpinner = {
     show: jasmine.createSpy('show'),
     hide: jasmine.createSpy('hide'),
   };
