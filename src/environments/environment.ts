@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  secret_key: 'behaareraushonbornsep19tem20ber17',
 };
 
 /*
