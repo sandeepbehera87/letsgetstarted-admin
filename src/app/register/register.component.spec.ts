@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
@@ -25,6 +26,7 @@ describe('RegisterComponent', () => {
       imports: [
         RouterModule,
         HttpClientModule,
+        FormsModule,
         StoreModule.forRoot(reducers, {
           runtimeChecks: {
             strictStateImmutability: true,
