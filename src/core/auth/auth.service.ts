@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import * as Crypto from 'crypto-js';
 import {AppSettings} from '../utils/app.settings';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class AuthService {
   userRegistration(userData): Observable<any> {
     const data = Crypto.AES.encrypt(
       JSON.stringify(userData),
-      AppSettings.SECRET_KEY,
+      environment.secret_key,
     ).toString();
     return this.httpClient
       .post<any>(this.userSignUpApi, JSON.stringify({registrationData: data}))
@@ -38,7 +39,7 @@ export class AuthService {
   signIn(signInData): Observable<any> {
     const data = Crypto.AES.encrypt(
       JSON.stringify(signInData),
-      AppSettings.SECRET_KEY,
+      environment.secret_key,
     ).toString();
     console.log(data);
     return this.httpClient

@@ -5,6 +5,7 @@ import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {AppSettings} from '../utils/app.settings';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class ApiService {
   saveQuestionToDb(dataArry): Observable<any> {
     const data = Crypto.AES.encrypt(
       JSON.stringify(dataArry),
-      AppSettings.SECRET_KEY,
+      environment.secret_key,
     ).toString();
     return this.httpClient
       .post<any>(this.saveQuestionApi, JSON.stringify({data}))
