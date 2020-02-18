@@ -46,7 +46,7 @@ export class AuthService {
       .post<any>(this.userSignInApi, JSON.stringify({userData: data}))
       .pipe(
         map(response => {
-          const bytes = Crypto.AES.decrypt(response, AppSettings.SECRET_KEY);
+          const bytes = Crypto.AES.decrypt(response, environment.secret_key);
           const decryptedData = JSON.parse(bytes.toString(Crypto.enc.Utf8));
           return decryptedData;
         }),
