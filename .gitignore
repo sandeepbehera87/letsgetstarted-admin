@@ -40,7 +40,7 @@ yarn-error.log
 testem.log
 /typings
 /coverage
-/src/environments/
+./src/environments/*
 
 # System Files
 .DS_Store
