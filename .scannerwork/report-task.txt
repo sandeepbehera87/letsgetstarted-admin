@@ -3,5 +3,5 @@ projectKey=letsgetstarted-admin
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.4802
 dashboardUrl=https://sonarcloud.io/dashboard?id=letsgetstarted-admin
-ceTaskId=AXBYZi-wJpMS3uzORcmE
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXBYZi-wJpMS3uzORcmE
+ceTaskId=AXBYane9Efroo0odlOFa
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXBYane9Efroo0odlOFa
