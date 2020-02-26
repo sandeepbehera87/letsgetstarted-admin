@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "ng build --aot --prod",
     "ng": "ng",
-    "start": "cd server && npm start",
+    "start": "node server.js",
     "start:dev": "cd server && npm run dev",
     "build": "ng run letsgetstarted-admin:app-shell:production",
     "build:dev": "ng build --dev",
