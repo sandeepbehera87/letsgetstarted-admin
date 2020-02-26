@@ -3,9 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import * as Crypto from 'crypto-js';
-import {AppSettings} from '../utils/app.settings';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +40,6 @@ export class AuthService {
       JSON.stringify(signInData),
       environment.secret_key,
     ).toString();
-    console.log(data);
     return this.httpClient
       .post<any>(this.userSignInApi, JSON.stringify({userData: data}))
       .pipe(

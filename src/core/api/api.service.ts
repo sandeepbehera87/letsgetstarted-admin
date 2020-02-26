@@ -3,9 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {tap, map} from 'rxjs/operators';
 import * as Crypto from 'crypto-js';
 import {Observable, BehaviorSubject} from 'rxjs';
-import {AppSettings} from '../utils/app.settings';
 import {ErrorHandlerService} from '../http-error-handling/error-handler.service';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

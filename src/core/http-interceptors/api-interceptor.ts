@@ -7,9 +7,9 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AppSettings} from '../utils/app.settings';
 import {Store} from '@ngrx/store';
 import {AppState} from 'src/app/reducers';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -24,14 +24,10 @@ export class ApiInterceptor implements HttpInterceptor {
       token = state[key] ? state[key].token : '';
     });
     const appReq = req.clone({
-      url: AppSettings.API_ENDPOINT + req.url,
+      url: environment.api_baseurl + req.url,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods':
-          'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
         'api-token': token ? token : '',
       }),
       withCredentials: true,
