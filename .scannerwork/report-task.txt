@@ -1,7 +1,7 @@
 organization=sandeepbehera87
 projectKey=letsgetstarted-admin
 serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.4802
+serverVersion=8.0.0.5114
 dashboardUrl=https://sonarcloud.io/dashboard?id=letsgetstarted-admin
-ceTaskId=AXBY6EJK-rSM8u54hWo2
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXBY6EJK-rSM8u54hWo2
+ceTaskId=AXCBRTN_IVMbSK6fSKLk
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXCBRTN_IVMbSK6fSKLk
