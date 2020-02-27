@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   secret_key: 'behaareraushonbornsep19tem20ber17',
-  api_baseurl: 'http://localhost:8080/',
+  api_baseurl: 'http://localhost:5000/',
 };
 
 /*
