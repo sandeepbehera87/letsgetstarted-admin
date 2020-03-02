@@ -1,18 +1,16 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ToastrModule} from 'ngx-toastr';
-import {RouterModule} from '@angular/router';
 import {Router} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
-import { of } from 'rxjs';
+import {of} from 'rxjs';
 import {HttpClientModule} from '@angular/common/http';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {reducers} from '../reducers';
 import {HeaderComponent} from './header.component';
 import {AppRoutingModule} from '../app-routing.module';
 import {ErrorHandlerService} from '../../core/http-error-handling/error-handler.service';
-import {ToastManager} from '../../core/toast/toast.service';
+import {ToastManager} from '../../components/toast/toast.service';
 import {AuthService} from '../../core/auth/auth.service';
-
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -48,7 +46,8 @@ describe('HeaderComponent', () => {
         ErrorHandlerService,
         ToastManager,
         {provide: Router, useValue: mockRouter},
-        {provide: AuthService, useValue: mockAuthService}],
+        {provide: AuthService, useValue: mockAuthService},
+      ],
     }).compileComponents();
   }));
 
@@ -74,21 +73,17 @@ describe('HeaderComponent', () => {
 
   it('should go to addQuestion screen on goToAddQuestion click', () => {
     component.goToAddQuestion();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['dashboard'], {
-      queryParams: {pagename: 'addQuestion'},
-    });
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['add-questions']);
   });
 
   it('should go to viewQuestion screen on viewQuestion click', () => {
     component.gotToViewQuestion();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['dashboard'], {
-      queryParams: {pagename: 'viewQuestion'},
-    });
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['view-questions']);
   });
 
   it('should call signout api on signout call', () => {
-   component.signOut();
-   expect(mockAuthService.signOut).toHaveBeenCalled();
-   expect(mockRouter.navigate).toHaveBeenCalledWith(['login']);
+    component.signOut();
+    expect(mockAuthService.signOut).toHaveBeenCalled();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['login']);
   });
 });

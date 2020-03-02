@@ -12,7 +12,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {CustomMaterialModule} from '../../core/shared/material.module';
 import {HeaderComponent} from '../header/header.component';
 import {ErrorHandlerService} from '../../core/http-error-handling/error-handler.service';
-import {ToastManager} from '../../core/toast/toast.service';
+import {ToastManager} from '../../components/toast/toast.service';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;

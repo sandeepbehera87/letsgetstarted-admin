@@ -91,9 +91,7 @@ describe('LoginComponent', () => {
     expect(mockAuthService.signIn).toHaveBeenCalledWith(loginData);
     expect(mockStore.dispatch).toHaveBeenCalledWith(jasmine.any(Object));
     expect(mockSpinner.hide).toHaveBeenCalled();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['dashboard'], {
-      queryParams: {pagename: 'addQuestion'},
-    });
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['add-questions']);
   });
   xit('should hise spinner on error while user login ', () => {
     mockAuthService.signIn = jasmine

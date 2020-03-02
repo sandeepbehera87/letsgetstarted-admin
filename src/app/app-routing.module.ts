@@ -21,7 +21,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'viewQuestions',
+    path: 'view-questions',
     loadChildren: () =>
       import('./view-questions/view-questions.module').then(
         m => m.ViewQuestionsModule,
