@@ -1,14 +1,11 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
-import {ModalModule} from 'ngx-bootstrap';
-import {HttpInterceptorProviders} from '../core/http-interceptors';
-import {ErrorHandlerService} from '../core/http-error-handling/error-handler.service';
 
+import {HttpInterceptorProviders} from '../core/http-interceptors';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
@@ -17,17 +14,16 @@ import {reducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
+    BrowserAnimationsModule,
     NgxSpinnerModule,
     HttpClientModule,
-    ModalModule.forRoot(),
-    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-full-width',
@@ -50,6 +46,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   bootstrap: [AppComponent],
-  providers: [HttpInterceptorProviders, ErrorHandlerService],
+  providers: [HttpInterceptorProviders],
 })
 export class AppModule {}

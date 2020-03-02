@@ -2,7 +2,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {ToastManager} from '../toast/toast.service';
+import {ToastManager} from '../../components/toast/toast.service';
 
 @Injectable({
   providedIn: 'root',

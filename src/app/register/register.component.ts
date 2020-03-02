@@ -3,7 +3,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 
 import {UserData} from '../model/userdata';
 import {AuthService} from '../../core/auth/auth.service';
-import {ToastManager} from '../../core/toast/toast.service';
+import {ToastManager} from '../../components/toast/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -42,5 +42,5 @@ export class RegisterComponent implements OnInit {
         );
       },
     );
-  }
+  };
 }

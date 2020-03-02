@@ -14,9 +14,18 @@ const routes: Routes = [
     data: {preload: true}, // preload flag
   },
   {
-    path: 'dashboard',
+    path: 'add-questions',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+      import('./add-questions/add-questions.module').then(
+        m => m.AddQuestionsModule,
+      ),
+  },
+  {
+    path: 'viewQuestions',
+    loadChildren: () =>
+      import('./view-questions/view-questions.module').then(
+        m => m.ViewQuestionsModule,
+      ),
     data: {preload: true}, // preload flag
   },
   {

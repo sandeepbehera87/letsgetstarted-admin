@@ -1,3 +1,4 @@
+<app-header></app-header>
 <mat-card
   fxFlex
   fxLayoutAlign="start center"
@@ -40,7 +41,9 @@
     </ng-container>
   </mat-card-content>
 </mat-card>
+<app-footer></app-footer>
 
+<!-- Modal view for question -->
 <app-modal titleDialog="Show Question">
   <div *ngFor="let question of questionData">
     <p>Question: {{ question.quetionTitle }}</p>
@@ -50,3 +53,4 @@
     <p>Option 4: {{ question.option4 }}</p>
   </div>
 </app-modal>
+<!-- Modal view for question end -->

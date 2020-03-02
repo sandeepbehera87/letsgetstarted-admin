@@ -1,16 +1,16 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {ApiService} from '../../../core/api/api.service';
-import {ToastManager} from '../../../core/toast/toast.service';
-import {Courses} from '../../model/courses';
-import {Questions} from '../../model/question';
+import {ToastManager} from '../../components/toast/toast.service';
+import {Courses} from '../model/courses';
+import {Questions} from '../model/question';
+import {ApiService} from '../../core/api/api.service';
 
 @Component({
-  selector: 'app-add-question',
-  templateUrl: './add-question.component.html',
-  styleUrls: ['./add-question.component.scss'],
+  selector: 'app-add-questions',
+  templateUrl: './add-questions.component.html',
+  styleUrls: ['./add-questions.component.scss'],
 })
-export class AddQuestionComponent {
+export class AddQuestionsComponent {
   @ViewChild('questionForm') questionForm;
   @ViewChild('questionMetaForm') questionMetaForm;
 
@@ -50,6 +50,7 @@ export class AddQuestionComponent {
       }
     }
   }
+
   onSubmit() {
     this.spinner.show();
     const data: Courses = JSON.parse(JSON.stringify(this.questionMeta));
