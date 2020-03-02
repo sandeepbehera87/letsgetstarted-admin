@@ -32,19 +32,19 @@ export class HeaderComponent implements OnInit {
 
   goToRegisterPage = () => {
     this.router.navigate(['register']);
-  };
+  }
 
   gotToLoginPage = () => {
     this.router.navigate(['login']);
-  };
+  }
 
   goToAddQuestion = () => {
     this.router.navigate(['add-questions']);
-  };
+  }
 
   gotToViewQuestion = () => {
     this.router.navigate(['viewQuestions']);
-  };
+  }
 
   signOut() {
     this.authService.signOut().subscribe(
