@@ -10,7 +10,8 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from './reducers';
+import {EffectsModule} from '@ngrx/effects';
+//import {reducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {ServiceWorkerModule} from '@angular/service-worker';
@@ -30,16 +31,9 @@ import {RouterModule} from '@angular/router';
       preventDuplicates: true,
       closeButton: true,
     }),
-    StoreModule.forRoot(reducers, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      },
-    }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
