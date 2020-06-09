@@ -1,0 +1,40 @@
+@import '../../lgs-global-style/global.styles.scss';
+
+mat-card-content {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+button {
+  width: 50vw;
+  margin-bottom: 30px !important;
+  height: 48px;
+}
+
+.form-btn {
+  margin-left: 14vw;
+}
+
+.dot {
+  height: 30px;
+  width: 30px;
+  background-color: #bbb;
+  border-radius: 50%;
+  float: right;
+  position: relative;
+  right: 80px;
+}
+
+.right-arrow {
+  width: 20px;
+  height: 20px;
+  float: right;
+  position: relative;
+  top: 5px;
+}
+
+.view {
+  float: right;
+  text-decoration: underline;
+}
