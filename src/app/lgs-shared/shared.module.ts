@@ -49,14 +49,14 @@ import { CustomMaterialModule } from './material.module';
   ],
 })
 export class SharedModule {
-  static forRoot() {
+  static forRoot(): ModuleWithProviders<SharedModule> {
     return {
-      ngModule: SharedModule,
-      providers: [
-        AuthService,
-        { provide: ToastrService, useClass: ToastrService },
-        ErrorHandlerService,
-      ],
+        ngModule: SharedModule,
+        providers: [
+            AuthService,
+            { provide: ToastrService, useClass: ToastrService },
+            ErrorHandlerService,
+        ],
     };
-  }
+}
 }
