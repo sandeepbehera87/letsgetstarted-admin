@@ -5,7 +5,7 @@ export enum LoginActionTypes {
   USER_LOGIN = '[Login page] User Login',
   USER_LOGIN_SUCCESS = '[Login page] User Login Success',
   USER_LOGIN_FAIL = '[Login page] User Login Fail'
-};
+}
 
 export class Login implements Action {
   readonly type = LoginActionTypes.USER_LOGIN;

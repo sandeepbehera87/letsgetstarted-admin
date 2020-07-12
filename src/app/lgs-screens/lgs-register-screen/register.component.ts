@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         this.spinner.hide();
       }
     );
-  };
+  }
 
   private createForm(model: UserData): FormGroup {
     return this.fb.group(model);

@@ -73,7 +73,7 @@ export class ViewQuestionsComponent implements OnInit, OnChanges {
   showCourseList = () => {
     this.showCourseContainer = true;
     this.showTestContainer = false;
-  };
+  }
 
   onCourseClick = (course: string) => {
     this.testNameList = [];
@@ -85,10 +85,10 @@ export class ViewQuestionsComponent implements OnInit, OnChanges {
     this.testNameList = selectedCourse.map((item) => {
       return item.subjects;
     });
-  };
+  }
 
   onTestClick = (test) => {
     this.modalComponent.show();
     this.questionData = test;
-  };
+  }
 }
