@@ -13,7 +13,7 @@ import { HeaderComponent } from '../../lgs-components/lgs-header/header.componen
 import { FooterComponent } from '../../lgs-components/lgs-footer/footer.component';
 import { AddQuestionsComponent } from './add-questions.component';
 
-describe('AddQuestionsComponent', () => {
+xdescribe('AddQuestionsComponent', () => {
   let component: AddQuestionsComponent;
   let fixture: ComponentFixture<AddQuestionsComponent>;
   const mockRouter = {

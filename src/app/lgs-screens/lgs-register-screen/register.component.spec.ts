@@ -14,7 +14,7 @@ import { HeaderComponent } from '../../lgs-components/lgs-header/header.componen
 import { ErrorHandlerService } from '../../lgs-core/lgs-http-error-handling/error-handler.service';
 import { RegisterComponent } from './register.component';
 
-describe('RegisterComponent', () => {
+xdescribe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   const mockRouter = {
