@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // TODO : Remove FormsModule
 import { ReactiveFormsModule } from '@angular/forms';
