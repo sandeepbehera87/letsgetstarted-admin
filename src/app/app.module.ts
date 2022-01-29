@@ -1,13 +1,26 @@
 import { NgModule } from '@angular/core';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { CoreModule } from './lgs-core/lgs-core.module';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import {
+  LgsDashboardComponent,
+  LgsShellComponent
+} from './lgs-screens';
+import { ShellModule } from './lgs-screens/lgs-shell/lgs-shell.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [NgxSpinnerModule, CoreModule, AppRoutingModule],
-  bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    LgsDashboardComponent,
+    LgsShellComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ShellModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

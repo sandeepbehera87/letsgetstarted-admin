@@ -1,0 +1,13 @@
+.logo div {
+    margin: 10px 0 0 20px;
+    border: 1px #123232 solid;
+    width: 10vw;
+    height: 10vh;
+}
+
+footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}

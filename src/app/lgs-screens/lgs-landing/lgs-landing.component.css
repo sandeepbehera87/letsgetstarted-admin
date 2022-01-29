@@ -1,0 +1,12 @@
+.info-section {
+    margin: 20px 0 0 20px;
+    border: 1px #123232 solid;
+    width: 40vw;
+    height: 50vh; 
+}
+
+.login-section {
+    margin: 20px 0 0 20px;
+    width: 40vw;
+    height: 50vh; 
+}
