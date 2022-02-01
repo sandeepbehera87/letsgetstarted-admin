@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockComponent } from 'ng-mocks';
 
+import { LgsLoginComponent } from '../index';
 import { LgsLandingComponent } from './lgs-landing.component';
 
 describe('LgsLandingComponent', () => {
@@ -8,7 +10,10 @@ describe('LgsLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LgsLandingComponent ]
+      declarations: [
+        LgsLandingComponent,
+        MockComponent(LgsLoginComponent)
+      ]
     })
     .compileComponents();
   });

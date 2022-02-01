@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MockComponent } from 'ng-mocks';
 
+import { LgsNavbarComponent } from '../lgs-navbar/lgs-navbar.component';
 import { LgsShellComponent } from './lgs-shell.component';
 
 describe('LgsShellComponent', () => {
@@ -8,7 +11,11 @@ describe('LgsShellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LgsShellComponent ]
+      declarations: [
+        LgsShellComponent,
+        MockComponent(LgsNavbarComponent)
+      ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   });
