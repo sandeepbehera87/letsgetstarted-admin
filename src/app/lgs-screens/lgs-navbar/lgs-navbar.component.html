@@ -4,7 +4,7 @@
             <div class="container-xxl ">
                 <a href="#home" class="navbar-brand">
                     <span class="fw-bold">
-                        App name
+                        Lets Get Started
                     </span>
                 </a>
                 <!-- Toggle button mobile nav -->
@@ -14,19 +14,27 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
         
-                <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <div class="collapse navbar-collapse justify-content-start align-center" id="main-nav">
                     <ul class="navbar-nav fw-light">
-                        <li class="nav-item">
-                            <a routerLink="/" class="nav-link">Home</a>
+                        <li class="nav-item" (click)="navClick('dashboard')">
+                            <a class="nav-link">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">About</a>
+                            <a href="#" class="nav-link">Add question</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
                         </li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                    <ul class="navbar-nav fw-light">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Portfolio</a>
+                            <a routerLink="/" class="nav-link">Welcome Sandeep</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/" class="nav-link">Sign Out</a>
                         </li>
                     </ul>
                 </div>

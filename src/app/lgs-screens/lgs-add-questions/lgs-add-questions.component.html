@@ -1,0 +1,81 @@
+<div class="add-questions-form">
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="questionFrom">
+                <h3>Course:</h3>
+                <div class="form-group">
+                    <label for="coursename" class="form-label">Course name</label>
+                    <input type="text" class="form-control" id="coursename" formControlName="coursename"
+                        placeholder="Enter the course name" required />
+                </div>
+                <div class="form-group">
+                    <label for="subjectname" class="form-label">Subject name</label>
+                    <input type="text" class="form-control" id="subjectname" formControlName="subjectname"
+                        placeholder="Enter the subject name" required />
+                </div>
+
+                <div formGroupName="question" class="question-section">
+                    <h2>Question:</h2>
+
+                    <div class="form-group">
+                        <label for="quetionTitle" class="form-label">Quetion title</label>
+                        <input type="text" class="form-control" id="quetionTitle" formControlName="quetionTitle"
+                            placeholder="Enter the question here" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="option1" class="form-label">Option 1</label>
+                        <input type="text" class="form-control" id="option1" formControlName="option1"
+                            placeholder="Enter the option1" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="option2" class="form-label">Option 2</label>
+                        <input type="text" class="form-control" id="option2" formControlName="option2"
+                            placeholder="Enter the option2" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="option3" class="form-label">Option 3</label>
+                        <input type="text" class="form-control" id="option3" formControlName="option3"
+                            placeholder="Enter the option3" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="option4" class="form-label">Option 4</label>
+                        <input type="text" class="form-control" id="option4" formControlName="option4"
+                            placeholder="Enter the option4" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="correctAnswer" class="form-label">Correct answer</label>
+                        <input type="text" class="form-control" id="correctAnswer" formControlName="correctAnswer"
+                            placeholder="Enter the correctAnswer">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary add-to-set" (click)="addNewQuestion()"
+                        [disabled]="questionFrom.pristine || questionFrom.controls['question'].invalid"
+                        [ngClass]="{'disable-button': questionFrom.pristine || questionFrom.controls['question'].invalid}">
+                        Add to set
+                    </button>
+                    <button type="button" class="btn btn-primary reset" (click)="resetQuestion()"
+                        [disabled]="questionFrom.controls['question'].pristine">
+                        Reset question
+                    </button>
+                    <button type="submit" class="btn btn-primary submit"
+                        [disabled]="questionFrom.pristine || questionFrom.invalid" (click)="submitQuestionSet()"
+                        [ngClass]="{'disable-button': questionFrom.pristine || questionFrom.invalid}">
+                        Submit set
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<lgs-shared-modal
+    #submitConfirmModal
+    [title]="'Submit confirmation'"
+    [message]="'Do you want to sumit the question set?'"
+    [confirmBtnName]="'Yes'"
+    [closeBtnName]="'No'"
+    (onConfirm)="submitConfrm()"
+></lgs-shared-modal>

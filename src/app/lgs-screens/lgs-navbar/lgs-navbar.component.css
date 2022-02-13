@@ -1,3 +1,6 @@
-div.justify-content-end {
-    justify-content: flex-start !important;;
+.container-xxl {
+    margin-left: 0 !important;
+}
+.nav-item {
+    cursor: pointer;
 }

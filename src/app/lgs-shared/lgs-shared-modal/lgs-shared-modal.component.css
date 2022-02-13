@@ -1,0 +1,9 @@
+.button-close {
+    border: 1px solid rgb(235, 157, 12);
+    width: 100px;
+}
+
+.button-confirm {
+    background-color: rgb(235, 157, 12);
+    width: 100px;
+}

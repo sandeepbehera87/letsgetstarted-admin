@@ -1,0 +1,10 @@
+.dashboard-container {
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    margin-right: 30px;
+    cursor: pointer;
+}

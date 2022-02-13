@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {
-  LgsDashboardComponent,
-  LgsShellComponent
-} from './lgs-screens';
+import { LgsShellComponent } from './lgs-screens';
 import { ShellModule } from './lgs-screens/lgs-shell/lgs-shell.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LgsDashboardComponent,
     LgsShellComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ShellModule
+    ShellModule,
+    StoreModule.forRoot({}, {}),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
