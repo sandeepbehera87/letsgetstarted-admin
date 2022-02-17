@@ -17,7 +17,7 @@ export class LgsDashboardComponent implements OnInit {
     this.router.navigate(['addquestion'], { relativeTo: this.route });
   }
 
-  public viewQuestion() {
+  viewQuestion() {
     this.router.navigate(['viewquestion'], { relativeTo: this.route });
   }
 

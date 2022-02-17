@@ -14,9 +14,9 @@ export class LgsLoginComponent {
   @Output() loginAction = new EventEmitter<any>();
   
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['s@s.in', [Validators.required, Validators.email]],
     password: [
-      '',
+      '1',
       [
         Validators.required,
         Validators.minLength(1),

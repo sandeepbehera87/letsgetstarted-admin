@@ -31,15 +31,15 @@ export class LgsAddQuestionsComponent implements OnInit {
   questionSet: Questions[] = [];
 
   questionFrom = this.fb.group({
-    coursename: ['', Validators.required],
-    subjectname: ['', Validators.required],
+    coursename: ['a', Validators.required],
+    subjectname: ['a', Validators.required],
     question: this.fb.group({
-      quetionTitle: ['', Validators.required],
-      option1: ['', Validators.required],
-      option2: ['', Validators.required],
-      option3: ['', Validators.required],
-      option4: ['', Validators.required],
-      correctAnswer: ['', Validators.required]
+      quetionTitle: ['a', Validators.required],
+      option1: ['a', Validators.required],
+      option2: ['a', Validators.required],
+      option3: ['a', Validators.required],
+      option4: ['a', Validators.required],
+      correctAnswer: ['a', Validators.required]
     }),
   });
 
@@ -68,8 +68,10 @@ export class LgsAddQuestionsComponent implements OnInit {
 
   submitQuestionSet() {
     if (this.questionSet.length === 0) {
-      this.questionSet.push(Object.assign([], this.f['question'].value));
+      this.questionSet.push(Object.assign({}, this.f['question'].value));
     }
+    console.log(this.f['question'].value);
+    console.log('this.questionSet ==', this.questionSet);
     this.submitConfirmModal.show()
   }
 
@@ -79,6 +81,7 @@ export class LgsAddQuestionsComponent implements OnInit {
       subject: this.f['subjectname'].value,
       questionset: this.questionSet
     };
+    console.log('dataToSend ==', dataToSend);
     this.apiService.saveQuestion(dataToSend).subscribe((res) => {
       this.router.navigate(['dashboard'], { relativeTo: this.route.parent });
     });

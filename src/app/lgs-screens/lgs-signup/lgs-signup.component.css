@@ -15,3 +15,7 @@
 .disable-button {
     background-color: rgb(192, 197, 197)
 }
+
+.form-control-error span {
+    color: red;
+}

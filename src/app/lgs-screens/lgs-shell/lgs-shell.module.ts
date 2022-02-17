@@ -17,12 +17,27 @@ import { LgsUserEntryComponent } from '../lgs-user-entry/lgs-user-entry.componen
 import { LgsSignupComponent } from '../lgs-signup/lgs-signup.component';
 import { appMetaReducers, reducers } from '../../lgs-state/lgs.reducer';
 import { LgsSharedModalComponent } from '../../lgs-shared/lgs-shared-modal/lgs-shared-modal.component';
+import { LgsPermissionGuardService } from '../../lgs-permission/lgs-permission-guard.service';
+import { LgsViewQuestionResolverService } from '../lgs-view-questions/lgs-view-question-resolver.service';
 
 const routes: Routes = [
     { path: '', component: LgsLandingComponent },
-    { path: 'dashboard', component: LgsDashboardComponent },
-    { path: 'dashboard/addquestion', component: LgsAddQuestionsComponent },
-    { path: 'dashboard/viewquestion', component: LgsViewQuestionsComponent }
+    { 
+      path: 'dashboard',
+      component: LgsDashboardComponent ,
+      canActivate: [LgsPermissionGuardService]},
+    {
+      path: 'dashboard/addquestion',
+      component: LgsAddQuestionsComponent,
+      canActivate: [LgsPermissionGuardService] },
+    {
+      path: 'dashboard/viewquestion',
+      component: LgsViewQuestionsComponent,
+      canActivate: [LgsPermissionGuardService],
+      resolve: {
+        questions: LgsViewQuestionResolverService
+      }
+    }
 ];
 
 @NgModule({

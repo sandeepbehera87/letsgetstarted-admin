@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { QuestionSet } from '../../lgs-interface';
 
 @Component({
   selector: 'lgs-view-questions',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LgsViewQuestionsComponent implements OnInit {
 
-  constructor() { }
+  questions: QuestionSet[] | any;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(res=> {
+      this.questions = res['questions'];
+    });
   }
 
 }
