@@ -16,8 +16,8 @@ import { ModalDirective, ModalOptions } from 'ngx-bootstrap/modal';
 export class LgsSharedModalComponent implements OnInit {
   @Input() title: string = '';
   @Input() message: string = '';
-  @Input() closeBtnName: string = 'Close';
-  @Input() confirmBtnName: string = 'Ok';
+  @Input() closeBtnName: string = '';
+  @Input() confirmBtnName: string = '';
 
   @Output() onConfirm = new EventEmitter();
   

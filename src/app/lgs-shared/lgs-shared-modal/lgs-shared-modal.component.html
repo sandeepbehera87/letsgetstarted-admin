@@ -10,10 +10,11 @@
             </div>
             <div class="modal-body">
                 <p>{{message}}</p>
+                <ng-content></ng-content>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default button-close" (click)="hide()">{{closeBtnName}}</button>
-                <button type="button" class="btn btn-defaul button-confirm"
+                <button type="button" *ngIf="closeBtnName" class="btn btn-default button-close" (click)="hide()">{{closeBtnName}}</button>
+                <button type="button" *ngIf="confirmBtnName" class="btn btn-defaul button-confirm"
                     (click)="onConfirmClick($event)">{{confirmBtnName}}</button>
             </div>
         </div>

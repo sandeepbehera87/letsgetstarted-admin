@@ -1,0 +1,33 @@
+.view-container {
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 70vw;
+}
+
+.dot {
+    height: 30px;
+    width: 30px;
+    background-color: #bbb;
+    border-radius: 50%;
+    float: right;
+    position: relative;
+    right: 80px;
+  }
+  
+  .right-arrow {
+    width: 20px;
+    height: 20px;
+    float: right;
+    position: relative;
+    top: 5px;
+  }
+
+ .ml-2 {
+    position: relative;
+    top: -6px !important;
+  }
+
+  .view-link {
+      color: orange;
+      text-decoration: underline;
+  }

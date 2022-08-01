@@ -31,15 +31,15 @@ export class LgsAddQuestionsComponent implements OnInit {
   questionSet: Questions[] = [];
 
   questionFrom = this.fb.group({
-    coursename: ['a', Validators.required],
-    subjectname: ['a', Validators.required],
+    coursename: ['', Validators.required],
+    subjectname: ['', Validators.required],
     question: this.fb.group({
-      quetionTitle: ['a', Validators.required],
-      option1: ['a', Validators.required],
-      option2: ['a', Validators.required],
-      option3: ['a', Validators.required],
-      option4: ['a', Validators.required],
-      correctAnswer: ['a', Validators.required]
+      quetionTitle: ['', Validators.required],
+      option1: ['', Validators.required],
+      option2: ['', Validators.required],
+      option3: ['', Validators.required],
+      option4: ['', Validators.required],
+      correctAnswer: ['', Validators.required]
     }),
   });
 

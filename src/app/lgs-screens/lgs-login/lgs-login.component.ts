@@ -2,8 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { tap } from 'rxjs';
 import { LgsApiService } from 'src/app/lgs-api/lgs-api.service';
-import { loginSuccess } from 'src/app/lgs-state/lgs-auth/lgs.login.action';
+import { loginSuccess, User } from '../../lgs-state/lgs-auth/lgs.login.action';
 
 @Component({
   selector: 'lgs-login',
@@ -12,19 +13,18 @@ import { loginSuccess } from 'src/app/lgs-state/lgs-auth/lgs.login.action';
 })
 export class LgsLoginComponent {
   @Output() loginAction = new EventEmitter<any>();
-  
+
   loginForm: FormGroup = this.fb.group({
-    email: ['s@s.in', [Validators.required, Validators.email]],
+    userId: ['', [Validators.required]],
     password: [
-      '1',
+      '',
       [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(8)
+        Validators.required
       ]
     ]
   });
   submitted = false;
+  serverError: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -32,19 +32,28 @@ export class LgsLoginComponent {
     private route: ActivatedRoute,
     private apiService: LgsApiService,
     private store: Store
-    ) {}
+  ) { }
 
   get f(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
   }
 
   login() {
-    const { email, password } = this.loginForm.value;
-    this.apiService.signIn({ email, password }).subscribe(res => {
-      const token = res.token.split('Bearer ')[1];
-      this.store.dispatch(loginSuccess({payload: token}));
-      this.router.navigate(['dashboard'], { relativeTo: this.route });
-    });
+    const { userId, password } = this.loginForm.value;
+    this.apiService.signIn({ userId, password }).pipe(
+      tap(res => {
+        const token = res.token.split('Bearer ')[1];
+        const user: User = {
+          token,
+          userId: res.userId
+        }
+        this.store.dispatch(loginSuccess({ payload: user }));
+        this.router.navigate(['dashboard'], { relativeTo: this.route });
+      },
+        error => {
+          this.serverError = error.error?.message;
+        }
+      )).subscribe();
   }
 
   signUp() {

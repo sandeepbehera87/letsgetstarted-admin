@@ -28,13 +28,13 @@
                     </ul>
                 </div>
 
-                <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav" *ngIf="userId">
                     <ul class="navbar-nav fw-light">
                         <li class="nav-item">
-                            <a routerLink="/" class="nav-link">Welcome Sandeep</a>
+                            <a href="#" class="nav-link">Welcome {{ userId }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a routerLink="/" class="nav-link">Sign Out</a>
+                        <li class="nav-item" (click)="signOut()">
+                            <a href="#" class="nav-link">Sign Out</a>
                         </li>
                     </ul>
                 </div>

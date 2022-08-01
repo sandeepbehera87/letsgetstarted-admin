@@ -3,51 +3,81 @@
         <div class="col-md-12">
             <form [formGroup]="signUpForm">
                 <div class="form-group">
-                    <label>Email*</label>
-                    <input type="email" formControlName="signupEmail" placeholder="Enter your email id"
-                        class="form-control" />
+                    <label [ngClass]="{ 'error-label':  f['email'].touched && f['email'].errors }">Email*</label>
+                    <input type="email" formControlName="email" placeholder="Enter your email id"
+                        [ngClass]="{ 'is-invalid':  f['email'].touched && f['email'].errors }" class="form-control" />
                     <div class="form-control-error"
-                        *ngIf="f['signupEmail'].invalid && (f['signupEmail'].dirty || f['signupEmail'].touched)">
-                        <div *ngIf="f['signupEmail'].errors?.['required']">
+                        *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+                        <div *ngIf="f['email'].errors?.['required']">
                             <span>Email is required.</span>
                         </div>
-                        <div *ngIf="f['signupEmail'].errors?.['email']">
+                        <div *ngIf="f['email'].errors?.['email']">
                             <span>Please enter a valid email.</span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Mobile*</label>
-                    <input type="email" formControlName="signupMobile" placeholder="Enter your mobile"
+                    <label [ngClass]="{ 'error-label':  f['mobile'].touched && f['mobile'].errors }">Mobile*</label>
+                    <input type="number" formControlName="mobile" placeholder="Enter your mobile number"
+                        [ngClass]="{ 'is-invalid':  f['mobile'].touched && f['mobile'].errors }"
                         class="form-control" />
                     <div class="form-control-error"
-                        *ngIf="f['signupMobile'].invalid && (f['signupMobile'].dirty || f['signupMobile'].touched)">
-                        <div *ngIf="f['signupMobile'].errors?.['required']">
-                            <span>Mobile is required.</span>
+                        *ngIf="f['mobile'].invalid && (f['mobile'].dirty || f['mobile'].touched)">
+                        <div *ngIf="f['mobile'].errors?.['required']">
+                            <span>Mobile number is required.</span>
+                        </div>
+                        <div *ngIf="f['mobile'].errors?.['pattern']">
+                            <span>Invalid mobile number.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label [ngClass]="{ 'error-label':  f['userId'].touched && f['userId'].errors }">User Id*</label>
+                    <input type="text" formControlName="userId" placeholder="Enter your user id"
+                        [ngClass]="{ 'is-invalid':  f['userId'].touched && f['userId'].errors }"
+                        class="form-control" />
+                    <div class="form-control-error"
+                        *ngIf="f['userId'].invalid && (f['userId'].dirty || f['userId'].touched)">
+                        <div *ngIf="f['userId'].errors?.['required']">
+                            <span>User id is required.</span>
+                        </div>
+                        <div *ngIf="f['userId'].errors?.['pattern']">
+                            <span>User id should be alpha numeric.</span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Password*</label>
-                    <input type="password" formControlName="signupPassword" placeholder="Enter a password"
+                    <input type="password" formControlName="password" placeholder="Enter a password"
+                        [ngClass]="{ 'is-invalid':  f['password'].touched && f['password'].errors }"
                         class="form-control" />
                     <div class="form-control-error"
-                        *ngIf="f['signupPassword'].invalid && (f['signupPassword'].dirty || f['signupPassword'].touched)">
-                        <div *ngIf="f['signupPassword'].errors?.['required']">
+                        *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                        <div *ngIf="f['password'].errors?.['required']">
                             <span>Password is required.</span>
+                        </div>
+                        <div *ngIf="f['password'].errors?.['minLength']">
+                            <span>Password should be minimun 8 characters.</span>
+                        </div>
+                        <div *ngIf="f['password'].errors?.['pattern']">
+                            <p>Password should be minimun 8 characters.</p>
+                            <p>Password should include at least one letter.</p>
+                            <p>Password should include at least one number.</p>
+                            <p>Password should include at least one special character.</p>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Confirm password*</label>
-                    <input type="password" formControlName="confirmPassword" placeholder="Re enter the Password"
+                    <input type="password" formControlName="confirm-password" placeholder="Re enter the Password"
+                        [ngClass]="{ 'is-invalid':  f['confirm-password'].touched && f['confirm-password'].errors }"
                         class="form-control" />
                     <div class="form-control-error"
-                        *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)">
-                        <div *ngIf="f['confirmPassword'].errors?.['required']">
+                        *ngIf="f['confirm-password'].invalid && (f['confirm-password'].dirty || f['confirm-password'].touched)">
+                        <div *ngIf="f['confirm-password'].errors?.['required']">
                             <span>Confirm password is required.</span>
                         </div>
-                        <div *ngIf="f['confirmPassword'].errors?.['confirmedValidator']">
+                        <div *ngIf="f['confirm-password'].errors?.['confirmedValidator']">
                             <span>Password and confirm password should match.</span>
                         </div>
                     </div>
@@ -62,10 +92,18 @@
                         [disabled]="signUpForm.pristine || signUpForm.invalid"
                         [ngClass]="{'disable-button': signUpForm.pristine || signUpForm.invalid}"
                         (click)="register()">REGISTER</button>
-                    <button type="submit" class="btn btn-primary border-0"
-                        (click)="signIn()">Sign in</button>
+                    <button type="submit" class="btn btn-primary border-0" (click)="signIn()">Sign in</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<lgs-shared-modal 
+    #registrationConfirmModal
+    [title]="'User registration'"
+    [message]="'User registration is successful. Please login using email or user id.'" 
+    [confirmBtnName]="'Go to Login'" 
+    (onConfirm)="signIn()">
+</lgs-shared-modal>

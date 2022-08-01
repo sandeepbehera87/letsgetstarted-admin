@@ -11,7 +11,7 @@ const routes: Routes = [
         (m) => m.ShellModule
       )
     },
-    { path: '', redirectTo: '/shell', pathMatch: 'full' },
+    { path: '', redirectTo: 'shell', pathMatch: 'full' },
   ];
 
   @NgModule({

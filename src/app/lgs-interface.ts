@@ -13,3 +13,9 @@ export interface Questions {
     subject: string
     questionset: Questions[]
   }
+
+  export interface LgsError {
+    status: number;
+    message: string;
+    recoverable: boolean;
+  }

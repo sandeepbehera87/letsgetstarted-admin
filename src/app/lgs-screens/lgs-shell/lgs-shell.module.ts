@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TableModule } from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
 
 import { LgsAddQuestionsComponent } from '../lgs-add-questions/lgs-add-questions.component';
 import { LgsDashboardComponent } from '../lgs-dashboard/lgs-dashboard.component';
@@ -19,13 +21,15 @@ import { appMetaReducers, reducers } from '../../lgs-state/lgs.reducer';
 import { LgsSharedModalComponent } from '../../lgs-shared/lgs-shared-modal/lgs-shared-modal.component';
 import { LgsPermissionGuardService } from '../../lgs-permission/lgs-permission-guard.service';
 import { LgsViewQuestionResolverService } from '../lgs-view-questions/lgs-view-question-resolver.service';
+import { LgsSharedErrorPageComponent } from '../../lgs-shared/lgs-shared-error-page/lgs-shared-error-page.component';
 
 const routes: Routes = [
     { path: '', component: LgsLandingComponent },
     { 
       path: 'dashboard',
       component: LgsDashboardComponent ,
-      canActivate: [LgsPermissionGuardService]},
+      canActivate: [LgsPermissionGuardService]
+    },
     {
       path: 'dashboard/addquestion',
       component: LgsAddQuestionsComponent,
@@ -37,6 +41,10 @@ const routes: Routes = [
       resolve: {
         questions: LgsViewQuestionResolverService
       }
+    },
+    {
+      path: 'dashboard/error',
+      component: LgsSharedErrorPageComponent
     }
 ];
 
@@ -50,7 +58,8 @@ const routes: Routes = [
       LgsDashboardComponent,
       LgsAddQuestionsComponent,
       LgsViewQuestionsComponent,
-      LgsSharedModalComponent
+      LgsSharedModalComponent,
+      LgsSharedErrorPageComponent
     ],
     exports: [
         LgsLoginComponent,
@@ -62,7 +71,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     StoreModule.forFeature('lgs-app-state', reducers, { metaReducers: appMetaReducers }),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TableModule,
+    ButtonModule
   ],
   providers: [HttpInterceptorProviders]
 })

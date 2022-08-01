@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { LgsSharedModalComponent } from '../../lgs-shared/lgs-shared-modal/lgs-shared-modal.component';
 import { LgsApiService } from '../../lgs-api/lgs-api.service';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string) {
@@ -28,15 +27,32 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
 })
 export class LgsSignupComponent {
   @Output() signupAction = new EventEmitter<any>();
+  @ViewChild('registrationConfirmModal', { static: true })
+  registrationConfirmModal!: LgsSharedModalComponent;
 
   signUpForm: FormGroup = this.fb.group({
-    signupEmail: ['', {updateOn: 'blur', validators: [Validators.required, Validators.email]}],
-    signupMobile: ['', {updateOn: 'blur', validators: Validators.required}],
-    signupPassword: ['', {updateOn: 'blur', validators: Validators.required}],
-    confirmPassword: ['', Validators.required],
+    email: ['', {updateOn: 'blur', validators: [Validators.required, Validators.email]}],
+    mobile: ['', {updateOn: 'blur', validators: [
+      Validators.required,
+      Validators.pattern('^(\\+\\d{1,3}[- ]?)?\\d{10}$')
+    ]}],
+    userId: ['', {updateOn: 'blur', validators: [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_]*$')
+    ]}],
+    password: ['', {updateOn: 'blur', validators: [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
+    ]}],
+    'confirm-password': ['', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
+    ]],
     signupEmailAlt: ['']
   },
-    { validators: [ConfirmedValidator('signupPassword', 'confirmPassword')] }
+    { validators: [ConfirmedValidator('password', 'confirm-password')] }
   );
 
   get f() {
@@ -51,9 +67,9 @@ export class LgsSignupComponent {
   }
 
   register() {
-    const { signupEmail, signupMobile, signupPassword } = this.signUpForm.value;
-    this.apiService.userRegistration({ signupEmail, signupMobile, signupPassword }).subscribe(() => {
-      this.signupAction.emit('login');
+    const { email, mobile, password, userId } = this.signUpForm.value;
+    this.apiService.userRegistration({ email, mobile, password, userId }).subscribe(() => {
+      this.registrationConfirmModal.show();
     });
   }
 

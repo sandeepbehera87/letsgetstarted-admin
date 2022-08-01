@@ -1,6 +1,9 @@
 .logo img {
-    margin: 10px 0 0 20px;
-    border: 1px #123232 solid;
+    margin: 10px 0 10px 20px;
+    background-color: rgb(141, 141, 153);
+}
+.logo {
+    background-color: rgb(141, 141, 153);
 }
 
 footer {
@@ -14,4 +17,12 @@ footer {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
+}
+
+.brand {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    padding-left: 25vw;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

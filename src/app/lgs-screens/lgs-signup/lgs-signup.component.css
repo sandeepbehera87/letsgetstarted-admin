@@ -1,5 +1,6 @@
 .signup-form {
     width: 42vw;
+    height: 80vh;
 }
 
 .form-group {
@@ -16,6 +17,8 @@
     background-color: rgb(192, 197, 197)
 }
 
-.form-control-error span {
+.form-control-error span,
+.form-control-error p,
+.error-label {
     color: red;
 }

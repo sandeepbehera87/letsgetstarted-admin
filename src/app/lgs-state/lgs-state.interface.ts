@@ -1,5 +1,5 @@
-import { Token } from "./lgs-auth/lgs.login.action";
+import { User } from "./lgs-auth/lgs.login.action";
 
 export interface AppState {
-    token: string
+    user: User
 }

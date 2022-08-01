@@ -7,6 +7,10 @@ export const LgsApiConfig: any = {
         PATH: 'api/user/login',
         LOADING_TEXT: ''
     },
+    SIGNOUT: {
+        PATH: 'api/user/logout',
+        LOADING_TEXT: ''
+    },
     GET_QUESTIONS: {
         PATH: 'api/questions/getAllQuestions',
         LOADING_TEXT: ''
