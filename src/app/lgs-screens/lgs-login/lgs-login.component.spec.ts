@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Mock } from 'ts-mockery';
+// ts-mockery removed during Jest → Vitest migration; using plain object for ActivatedRoute
 
 import { LgsLoginComponent } from './lgs-login.component';
 
@@ -15,9 +15,9 @@ describe('LgsLoginComponent', () => {
   beforeEach(async () => {
     formBuilder = new FormBuilder();
     router = {
-      navigate: jest.fn()
+      navigate: vi.fn()
     };
-    activatedRoute = Mock.all<ActivatedRoute>();
+    activatedRoute = { snapshot: { paramMap: { get: () => null } } } as any;
     await TestBed.configureTestingModule({
       declarations: [LgsLoginComponent],
       providers: [
