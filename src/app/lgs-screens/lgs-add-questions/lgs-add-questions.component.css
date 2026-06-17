@@ -1,39 +1,205 @@
-.add-questions-form {
-    margin: 20px;
-    padding: 30px;
-    height: 100vh;
-    width: 70vw;
+.add-questions-page {
+  width: 100%;
 }
 
-.form-title {
-    margin: 0 0 1rem;
-    color: #2d3748;
+.page-header {
+  margin-bottom: 1.5rem;
 }
 
-.form-group {
-    padding: 10px;
+.page-badge {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(74, 85, 104, 0.12);
+  color: #4a5568;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.form-group button {
-    margin-right: 20px;
-    margin-top: 20px;
-    width: 150px;
-    height: 45px;
+.page-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: #1a202c;
+  line-height: 1.2;
 }
 
-.disable-button {
-    background-color: rgb(192, 197, 197)
+.page-subtitle {
+  margin: 0;
+  max-width: 36rem;
+  color: #4a5568;
+  font-size: 0.98rem;
+  line-height: 1.6;
 }
 
-.add-to-set {
-    background-color: rgb(221, 154, 28);
+.form-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(45, 55, 72, 0.08);
+  padding: 1.75rem 1.5rem 1.5rem;
 }
 
-.reset {
-    background-color: transparent;
-    color: rgb(221, 154, 28);
+.question-form {
+  width: 100%;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2d3748;
 }
 
 .question-section {
-    padding-top: 30px;
+  padding-top: 0.25rem;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.form-control {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #cbd5e0;
+  border-radius: 10px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.95rem;
+  color: #1a202c;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #4a5568;
+  box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.15);
+}
+
+.form-control::placeholder {
+  color: #a0aec0;
+}
+
+.set-summary {
+  margin: 0.5rem 0 1.25rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(217, 119, 6, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.set-count {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #b45309;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #edf2f7;
+}
+
+.btn {
+  min-width: 130px;
+  height: 46px;
+  padding: 0 1.25rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary {
+  border: none;
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 8px 18px rgba(45, 55, 72, 0.25);
+}
+
+.btn-amber {
+  border: none;
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #fff;
+}
+
+.btn-amber:hover:not(:disabled) {
+  box-shadow: 0 8px 18px rgba(217, 119, 6, 0.3);
+}
+
+.btn-outline {
+  border: 1px solid #cbd5e0;
+  background: #fff;
+  color: #4a5568;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #f7fafc;
+  border-color: #a0aec0;
+  color: #2d3748;
+}
+
+@media (max-width: 768px) {
+  .field-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-card {
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { catchError, finalize, of, switchMap, tap } from 'rxjs';
 import { LgsApiService } from '../../lgs-api/lgs-api.service';
 import { Questions, QuestionSet } from '../../lgs-interface';
@@ -23,7 +23,6 @@ export class LgsDashboardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private apiService: LgsApiService,
     private toastService: LgsToastService,
     private errorService: LgsErrorService,
@@ -44,17 +43,6 @@ export class LgsDashboardComponent implements OnInit {
   closeSet(): void {
     this.showSet = false;
     this.questionset = null;
-  }
-
-  editQuestion(question: QuestionSet): void {
-    if (!question._id) {
-      this.toastService.showError('This question set cannot be edited (missing id).');
-      return;
-    }
-
-    this.router.navigate(['/shell/dashboard/addquestion'], {
-      state: { question },
-    });
   }
 
   deleteQuestion(question: QuestionSet): void {

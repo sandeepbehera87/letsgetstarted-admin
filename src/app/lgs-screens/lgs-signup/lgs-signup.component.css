@@ -1,28 +1,98 @@
 .signup-form {
-    width: 42vw;
-    height: 80vh;
+  width: 100%;
+}
+
+.signup-header {
+  margin-bottom: 1rem;
+}
+
+.signup-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.signup-subtitle {
+  margin: 0;
+  color: #718096;
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
 .form-group {
-    padding: 10px;
+  margin-bottom: 0.85rem;
 }
 
-.form-group button {
-    margin-right: 20px;
-    height: 45px;
+.form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4a5568;
 }
 
-.register-btn {
-    width: 100%;
-    max-width: 220px;
+.form-control {
+  height: 42px;
+  border: 1px solid #cbd5e0;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.92rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.disable-button {
-    background-color: rgb(192, 197, 197)
+.form-control:focus {
+  border-color: #4a5568;
+  box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.15);
+}
+
+.btn-register {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-register:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(217, 119, 6, 0.3);
+}
+
+.btn-register:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.login-hint {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.link-btn {
+  border: none;
+  background: transparent;
+  color: #d97706;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.link-btn:hover {
+  color: #b45309;
+  text-decoration: underline;
 }
 
 .form-control-error span,
 .form-control-error p,
 .error-label {
-    color: red;
+  color: #e53e3e;
+  font-size: 0.8rem;
 }

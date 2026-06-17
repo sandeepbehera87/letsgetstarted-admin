@@ -1,73 +1,89 @@
-<div class="questions-container">
-  <div class="questions-toolbar">
-    <h2 class="questions-title">Question sets</h2>
-    <button
-      type="button"
-      class="refresh-btn"
-      aria-label="Refresh questions"
-      [disabled]="isRefreshing"
-      (click)="refreshQuestions()"
-    >
-      <svg
-        class="refresh-icon"
-        [class.spinning]="isRefreshing"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-      </svg>
-      <span>{{ isRefreshing ? 'Refreshing...' : 'Refresh' }}</span>
-    </button>
-  </div>
+<div class="questions-page">
+  <header class="page-header">
+    <span class="page-badge">Question bank</span>
+    <h1 class="page-title">Question sets</h1>
+    <p class="page-subtitle">
+      Browse, review, and manage MCQ sets across courses and subjects.
+    </p>
+  </header>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Subject</th>
-        <th>Question set</th>
-        <th class="actions-header">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let q of questions">
-        <td>{{ q.coursename }}</td>
-        <td>{{ q.subject }}</td>
-        <td>
-          <span class="view-link" (click)="viewQuestionSet(q.questionset)">View set</span>
-        </td>
-        <td class="actions-cell">
-          <button
-            type="button"
-            class="action-btn edit-btn"
-            aria-label="Edit question set"
-            title="Edit"
-            (click)="editQuestion(q)"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-            </svg>
-          </button>
-          <button
-            type="button"
-            class="action-btn delete-btn"
-            aria-label="Delete question set"
-            title="Delete"
-            [disabled]="isDeleting(q)"
-            (click)="deleteQuestion(q)"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-            </svg>
-          </button>
-        </td>
-      </tr>
-      <tr *ngIf="questions.length === 0">
-        <td colspan="4" class="empty-message">No questions found. Use Add Question to create one.</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="questions-card">
+    <div class="questions-toolbar">
+      <div class="toolbar-meta">
+        <span class="toolbar-count">{{ questions.length }} {{ questions.length === 1 ? 'set' : 'sets' }}</span>
+      </div>
+      <button
+        type="button"
+        class="refresh-btn"
+        aria-label="Refresh questions"
+        [disabled]="isRefreshing"
+        (click)="refreshQuestions()"
+      >
+        <svg
+          class="refresh-icon"
+          [class.spinning]="isRefreshing"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+        </svg>
+        <span>{{ isRefreshing ? 'Refreshing...' : 'Refresh' }}</span>
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="questions-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Subject</th>
+            <th>Question set</th>
+            <th class="actions-header">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let q of questions">
+            <td>
+              <span class="cell-course">{{ q.coursename }}</span>
+            </td>
+            <td>
+              <span class="cell-subject">{{ q.subject }}</span>
+            </td>
+            <td>
+              <button type="button" class="view-link" (click)="viewQuestionSet(q.questionset)">
+                View set
+                <span class="view-count">{{ q.questionset?.length ?? 0 }} MCQs</span>
+              </button>
+            </td>
+            <td class="actions-cell">
+              <button
+                type="button"
+                class="action-btn delete-btn"
+                aria-label="Delete question set"
+                title="Delete"
+                [disabled]="isDeleting(q)"
+                (click)="deleteQuestion(q)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="questions.length === 0">
+            <td colspan="4" class="empty-row">
+              <div class="empty-state">
+                <span class="empty-icon" aria-hidden="true">📝</span>
+                <p class="empty-title">No question sets yet</p>
+                <p class="empty-message">Use the Add Question tab to create your first MCQ set.</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <div
@@ -115,26 +131,38 @@
   </div>
 </div>
 
-<div *ngIf="showSet" class="modal" tabindex="-1" role="dialog" (click)="closeSet()">
-  <div class="modal-dialog" (click)="$event.stopPropagation()">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Question set</h4>
-        <button type="button" class="btn-close close" aria-label="Close" (click)="closeSet()">
-          <span aria-hidden="true" class="visually-hidden">&times;</span>
+<div *ngIf="showSet" class="modal view-set-modal" tabindex="-1" role="dialog" (click)="closeSet()">
+  <div class="view-set-dialog" (click)="$event.stopPropagation()">
+    <div class="view-set-content">
+      <div class="view-set-header">
+        <div>
+          <span class="view-set-badge">MCQ preview</span>
+          <h4 class="view-set-title">Question set</h4>
+        </div>
+        <button type="button" class="view-set-close" aria-label="Close" (click)="closeSet()">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
         </button>
       </div>
-      <div class="modal-body">
-        <div *ngFor="let question of questionset">
-          <p>Question: {{ question.quetionTitle }}</p>
-          <p>Option 1: {{ question.option1 }}</p>
-          <p>Option 2: {{ question.option2 }}</p>
-          <p>Option 3: {{ question.option3 }}</p>
-          <p>Option 4: {{ question.option4 }}</p>
+      <div class="view-set-body">
+        <div *ngFor="let question of questionset; let i = index" class="mcq-card">
+          <div class="mcq-number">Q{{ i + 1 }}</div>
+          <p class="mcq-title">{{ question.quetionTitle }}</p>
+          <ul class="mcq-options">
+            <li>{{ question.option1 }}</li>
+            <li>{{ question.option2 }}</li>
+            <li>{{ question.option3 }}</li>
+            <li>{{ question.option4 }}</li>
+          </ul>
+          <p class="mcq-answer">
+            <span class="mcq-answer-label">Correct answer:</span>
+            {{ question.correctAnswer }}
+          </p>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default button-close" (click)="closeSet()">Close</button>
+      <div class="view-set-footer">
+        <button type="button" class="btn-view-set-close" (click)="closeSet()">Close</button>
       </div>
     </div>
   </div>

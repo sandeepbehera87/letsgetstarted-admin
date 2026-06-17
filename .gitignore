@@ -42,6 +42,9 @@ testem.log
 /coverage
 .angular/
 
+# Local runtime secrets (never commit)
+src/assets/config.local.json
+
 # System Files
 .DS_Store
 Thumbs.db

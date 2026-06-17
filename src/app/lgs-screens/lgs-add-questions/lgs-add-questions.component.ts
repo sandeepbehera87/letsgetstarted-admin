@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LgsApiService } from 'src/app/lgs-api/lgs-api.service';
@@ -12,11 +12,9 @@ import { LgsToastService } from '../../lgs-shared/lgs-toast/lgs-toast.service';
   templateUrl: './lgs-add-questions.component.html',
   styleUrls: ['./lgs-add-questions.component.css']
 })
-export class LgsAddQuestionsComponent implements OnInit {
+export class LgsAddQuestionsComponent {
   questionSet: Questions[] = [];
   questionFrom: FormGroup;
-  isEditMode = false;
-  editingId: string | null = null;
   isSubmitting = false;
 
   get f() {
@@ -44,24 +42,6 @@ export class LgsAddQuestionsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    const state = history.state as { question?: QuestionSet };
-    const question = state?.question;
-
-    if (!question?._id) {
-      return;
-    }
-
-    this.isEditMode = true;
-    this.editingId = question._id;
-    this.questionSet = [...(question.questionset ?? [])];
-    this.questionFrom.patchValue({
-      coursename: question.coursename,
-      subjectname: question.subject,
-    });
-    this.questionFrom.markAsDirty();
-  }
-
   addNewQuestion() {
     this.questionSet.push({ ...this.f['question'].value } as Questions);
     this.f['question'].reset();
@@ -76,8 +56,7 @@ export class LgsAddQuestionsComponent implements OnInit {
       this.questionSet.push({ ...this.f['question'].value } as Questions);
     }
 
-    const actionLabel = this.isEditMode ? 'Update' : 'Submit';
-    if (confirm(`${actionLabel} this question set?`)) {
+    if (confirm('Submit this question set?')) {
       this.submitConfirm();
     }
   }
@@ -90,25 +69,17 @@ export class LgsAddQuestionsComponent implements OnInit {
     };
 
     this.isSubmitting = true;
-    const request$ = this.isEditMode && this.editingId
-      ? this.apiService.updateQuestion(this.editingId, dataToSend)
-      : this.apiService.saveQuestion(dataToSend);
-
-    request$.subscribe({
+    this.apiService.saveQuestion(dataToSend).subscribe({
       next: () => {
         this.isSubmitting = false;
-        this.toastService.showSuccess(
-          this.isEditMode ? 'Question set updated.' : 'Question set saved.',
-        );
+        this.toastService.showSuccess('Question set saved.');
         this.router.navigate(['/shell/dashboard']);
       },
       error: (error) => {
         this.isSubmitting = false;
         this.toastService.showError(
           this.errorService.getDisplayMessage(error, {
-            fallback: this.isEditMode
-              ? 'Failed to update question set. Please try again.'
-              : 'Failed to save question set. Please try again.',
+            fallback: 'Failed to save question set. Please try again.',
           }),
         );
       },

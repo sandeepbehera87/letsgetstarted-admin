@@ -1,4 +1,8 @@
 <div class="signup-form">
+    <div class="signup-header">
+        <h2 class="signup-title">Create account</h2>
+        <p class="signup-subtitle">Register to start building MCQ question sets.</p>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <form [formGroup]="signUpForm">
@@ -85,13 +89,16 @@
                         class="form-control" />
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-warning border-0 register-btn"
+                    <button type="button" class="btn btn-register"
                         [disabled]="isRegistering"
-                        [class.disable-button]="isRegistering"
                         (click)="register()">
-                        {{ isRegistering ? 'Registering...' : 'Register' }}
+                        {{ isRegistering ? 'Registering...' : 'Create account' }}
                     </button>
                 </div>
+                <p class="login-hint">
+                    Already have an account?
+                    <button type="button" class="link-btn" (click)="signupAction.emit('login')">Sign in</button>
+                </p>
             </form>
         </div>
     </div>

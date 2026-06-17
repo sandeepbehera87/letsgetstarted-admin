@@ -2,6 +2,17 @@
 
 This is an Angular 22 project (originally generated with Angular CLI v13.2.0).
 
+## Local secrets (not committed to GitHub)
+
+Sensitive values are loaded at runtime from `src/assets/config.local.json` (gitignored).
+
+```bash
+cp src/assets/config.local.example.json src/assets/config.local.json
+# Set secret_key to match CRYPTO_KEY in the server .env
+```
+
+Restart `ng serve` after changing this file.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

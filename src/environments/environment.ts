@@ -1,21 +1,5 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
-// Client-side encryption key — must match backend CRYPTO_KEY / DB secret_key collection.
-// This value is visible in the browser bundle; do not treat it as a server secret.
+// Non-secret defaults. Sensitive values load at runtime from assets/config.local.json.
 export const environment = {
   production: false,
-  secret_key: 'behaareraushonbornsep19tem20ber17',
-  /** Backend API server — all HTTP calls are routed here in development */
   api_baseurl: 'http://localhost:5001',
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

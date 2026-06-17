@@ -1,0 +1,4 @@
+{
+  "secret_key": "must-match-backend-CRYPTO_KEY-in-env",
+  "api_baseurl": "http://localhost:5001"
+}

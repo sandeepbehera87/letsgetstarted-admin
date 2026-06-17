@@ -1,15 +1,111 @@
-.info-section {
-    margin: 20px 0 0 20px;
-    width: 40vw;
-    height: 50vh; 
+.landing-page {
+  min-height: calc(100vh - 180px);
+  padding: 2rem 1.5rem 3rem;
+  background:
+    radial-gradient(circle at top left, rgba(74, 85, 104, 0.08), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(217, 119, 6, 0.08), transparent 40%),
+    #f7fafc;
 }
 
-.login-section {
-    margin: 20px 0 0 20px;
-    width: 40vw;
-    height: 50vh; 
+.landing-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
 }
 
-.landing-container {
-    padding: 0;
+.hero-panel {
+  padding: 1rem 0.5rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(74, 85, 104, 0.12);
+  color: #4a5568;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: #1a202c;
+}
+
+.hero-text {
+  margin: 0 0 1.75rem;
+  max-width: 36rem;
+  color: #4a5568;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.feature-card {
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(45, 55, 72, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(45, 55, 72, 0.1);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.55rem;
+  border-radius: 8px;
+  background: #edf2f7;
+  font-size: 1rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #718096;
+}
+
+.auth-panel {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 991px) {
+  .landing-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
 }

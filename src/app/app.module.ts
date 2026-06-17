@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,6 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptorProviders } from './lgs-api/lgs-api-interceptor';
 import { LgsToastComponent } from './lgs-shared/lgs-toast/lgs-toast.component';
 import { appMetaReducers, reducers } from './lgs-state/lgs.reducer';
+import { LgsLocalConfigService } from './lgs-shared/lgs-local-config/lgs-local-config.service';
+
+export function initializeLocalConfig(config: LgsLocalConfigService) {
+  return () => config.load();
+}
 
 @NgModule({
   declarations: [AppComponent, LgsToastComponent],
@@ -26,7 +31,15 @@ import { appMetaReducers, reducers } from './lgs-state/lgs.reducer';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [...HttpInterceptorProviders],
+  providers: [
+    ...HttpInterceptorProviders,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeLocalConfig,
+      deps: [LgsLocalConfigService],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,17 +8,28 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { resolveApiUrl } from './lgs-api-url';
+import { LgsLocalConfigService } from '../lgs-shared/lgs-local-config/lgs-local-config.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
+  constructor(private localConfig: LgsLocalConfigService) {}
+
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    const appReq = req.clone({
-      url: resolveApiUrl(req.url),
-      withCredentials: true,
-    });
+    const shouldRewrite =
+      !/^https?:\/\//i.test(req.url) &&
+      !req.url.startsWith('/assets/') &&
+      !req.url.startsWith('assets/');
+
+    const appReq = shouldRewrite
+      ? req.clone({
+          url: resolveApiUrl(req.url, this.localConfig.apiBaseUrl),
+          withCredentials: true,
+        })
+      : req.clone({ withCredentials: true });
+
     return next.handle(appReq);
   }
 }

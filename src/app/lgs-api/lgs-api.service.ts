@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError, finalize, map, Observable, switchMap, take, throwError } from 'rxjs';
 import * as Crypto from 'crypto-js';
-import { environment } from '../../environments/environment';
 import { LgsApiConfig } from './lgs-api-conf';
 import { resolveApiUrl } from './lgs-api-url';
+import { LgsLocalConfigService } from '../lgs-shared/lgs-local-config/lgs-local-config.service';
 import { Store } from '@ngrx/store';
 import { getToken } from '../lgs-state/lgs.selector';
 import { QuestionSet } from '../lgs-interface';
@@ -18,10 +18,15 @@ export class LgsApiService {
     private httpClient: HttpClient,
     private store: Store,
     private spinner: NgxSpinnerService,
+    private localConfig: LgsLocalConfigService,
   ) {}
 
   private apiUrl(path: string): string {
-    return resolveApiUrl(path);
+    return resolveApiUrl(path, this.localConfig.apiBaseUrl);
+  }
+
+  private get secretKey(): string {
+    return this.localConfig.secretKey;
   }
 
   private createBaseHeader(): HttpHeaders {
@@ -41,7 +46,7 @@ export class LgsApiService {
   userRegistration(userData: any): Observable<any> {
     const data = Crypto.AES.encrypt(
       JSON.stringify(userData),
-      environment.secret_key,
+      this.secretKey,
     ).toString();
 
     return this.withSpinner(
@@ -59,7 +64,7 @@ export class LgsApiService {
         userId: signInData.userId,
         password: signInData.password,
       }),
-      environment.secret_key,
+      this.secretKey,
     ).toString();
 
     return this.withSpinner(
@@ -70,7 +75,7 @@ export class LgsApiService {
         })
         .pipe(
           map((response) => {
-            const bytes = Crypto.AES.decrypt(response, environment.secret_key);
+            const bytes = Crypto.AES.decrypt(response, this.secretKey);
             const decrypted = bytes.toString(Crypto.enc.Utf8);
             if (!decrypted) {
               throw {
@@ -104,7 +109,7 @@ export class LgsApiService {
   saveQuestion(dataArry: any): Observable<any> {
     const data = Crypto.AES.encrypt(
       JSON.stringify(dataArry),
-      environment.secret_key,
+      this.secretKey,
     ).toString();
 
     return this.withSpinner(
@@ -135,7 +140,7 @@ export class LgsApiService {
             })
             .pipe(
               map((response) => {
-                const bytes = Crypto.AES.decrypt(response.toString(), environment.secret_key);
+                const bytes = Crypto.AES.decrypt(response.toString(), this.secretKey);
                 const decryptedData = JSON.parse(bytes.toString(Crypto.enc.Utf8));
                 return this.normalizeQuestionSets(decryptedData);
               }),
@@ -148,7 +153,7 @@ export class LgsApiService {
   updateQuestion(id: string, data: QuestionSet): Observable<any> {
     const encrypted = Crypto.AES.encrypt(
       JSON.stringify(data),
-      environment.secret_key,
+      this.secretKey,
     ).toString();
 
     return this.withSpinner(
