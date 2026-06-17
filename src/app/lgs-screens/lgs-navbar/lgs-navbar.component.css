@@ -1,6 +1,130 @@
-.container-xxl {
-    margin-left: 0 !important;
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
-.nav-item {
-    cursor: pointer;
+
+.app-header-nav {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  padding: 0.5rem 0;
+}
+
+.app-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.app-brand:hover {
+  color: #e2e8f0;
+}
+
+.app-logo-slot {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 48px;
+}
+
+.app-logo {
+  display: block;
+  width: 88px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: contain;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.app-brand-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.app-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.app-user-greeting {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.app-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.app-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+.app-logout-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.app-logout-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 767px) {
+  .app-brand-text {
+    font-size: 1rem;
+  }
+
+  .app-header-right {
+    gap: 0.5rem;
+  }
+
+  .app-user-greeting {
+    display: none;
+  }
+
+  .app-logout-btn span {
+    display: none;
+  }
+
+  .app-logout-btn {
+    padding: 0.45rem 0.6rem;
+  }
 }

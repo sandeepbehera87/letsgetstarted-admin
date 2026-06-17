@@ -6,10 +6,10 @@ export const getAppState = createFeatureSelector<AppState>('lgs-app-state');
 
 export const getToken = createSelector(
     getAppState,
-    (state: AppState) => state.user?.token
+    (state: AppState | undefined) => state?.user?.token ?? ''
 )
 
 export const getUserid = createSelector(
     getAppState,
-    (state: AppState) => state.user?.userId
+    (state: AppState | undefined) => state?.user?.userId ?? ''
 )

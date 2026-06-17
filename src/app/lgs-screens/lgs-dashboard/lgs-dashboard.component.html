@@ -1,21 +1,141 @@
-<div class="dashboard-container">
-    <div class="row">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body" (click)="addQuestion()">
-                    <h5 class="card-title">Add questions</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Click to add new questions</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
+<div class="questions-container">
+  <div class="questions-toolbar">
+    <h2 class="questions-title">Question sets</h2>
+    <button
+      type="button"
+      class="refresh-btn"
+      aria-label="Refresh questions"
+      [disabled]="isRefreshing"
+      (click)="refreshQuestions()"
+    >
+      <svg
+        class="refresh-icon"
+        [class.spinning]="isRefreshing"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+      </svg>
+      <span>{{ isRefreshing ? 'Refreshing...' : 'Refresh' }}</span>
+    </button>
+  </div>
 
-            <div class="card" style="width: 18rem;">
-                <div class="card-body" (click)="viewQuestion()">
-                    <h5 class="card-title">View questions</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Click to view questions</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Subject</th>
+        <th>Question set</th>
+        <th class="actions-header">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let q of questions">
+        <td>{{ q.coursename }}</td>
+        <td>{{ q.subject }}</td>
+        <td>
+          <span class="view-link" (click)="viewQuestionSet(q.questionset)">View set</span>
+        </td>
+        <td class="actions-cell">
+          <button
+            type="button"
+            class="action-btn edit-btn"
+            aria-label="Edit question set"
+            title="Edit"
+            (click)="editQuestion(q)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="action-btn delete-btn"
+            aria-label="Delete question set"
+            title="Delete"
+            [disabled]="isDeleting(q)"
+            (click)="deleteQuestion(q)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+            </svg>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="questions.length === 0">
+        <td colspan="4" class="empty-message">No questions found. Use Add Question to create one.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  *ngIf="showDeleteModal"
+  class="modal delete-modal"
+  tabindex="-1"
+  role="alertdialog"
+  aria-labelledby="delete-modal-title"
+  aria-describedby="delete-modal-desc"
+  (click)="cancelDelete()"
+>
+  <div class="modal-dialog delete-modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content delete-modal-content">
+      <div class="delete-modal-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+        </svg>
+      </div>
+      <h4 id="delete-modal-title" class="delete-modal-title">Delete question set?</h4>
+      <p id="delete-modal-desc" class="delete-modal-message">
+        You are about to permanently delete
+        <strong>{{ pendingDeleteLabel }}</strong>.
+        This set contains <strong>{{ pendingDeleteCount }}</strong>
+        {{ pendingDeleteCount === 1 ? 'question' : 'questions' }} and cannot be recovered.
+      </p>
+      <div class="delete-modal-actions">
+        <button
+          type="button"
+          class="btn delete-modal-cancel"
+          [disabled]="!!deletingId"
+          (click)="cancelDelete()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn delete-modal-confirm"
+          [disabled]="!!deletingId"
+          (click)="confirmDelete()"
+        >
+          {{ deletingId ? 'Deleting...' : 'Delete' }}
+        </button>
+      </div>
     </div>
+  </div>
+</div>
+
+<div *ngIf="showSet" class="modal" tabindex="-1" role="dialog" (click)="closeSet()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Question set</h4>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="closeSet()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let question of questionset">
+          <p>Question: {{ question.quetionTitle }}</p>
+          <p>Option 1: {{ question.option1 }}</p>
+          <p>Option 2: {{ question.option2 }}</p>
+          <p>Option 3: {{ question.option3 }}</p>
+          <p>Option 4: {{ question.option4 }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default button-close" (click)="closeSet()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

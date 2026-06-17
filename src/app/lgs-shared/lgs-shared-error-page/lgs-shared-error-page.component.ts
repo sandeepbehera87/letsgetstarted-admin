@@ -18,7 +18,7 @@ export class LgsSharedErrorPageComponent implements OnInit {
   }
 
   backToDashboard() {
-    this.router.navigate(['shell/dashboard']);
+    this.router.navigate(['/shell/dashboard']);
   }
 
 }

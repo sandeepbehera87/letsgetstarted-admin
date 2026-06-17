@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -6,20 +6,17 @@ import {
   HttpRequest,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {environment} from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { resolveApiUrl } from './lgs-api-url';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-  constructor(private store: Store) {}
   intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<unknown>,
     next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     const appReq = req.clone({
-      url: environment.api_baseurl + req.url,
-      headers: req.headers,
+      url: resolveApiUrl(req.url),
       withCredentials: true,
     });
     return next.handle(appReq);
@@ -27,6 +24,5 @@ export class ApiInterceptor implements HttpInterceptor {
 }
 
 export const HttpInterceptorProviders = [
-    {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true},
-  ];
-  
+  { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+];

@@ -11,13 +11,9 @@ describe('LgsShellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        LgsShellComponent,
-        MockComponent(LgsNavbarComponent)
-      ],
-      imports: [RouterTestingModule]
-    })
-    .compileComponents();
+      declarations: [LgsShellComponent, MockComponent(LgsNavbarComponent)],
+      imports: [RouterTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

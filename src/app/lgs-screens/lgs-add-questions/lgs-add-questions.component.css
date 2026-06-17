@@ -5,6 +5,11 @@
     width: 70vw;
 }
 
+.form-title {
+    margin: 0 0 1rem;
+    color: #2d3748;
+}
+
 .form-group {
     padding: 10px;
 }

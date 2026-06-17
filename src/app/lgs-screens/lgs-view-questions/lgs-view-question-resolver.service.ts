@@ -20,7 +20,7 @@ export class LgsViewQuestionResolverService {
       first(),
       tap(
         res => res,
-        err => this.router.navigate(['shell/dashboard/error'], { relativeTo: this.route })
+        err => this.router.navigate(['/shell/dashboard/error'])
         ),
       );
   }

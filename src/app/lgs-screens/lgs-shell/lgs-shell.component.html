@@ -1,21 +1,30 @@
-<div class="landing-container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="logo">
-                <img src="../../../assets/app_logo.jpg" alt="logo" width="100" height="100"/>
-                <span class="brand">LETS GET STARTED</span>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <lgs-navbar></lgs-navbar>
-        </div>
-        <div class="col-md-12">
-            <router-outlet></router-outlet>
-        </div>
+<div class="app-layout">
+  <lgs-navbar></lgs-navbar>
+
+  <div class="dashboard-tabs-wrapper" *ngIf="showTabs">
+    <div class="dashboard-tabs-inner">
+      <nav class="dashboard-tabs" aria-label="Questions navigation">
+        <button
+          *ngFor="let tab of tabs"
+          type="button"
+          class="dashboard-tab"
+          role="tab"
+          [attr.aria-selected]="isActive(tab)"
+          [class.active]="isActive(tab)"
+          (click)="navClick(tab.path)"
+        >
+          <span class="dashboard-tab-icon" aria-hidden="true">{{ tab.icon }}</span>
+          <span class="dashboard-tab-label">{{ tab.label }}</span>
+        </button>
+      </nav>
     </div>
+  </div>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="app-footer">
+    <span>© Lets Get Started</span>
+  </footer>
 </div>
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted">@Lets Get Started</span>
-    </div>
-</footer>

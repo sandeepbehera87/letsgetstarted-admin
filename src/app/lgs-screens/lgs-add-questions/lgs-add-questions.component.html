@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <form [formGroup]="questionFrom">
+                <h2 class="form-title">{{ isEditMode ? 'Edit question set' : 'Add question set' }}</h2>
                 <h3>Course:</h3>
                 <div class="row">
                     <div class="col-md-6">
@@ -68,9 +69,9 @@
                         Reset
                     </button>
                     <button type="submit" class="btn btn-primary submit"
-                        [disabled]="questionFrom.pristine || questionFrom.invalid" (click)="submitQuestionSet()"
-                        [class.disable-button]="questionFrom.pristine || questionFrom.invalid">
-                        Submit set
+                        [disabled]="questionFrom.pristine || questionFrom.invalid || isSubmitting" (click)="submitQuestionSet()"
+                        [class.disable-button]="questionFrom.pristine || questionFrom.invalid || isSubmitting">
+                        {{ isEditMode ? 'Update set' : 'Submit set' }}
                     </button>
                 </div>
 

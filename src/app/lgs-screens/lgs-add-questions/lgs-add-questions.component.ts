@@ -1,22 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LgsApiService } from 'src/app/lgs-api/lgs-api.service';
-
-export interface Questions {
-  quetionTitle: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  correctAnswer: string;
-}
-
-export interface QuestionSet {
-  coursename: string,
-  subject: string
-  questionset: Questions[]
-}
+import { Questions, QuestionSet } from '../../lgs-interface';
+import { LgsErrorService } from '../../lgs-shared/lgs-error-service/lgs-error.service';
+import { LgsToastService } from '../../lgs-shared/lgs-toast/lgs-toast.service';
 
 @Component({
   standalone: false,
@@ -26,8 +14,10 @@ export interface QuestionSet {
 })
 export class LgsAddQuestionsComponent implements OnInit {
   questionSet: Questions[] = [];
-
   questionFrom: FormGroup;
+  isEditMode = false;
+  editingId: string | null = null;
+  isSubmitting = false;
 
   get f() {
     return this.questionFrom.controls;
@@ -37,7 +27,8 @@ export class LgsAddQuestionsComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: LgsApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private toastService: LgsToastService,
+    private errorService: LgsErrorService,
   ) {
     this.questionFrom = this.fb.group({
       coursename: ['', Validators.required],
@@ -54,10 +45,25 @@ export class LgsAddQuestionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const state = history.state as { question?: QuestionSet };
+    const question = state?.question;
+
+    if (!question?._id) {
+      return;
+    }
+
+    this.isEditMode = true;
+    this.editingId = question._id;
+    this.questionSet = [...(question.questionset ?? [])];
+    this.questionFrom.patchValue({
+      coursename: question.coursename,
+      subjectname: question.subject,
+    });
+    this.questionFrom.markAsDirty();
   }
 
   addNewQuestion() {
-    this.questionSet.push(Object.assign([], this.f['question'].value) as Questions);
+    this.questionSet.push({ ...this.f['question'].value } as Questions);
     this.f['question'].reset();
   }
 
@@ -67,25 +73,45 @@ export class LgsAddQuestionsComponent implements OnInit {
 
   submitQuestionSet() {
     if (this.questionSet.length === 0) {
-      this.questionSet.push(Object.assign({}, this.f['question'].value) as Questions);
+      this.questionSet.push({ ...this.f['question'].value } as Questions);
     }
-    console.log(this.f['question'].value);
-    console.log('this.questionSet ==', this.questionSet);
-    if (confirm('Submit this question set?')) {
-      this.submitConfrm();
+
+    const actionLabel = this.isEditMode ? 'Update' : 'Submit';
+    if (confirm(`${actionLabel} this question set?`)) {
+      this.submitConfirm();
     }
   }
 
-  submitConfrm() {
+  submitConfirm() {
     const dataToSend: QuestionSet = {
       coursename: this.f['coursename'].value as string,
       subject: this.f['subjectname'].value as string,
-      questionset: this.questionSet
+      questionset: this.questionSet,
     };
-    console.log('dataToSend ==', dataToSend);
-    this.apiService.saveQuestion(dataToSend).subscribe((res) => {
-      this.router.navigate(['dashboard'], { relativeTo: this.route.parent });
+
+    this.isSubmitting = true;
+    const request$ = this.isEditMode && this.editingId
+      ? this.apiService.updateQuestion(this.editingId, dataToSend)
+      : this.apiService.saveQuestion(dataToSend);
+
+    request$.subscribe({
+      next: () => {
+        this.isSubmitting = false;
+        this.toastService.showSuccess(
+          this.isEditMode ? 'Question set updated.' : 'Question set saved.',
+        );
+        this.router.navigate(['/shell/dashboard']);
+      },
+      error: (error) => {
+        this.isSubmitting = false;
+        this.toastService.showError(
+          this.errorService.getDisplayMessage(error, {
+            fallback: this.isEditMode
+              ? 'Failed to update question set. Please try again.'
+              : 'Failed to save question set. Please try again.',
+          }),
+        );
+      },
     });
   }
-
 }

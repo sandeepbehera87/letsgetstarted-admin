@@ -9,9 +9,10 @@ export interface Questions {
   }
   
   export interface QuestionSet {
-    coursename: string,
-    subject: string
-    questionset: Questions[]
+    _id?: string;
+    coursename: string;
+    subject: string;
+    questionset: Questions[];
   }
 
   export interface LgsError {

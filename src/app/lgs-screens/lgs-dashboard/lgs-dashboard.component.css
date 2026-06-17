@@ -1,10 +1,248 @@
-.dashboard-container {
-    padding: 40px;
-    display: flex;
-    flex-direction: row;
+.questions-container {
+  width: 100%;
 }
 
-.card {
-    margin-right: 30px;
-    cursor: pointer;
+.questions-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.questions-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #4a5568;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: #f7fafc;
+  border-color: #a0aec0;
+  color: #2d3748;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.refresh-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.refresh-icon.spinning {
+  animation: refresh-spin 0.8s linear infinite;
+}
+
+@keyframes refresh-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.view-link {
+  color: #d97706;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.view-link:hover {
+  color: #b45309;
+}
+
+.empty-message {
+  text-align: center;
+  color: #718096;
+  padding: 2rem 1rem;
+}
+
+.actions-header {
+  width: 110px;
+  text-align: center;
+}
+
+.actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.action-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.edit-btn {
+  color: #2b6cb0;
+  border-color: #bee3f8;
+  background: #ebf8ff;
+}
+
+.edit-btn:hover {
+  color: #2c5282;
+  background: #bee3f8;
+}
+
+.delete-btn {
+  color: #c53030;
+  border-color: #fed7d7;
+  background: #fff5f5;
+}
+
+.delete-btn:hover:not(:disabled) {
+  color: #9b2c2c;
+  background: #fed7d7;
+}
+
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal {
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.delete-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.delete-modal-dialog {
+  width: 100%;
+  max-width: 440px;
+  margin: 0;
+}
+
+.delete-modal-content {
+  border: none;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+}
+
+.delete-modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: #fff5f5;
+  color: #c53030;
+}
+
+.delete-modal-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.delete-modal-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.delete-modal-message {
+  margin: 0 0 1.5rem;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.delete-modal-message strong {
+  color: #2d3748;
+}
+
+.delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.delete-modal-cancel,
+.delete-modal-confirm {
+  min-width: 110px;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.delete-modal-cancel {
+  background: #fff;
+  border-color: #cbd5e0;
+  color: #4a5568;
+}
+
+.delete-modal-cancel:hover:not(:disabled) {
+  background: #f7fafc;
+  border-color: #a0aec0;
+}
+
+.delete-modal-confirm {
+  background: #e53e3e;
+  border-color: #e53e3e;
+  color: #fff;
+}
+
+.delete-modal-confirm:hover:not(:disabled) {
+  background: #c53030;
+  border-color: #c53030;
+}
+
+.delete-modal-cancel:disabled,
+.delete-modal-confirm:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }

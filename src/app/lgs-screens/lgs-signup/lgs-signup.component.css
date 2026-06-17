@@ -9,8 +9,12 @@
 
 .form-group button {
     margin-right: 20px;
-    width: 150px;
     height: 45px;
+}
+
+.register-btn {
+    width: 100%;
+    max-width: 220px;
 }
 
 .disable-button {

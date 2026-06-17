@@ -1,45 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { loginSuccess, User } from '../../lgs-state/lgs-auth/lgs.login.action';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
 import { LgsApiService } from '../../lgs-api/lgs-api.service';
-import { getUserid } from '../../lgs-state/lgs.selector';
+import { AuthState, LgsAuthService } from '../../lgs-state/lgs-auth/lgs-auth.service';
 
 @Component({
   standalone: false,
   selector: 'lgs-navbar',
   templateUrl: './lgs-navbar.component.html',
-  styleUrls: ['./lgs-navbar.component.css']
+  styleUrls: ['./lgs-navbar.component.css'],
 })
-export class LgsNavbarComponent implements OnInit {
-  userId: string = '';
+export class LgsNavbarComponent {
+  readonly auth$: Observable<AuthState>;
+  isLoggingOut = false;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private store: Store,
+    private authService: LgsAuthService,
     private apiService: LgsApiService,
-    ) { }
+    private spinner: NgxSpinnerService,
+  ) {
+    this.auth$ = this.authService.state$;
+  }
 
-  ngOnInit(): void {
-    this.store.select(getUserid).subscribe(id => {
-      this.userId = id;
+  goHome(): void {
+    if (this.authService.snapshot.isLoggedIn) {
+      this.router.navigate(['/shell/dashboard']);
+    } else {
+      this.router.navigate(['/shell']);
+    }
+  }
+
+  logout(): void {
+    if (this.isLoggingOut) {
+      return;
+    }
+
+    this.isLoggingOut = true;
+    this.apiService.signOut().subscribe({
+      next: () => this.completeLogout(),
+      error: () => this.completeLogout(),
     });
   }
 
-  navClick(path: string) {
-    this.router.navigate([path], { relativeTo: this.route });
+  private completeLogout(): void {
+    this.authService.clearSession();
+    this.isLoggingOut = false;
+    this.spinner.hide();
+    this.router.navigate(['/shell']);
   }
-
-  signOut() {
-    this.apiService.signOut().subscribe(() => {
-      const user: User = {
-        token: '',
-        userId: ''
-      }
-      this.store.dispatch(loginSuccess({payload: user}));
-      this.router.navigate(['login'], { relativeTo: this.route });
-    })
-  }
-
 }

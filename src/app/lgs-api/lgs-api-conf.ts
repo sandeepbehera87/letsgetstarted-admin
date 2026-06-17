@@ -19,4 +19,12 @@ export const LgsApiConfig: any = {
         PATH: 'api/questions/addQuestion',
         LOADING_TEXT: ''
     },
+    UPDATE_QUESTION: {
+        PATH: 'api/questions/updateQuestion',
+        LOADING_TEXT: ''
+    },
+    DELETE_QUESTION: {
+        PATH: 'api/questions/deleteQuestion',
+        LOADING_TEXT: ''
+    },
 }

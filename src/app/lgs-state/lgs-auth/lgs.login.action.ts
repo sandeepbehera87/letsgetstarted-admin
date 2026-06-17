@@ -12,16 +12,13 @@ export const loginSuccess = createAction(
 
 
 export const loginReducer = createReducer(
-  null as any,
-  on(
-      loginSuccess,
-      (state: User, { payload }) => ({...state, ...payload})
-  )
+  { token: '', userId: '' } as User,
+  on(loginSuccess, (_state: User, { payload }) => ({ ...payload })),
 );
 
 export function lgsLoginReducer(
-    state: User,
+    state: User | undefined,
     action: Action
 ) {
-    return loginReducer(state, action);
+    return loginReducer(state ?? { token: '', userId: '' }, action);
 }

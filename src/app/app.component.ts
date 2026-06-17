@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LgsAuthService } from './lgs-state/lgs-auth/lgs-auth.service';
 
 @Component({
   standalone: false,
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private authService: LgsAuthService) {}
+}
