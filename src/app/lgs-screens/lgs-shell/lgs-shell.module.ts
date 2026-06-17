@@ -2,10 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-
 import { LgsAddQuestionsComponent } from '../lgs-add-questions/lgs-add-questions.component';
 import { LgsDashboardComponent } from '../lgs-dashboard/lgs-dashboard.component';
 import { LgsLandingComponent } from '../lgs-landing/lgs-landing.component';
@@ -14,9 +10,8 @@ import { LgsNavbarComponent } from '../lgs-navbar/lgs-navbar.component';
 import { LgsShellComponent } from './lgs-shell.component';
 import { LgsUserEntryComponent } from '../lgs-user-entry/lgs-user-entry.component';
 import { LgsSignupComponent } from '../lgs-signup/lgs-signup.component';
-import { LgsSharedModalComponent } from '../../lgs-shared/lgs-shared-modal/lgs-shared-modal.component';
 import { LgsPermissionGuardService } from '../../lgs-permission/lgs-permission-guard.service';
-import { LgsViewQuestionResolverService } from '../lgs-view-questions/lgs-view-question-resolver.service';
+import { LgsViewQuestionResolverService } from '../lgs-dashboard/lgs-view-question-resolver.service';
 import { LgsSharedErrorPageComponent } from '../../lgs-shared/lgs-shared-error-page/lgs-shared-error-page.component';
 
 const routes: Routes = [
@@ -54,7 +49,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LgsShellComponent,
-    LgsSharedModalComponent,
     LgsLandingComponent,
     LgsLoginComponent,
     LgsNavbarComponent,
@@ -68,9 +62,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     CommonModule,
-    TableModule,
-    ButtonModule,
-    DialogModule,
   ],
 })
 export class ShellModule {}

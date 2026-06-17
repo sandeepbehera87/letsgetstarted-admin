@@ -2,6 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// Client-side encryption key — must match backend CRYPTO_KEY / DB secret_key collection.
+// This value is visible in the browser bundle; do not treat it as a server secret.
 export const environment = {
   production: false,
   secret_key: 'behaareraushonbornsep19tem20ber17',
