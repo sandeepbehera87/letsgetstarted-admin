@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'lgs-shared-error-page',
   templateUrl: './lgs-shared-error-page.component.html',
   styleUrls: ['./lgs-shared-error-page.component.css']

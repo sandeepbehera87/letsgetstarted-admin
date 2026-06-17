@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'lgs-dashboard',
   templateUrl: './lgs-dashboard.component.html',
   styleUrls: ['./lgs-dashboard.component.css']

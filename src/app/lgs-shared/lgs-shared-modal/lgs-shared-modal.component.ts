@@ -1,49 +1,40 @@
 import {
   Component,
   Input,
-  OnInit,
   Output,
-  ViewChild,
   EventEmitter
 } from '@angular/core';
-import { ModalDirective, ModalOptions } from 'ngx-bootstrap/modal';
 
 @Component({
+  standalone: false,
   selector: 'lgs-shared-modal',
   templateUrl: './lgs-shared-modal.component.html',
   styleUrls: ['./lgs-shared-modal.component.css']
 })
-export class LgsSharedModalComponent implements OnInit {
+export class LgsSharedModalComponent {
   @Input() title: string = '';
   @Input() message: string = '';
   @Input() closeBtnName: string = '';
   @Input() confirmBtnName: string = '';
 
   @Output() onConfirm = new EventEmitter();
-  
-  @ViewChild(ModalDirective, {static: true})
-  modal!: ModalDirective;
 
-  config: ModalOptions = {
-    backdrop: 'static',
-    show: false,
-    keyboard: false
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  visible = false;
 
   show() {
-    this.modal.show()
+    this.visible = true;
   }
 
   hide() {
-    this.modal.hide();
+    this.visible = false;
   }
 
   onConfirmClick(evt: any) {
     this.onConfirm.emit(evt);
+    this.hide();
+  }
+
+  onHideDialog() {
+    this.visible = false;
   }
 }

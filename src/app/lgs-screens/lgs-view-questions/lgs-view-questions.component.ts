@@ -1,21 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LgsSharedModalComponent } from '../../lgs-shared/lgs-shared-modal/lgs-shared-modal.component';
 import { Questions, QuestionSet } from '../../lgs-interface';
 
 @Component({
+  standalone: false,
   selector: 'lgs-view-questions',
   templateUrl: './lgs-view-questions.component.html',
   styleUrls: ['./lgs-view-questions.component.css']
 })
 export class LgsViewQuestionsComponent implements OnInit {
-  @ViewChild('submitConfirmModal', { static: true })
-  submitConfirmModal!: LgsSharedModalComponent;
-
   questions: QuestionSet[] | any;
 
   showCourseContainer = false;
   questionset: Questions[] | any;
+  showSet = false;
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -27,6 +26,11 @@ export class LgsViewQuestionsComponent implements OnInit {
 
   viewQuestionSet(_questionset: Questions[]) {
     this.questionset = _questionset;
-    this.submitConfirmModal.show();
+    this.showSet = true;
+  }
+
+  closeSet() {
+    this.showSet = false;
+    this.questionset = null;
   }
 }

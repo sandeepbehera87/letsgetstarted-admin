@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'lgs-user-entry',
   templateUrl: './lgs-user-entry.component.html',
   styleUrls: ['./lgs-user-entry.component.css']

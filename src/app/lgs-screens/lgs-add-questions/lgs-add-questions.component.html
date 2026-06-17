@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <button type="button" class="btn btn-primary add-to-set" (click)="addNewQuestion()"
                         [disabled]="questionFrom.pristine || questionFrom.controls['question'].invalid"
-                        [ngClass]="{'disable-button': questionFrom.pristine || questionFrom.controls['question'].invalid}">
+                        [class.disable-button]="questionFrom.pristine || questionFrom.controls['question'].invalid">
                         Add to set
                     </button>
                     <button type="button" class="btn btn-primary reset" (click)="resetQuestion()"
@@ -69,7 +69,7 @@
                     </button>
                     <button type="submit" class="btn btn-primary submit"
                         [disabled]="questionFrom.pristine || questionFrom.invalid" (click)="submitQuestionSet()"
-                        [ngClass]="{'disable-button': questionFrom.pristine || questionFrom.invalid}">
+                        [class.disable-button]="questionFrom.pristine || questionFrom.invalid">
                         Submit set
                     </button>
                 </div>
@@ -78,12 +78,3 @@
         </div>
     </div>
 </div>
-
-<lgs-shared-modal 
-    #submitConfirmModal
-    [title]="'Submit confirmation'"
-    [message]="'Do you want to sumit the question set?'" 
-    [confirmBtnName]="'Yes'" 
-    [closeBtnName]="'No'"
-    (onConfirm)="submitConfrm()">
-</lgs-shared-modal>

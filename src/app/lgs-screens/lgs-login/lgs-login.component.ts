@@ -7,6 +7,7 @@ import { LgsApiService } from 'src/app/lgs-api/lgs-api.service';
 import { loginSuccess, User } from '../../lgs-state/lgs-auth/lgs.login.action';
 
 @Component({
+  standalone: false,
   selector: 'lgs-login',
   templateUrl: './lgs-login.component.html',
   styleUrls: ['./lgs-login.component.css']
@@ -14,15 +15,7 @@ import { loginSuccess, User } from '../../lgs-state/lgs-auth/lgs.login.action';
 export class LgsLoginComponent {
   @Output() loginAction = new EventEmitter<any>();
 
-  loginForm: FormGroup = this.fb.group({
-    userId: ['', [Validators.required]],
-    password: [
-      '',
-      [
-        Validators.required
-      ]
-    ]
-  });
+  loginForm: FormGroup;
   submitted = false;
   serverError: string = '';
 
@@ -32,7 +25,17 @@ export class LgsLoginComponent {
     private route: ActivatedRoute,
     private apiService: LgsApiService,
     private store: Store
-  ) { }
+  ) {
+    this.loginForm = this.fb.group({
+      userId: ['', [Validators.required]],
+      password: [
+        '',
+        [
+          Validators.required
+        ]
+      ]
+    });
+  }
 
   get f(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;

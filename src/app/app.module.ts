@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StoreModule.forRoot({}, {}),
     BrowserAnimationsModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

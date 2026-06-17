@@ -1,54 +1,45 @@
 <div class="view-container">
-    <p-table [value]="questions" sortField="representative.name" sortMode="single" dataKey="representative.name"
-        rowGroupMode="subheader" groupRowsBy="representative.name" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Course</th>
-                <th>Subject</th>
-                <th>Question set</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="groupheader" let-question let-rowIndex="rowIndex" let-expanded="expanded">
-            <tr>
-                <td colspan="5">
-                    <button 
-                    type="button" 
-                    pButton 
-                    pRipple 
-                    [pRowToggler]="question" 
-                    class="p-button-text p-button-rounded p-button-plain mr-2" 
-                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
-                </button>
-                    <span class="font-bold ml-2">{{question.coursename}}</span>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-question>
-            <tr>
-                <td>
-                    {{question.coursename}}
-                </td>
-                <td>
-                    {{question.subject}}
-                </td>
-                <td (click)="viewQuestionSet(question.questionset)">
-                    <span class="view-link">View set</span>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Subject</th>
+        <th>Question set</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let q of questions">
+        <td>{{q.coursename}}</td>
+        <td>{{q.subject}}</td>
+        <td>
+          <span class="view-link" (click)="viewQuestionSet(q.questionset)">View set</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<lgs-shared-modal
-    #submitConfirmModal
-    [title]="'Question set'"
-    [closeBtnName]="'Close'"
->
-<div *ngFor="let question of questionset">
-    <p>Question: {{ question.quetionTitle }}</p>
-    <p>Option 1: {{ question.option1 }}</p>
-    <p>Option 2: {{ question.option2 }}</p>
-    <p>Option 3: {{ question.option3 }}</p>
-    <p>Option 4: {{ question.option4 }}</p>
+<div *ngIf="showSet" class="modal" tabindex="-1" role="dialog" (click)="closeSet()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Question set</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeSet()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let question of questionset">
+          <p>Question: {{ question.quetionTitle }}</p>
+          <p>Option 1: {{ question.option1 }}</p>
+          <p>Option 2: {{ question.option2 }}</p>
+          <p>Option 3: {{ question.option3 }}</p>
+          <p>Option 4: {{ question.option4 }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default button-close" (click)="closeSet()">Close</button>
+      </div>
+    </div>
   </div>
-</lgs-shared-modal>
+</div>

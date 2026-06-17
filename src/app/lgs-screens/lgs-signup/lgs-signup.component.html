@@ -3,9 +3,9 @@
         <div class="col-md-12">
             <form [formGroup]="signUpForm">
                 <div class="form-group">
-                    <label [ngClass]="{ 'error-label':  f['email'].touched && f['email'].errors }">Email*</label>
+                    <label [class.error-label]="f['email'].touched && f['email'].errors">Email*</label>
                     <input type="email" formControlName="email" placeholder="Enter your email id"
-                        [ngClass]="{ 'is-invalid':  f['email'].touched && f['email'].errors }" class="form-control" />
+                        [class.is-invalid]="f['email'].touched && f['email'].errors" class="form-control" />
                     <div class="form-control-error"
                         *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
                         <div *ngIf="f['email'].errors?.['required']">
@@ -17,9 +17,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label [ngClass]="{ 'error-label':  f['mobile'].touched && f['mobile'].errors }">Mobile*</label>
+                    <label [class.error-label]="f['mobile'].touched && f['mobile'].errors">Mobile*</label>
                     <input type="number" formControlName="mobile" placeholder="Enter your mobile number"
-                        [ngClass]="{ 'is-invalid':  f['mobile'].touched && f['mobile'].errors }"
+                        [class.is-invalid]="f['mobile'].touched && f['mobile'].errors"
                         class="form-control" />
                     <div class="form-control-error"
                         *ngIf="f['mobile'].invalid && (f['mobile'].dirty || f['mobile'].touched)">
@@ -32,9 +32,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label [ngClass]="{ 'error-label':  f['userId'].touched && f['userId'].errors }">User Id*</label>
+                    <label [class.error-label]="f['userId'].touched && f['userId'].errors">User Id*</label>
                     <input type="text" formControlName="userId" placeholder="Enter your user id"
-                        [ngClass]="{ 'is-invalid':  f['userId'].touched && f['userId'].errors }"
+                        [class.is-invalid]="f['userId'].touched && f['userId'].errors"
                         class="form-control" />
                     <div class="form-control-error"
                         *ngIf="f['userId'].invalid && (f['userId'].dirty || f['userId'].touched)">
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label>Password*</label>
                     <input type="password" formControlName="password" placeholder="Enter a password"
-                        [ngClass]="{ 'is-invalid':  f['password'].touched && f['password'].errors }"
+                        [class.is-invalid]="f['password'].touched && f['password'].errors"
                         class="form-control" />
                     <div class="form-control-error"
                         *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label>Confirm password*</label>
                     <input type="password" formControlName="confirm-password" placeholder="Re enter the Password"
-                        [ngClass]="{ 'is-invalid':  f['confirm-password'].touched && f['confirm-password'].errors }"
+                        [class.is-invalid]="f['confirm-password'].touched && f['confirm-password'].errors"
                         class="form-control" />
                     <div class="form-control-error"
                         *ngIf="f['confirm-password'].invalid && (f['confirm-password'].dirty || f['confirm-password'].touched)">
@@ -90,7 +90,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-warning border-0"
                         [disabled]="signUpForm.pristine || signUpForm.invalid"
-                        [ngClass]="{'disable-button': signUpForm.pristine || signUpForm.invalid}"
+                        [class.disable-button]="signUpForm.pristine || signUpForm.invalid"
                         (click)="register()">REGISTER</button>
                     <button type="submit" class="btn btn-primary border-0" (click)="signIn()">Sign in</button>
                 </div>
@@ -98,12 +98,3 @@
         </div>
     </div>
 </div>
-
-
-<lgs-shared-modal 
-    #registrationConfirmModal
-    [title]="'User registration'"
-    [message]="'User registration is successful. Please login using email or user id.'" 
-    [confirmBtnName]="'Go to Login'" 
-    (onConfirm)="signIn()">
-</lgs-shared-modal>

@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { ModalModule } from 'ngx-bootstrap/modal';
+// ModalModule removed (replaced custom modals with native); ngx-bootstrap kept in deps for potential future but no longer used
 import { TableModule } from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 import { LgsAddQuestionsComponent } from '../lgs-add-questions/lgs-add-questions.component';
 import { LgsDashboardComponent } from '../lgs-dashboard/lgs-dashboard.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+      LgsSharedModalComponent,
       LgsLandingComponent,
       LgsLoginComponent,
       LgsNavbarComponent,
@@ -58,12 +60,12 @@ const routes: Routes = [
       LgsDashboardComponent,
       LgsAddQuestionsComponent,
       LgsViewQuestionsComponent,
-      LgsSharedModalComponent,
       LgsSharedErrorPageComponent
     ],
     exports: [
         LgsLoginComponent,
-        LgsNavbarComponent
+        LgsNavbarComponent,
+        LgsSharedModalComponent
     ],
   imports: [
     HttpClientModule,
@@ -71,10 +73,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     StoreModule.forFeature('lgs-app-state', reducers, { metaReducers: appMetaReducers }),
-    ModalModule.forRoot(),
     TableModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule
   ],
-  providers: [HttpInterceptorProviders]
+  providers: [HttpInterceptorProviders],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class ShellModule {}

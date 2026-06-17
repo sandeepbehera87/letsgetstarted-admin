@@ -6,6 +6,7 @@ import { LgsApiService } from '../../lgs-api/lgs-api.service';
 import { getUserid } from '../../lgs-state/lgs.selector';
 
 @Component({
+  standalone: false,
   selector: 'lgs-navbar',
   templateUrl: './lgs-navbar.component.html',
   styleUrls: ['./lgs-navbar.component.css']

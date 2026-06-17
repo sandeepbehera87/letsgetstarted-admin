@@ -28,12 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-spinner/animations/ball-scale-multiple.css",
-              "./node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "./node_modules/primeng/resources/primeng.min.css",
-              "./node_modules/primeicons/primeicons.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -62,12 +58,9 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -76,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "letsgetstarted-admin:build:production"
+              "buildTarget": "letsgetstarted-admin:build:production"
             },
             "development": {
-              "browserTarget": "letsgetstarted-admin:build:development"
+              "buildTarget": "letsgetstarted-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "letsgetstarted-admin:build"
+            "buildTarget": "letsgetstarted-admin:build"
           }
         },
         "lint": {
